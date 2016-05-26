@@ -1,0 +1,46 @@
+.WelcomePage_Page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsl(95, 70%, 90%);
+    background-repeat: repeat-x, repeat-x;
+    background-position: center bottom, center 30%;
+    overflow: auto;
+}
+
+.WelcomePage_Page-center {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    height: 416px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.WelcomePage_Page-logo {
+    display: inline-block;
+    width: 112px;
+    height: 154px;
+    vertical-align: top;
+}
+
+.WelcomePage_Page-signInForm {
+    margin-top: 10px;
+    text-align: left;
+}
+
+.WelcomePage_Page-button {
+    margin-top: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: 100%;
+    background-color: hsl(95, 70%, 55%);
+    color: white;
+}
