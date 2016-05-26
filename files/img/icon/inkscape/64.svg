@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="16"
-   height="16"
+   width="64"
+   height="64"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="16.svg">
+   sodipodi:docname="64.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="16"
-     inkscape:cx="7.8229167"
-     inkscape:cy="8.0495882"
+     inkscape:zoom="11.313709"
+     inkscape:cx="21.133319"
+     inkscape:cy="13.458454"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
@@ -66,9 +66,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-1036.3622)">
+     transform="translate(0,-988.3622)">
     <g
-       id="g3760">
+       id="g3760"
+       transform="matrix(4,0,0,4,0,-3157.0866)">
       <path
          transform="translate(-0.5,1036.3622)"
          d="m 12.5,3.5 c 0,1.6568542 -1.343146,3 -3,3 -1.6568542,0 -3,-1.3431458 -3,-3 0,-1.6568542 1.3431458,-3 3,-3 1.656854,0 3,1.3431458 3,3 z"
@@ -95,7 +96,7 @@
          sodipodi:cy="9.5"
          sodipodi:cx="9.5"
          id="path2989"
-         style="fill:#70de3e;fill-opacity:1;stroke:#ffffff;stroke-width:0.92307693000000002;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#70de3e;fill-opacity:1;stroke:#ffffff;stroke-width:0.92307693;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          sodipodi:type="arc" />
       <path
          sodipodi:type="arc"
