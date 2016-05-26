@@ -35,6 +35,7 @@ html, body {
     background-color: white;
     color: hsl(0, 0%, 30%);
     height: 100%;
-    font: normal 18px/30px Helvetica, Arial, sans-serif;
+    font: normal 15px/30px Helvetica, Arial, sans-serif;
     overflow: hidden;
+    text-align: left;
 }

@@ -17,10 +17,13 @@
     bottom: 0;
     left: 0;
     width: 280px;
-    height: 416px;
+    height: 510px;
     margin: auto;
     background-color: white;
     padding: 20px;
+}
+
+.WelcomePage_Page-logoWrapper {
     text-align: center;
 }
 
@@ -33,14 +36,30 @@
 
 .WelcomePage_Page-signInForm {
     margin-top: 10px;
-    text-align: left;
 }
 
-.WelcomePage_Page-button {
+.WelcomePage_Page-signInButton {
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 7px 10px;
     cursor: pointer;
     width: 100%;
-    background-color: hsl(95, 70%, 55%);
     color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.WelcomePage_Page-signInButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}
+
+.WelcomePage_Page-signUpButton {
+    padding: 5px 10px;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    background-color: hsl(45, 80%, 55%);
+}
+.WelcomePage_Page-signUpButton:active {
+    color: hsl(45, 80%, 70%);
+    background-color: hsl(45, 80%, 35%);
 }
