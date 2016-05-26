@@ -17,7 +17,7 @@
     bottom: 0;
     left: 0;
     width: 280px;
-    height: 510px;
+    height: 526px;
     margin: auto;
     background-color: white;
     padding: 20px;
@@ -39,7 +39,7 @@
 }
 
 .WelcomePage_Page-signInButton {
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
     padding: 7px 10px;
     cursor: pointer;

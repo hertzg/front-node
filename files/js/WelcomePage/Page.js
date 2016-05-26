@@ -10,11 +10,14 @@ function WelcomePage_Page () {
     signInButton.className = classPrefix + '-signInButton'
     signInButton.appendChild(document.createTextNode('Sign In'))
 
-    var signInFormElement = document.createElement('div')
-    signInFormElement.className = classPrefix + '-signInForm'
-    signInFormElement.appendChild(usernameItem.element)
-    signInFormElement.appendChild(passwordItem.element)
-    signInFormElement.appendChild(signInButton)
+    var staySignedInItem = WelcomePage_StaySignedInItem()
+
+    var signInForm = document.createElement('form')
+    signInForm.className = classPrefix + '-signInForm'
+    signInForm.appendChild(usernameItem.element)
+    signInForm.appendChild(passwordItem.element)
+    signInForm.appendChild(staySignedInItem.element)
+    signInForm.appendChild(signInButton)
 
     var logoElement = document.createElement('img')
     logoElement.className = classPrefix + '-logo'
@@ -31,7 +34,7 @@ function WelcomePage_Page () {
     var centerElement = document.createElement('div')
     centerElement.className = classPrefix + '-center'
     centerElement.appendChild(logoWrapperElement)
-    centerElement.appendChild(signInFormElement)
+    centerElement.appendChild(signInForm)
     centerElement.appendChild(document.createTextNode('New to Bazgu?'))
     centerElement.appendChild(signUpButton)
 
