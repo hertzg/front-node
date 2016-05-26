@@ -1,4 +1,4 @@
-function WelcomePage_Page () {
+function WelcomePage_Page (signUpListener) {
 
     var classPrefix = 'WelcomePage_Page'
 
@@ -30,18 +30,19 @@ function WelcomePage_Page () {
     var signUpButton = document.createElement('button')
     signUpButton.className = classPrefix + '-signUpButton'
     signUpButton.appendChild(document.createTextNode('Create an Account'))
+    signUpButton.addEventListener('click', signUpListener)
 
-    var centerElement = document.createElement('div')
-    centerElement.className = classPrefix + '-center'
-    centerElement.appendChild(logoWrapperElement)
-    centerElement.appendChild(signInForm)
-    centerElement.appendChild(document.createTextNode('New to Bazgu?'))
-    centerElement.appendChild(signUpButton)
+    var frameElement = document.createElement('div')
+    frameElement.className = classPrefix + '-frame'
+    frameElement.appendChild(logoWrapperElement)
+    frameElement.appendChild(signInForm)
+    frameElement.appendChild(document.createTextNode('New to Bazgu?'))
+    frameElement.appendChild(signUpButton)
 
     var element = document.createElement('div')
     element.className = classPrefix
     element.style.backgroundImage = 'url(img/grass.svg), url(img/clouds.svg)'
-    element.appendChild(centerElement)
+    element.appendChild(frameElement)
 
     return { element: element }
 

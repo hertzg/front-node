@@ -1,4 +1,4 @@
-.WelcomePage_Page {
+.SignUpPage_Page {
     position: absolute;
     top: 0;
     right: 0;
@@ -10,35 +10,35 @@
     overflow: auto;
 }
 
-.WelcomePage_Page-frame {
+.SignUpPage_Page-frame {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 280px;
-    height: 526px;
+    height: 396px;
     margin: auto;
     background-color: white;
     padding: 20px;
 }
 
-.WelcomePage_Page-logoWrapper {
+.SignUpPage_Page-backButton {
+    color: hsl(95, 70%, 55%);
+    cursor: pointer;
+}
+.SignUpPage_Page-backButton:hover {
+    text-decoration: underline;
+}
+
+.SignUpPage_Page-title {
     text-align: center;
+    color: hsl(95, 70%, 55%);
+    font-size: 22px;
+    line-height: 50px;
 }
 
-.WelcomePage_Page-logo {
-    display: inline-block;
-    width: 112px;
-    height: 154px;
-    vertical-align: top;
-}
-
-.WelcomePage_Page-signInForm {
-    margin-top: 10px;
-}
-
-.WelcomePage_Page-signInButton {
+.SignUpPage_Page-button {
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 7px 10px;
@@ -47,19 +47,7 @@
     color: white;
     background-color: hsl(95, 70%, 55%);
 }
-.WelcomePage_Page-signInButton:active {
+.SignUpPage_Page-button:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 70%, 35%);
-}
-
-.WelcomePage_Page-signUpButton {
-    padding: 5px 10px;
-    cursor: pointer;
-    width: 100%;
-    color: white;
-    background-color: hsl(45, 80%, 55%);
-}
-.WelcomePage_Page-signUpButton:active {
-    color: hsl(45, 80%, 70%);
-    background-color: hsl(45, 80%, 35%);
 }
