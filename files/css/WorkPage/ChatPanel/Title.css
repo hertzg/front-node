@@ -13,7 +13,7 @@
     padding-left: 14px;
 }
 .WorkPage_ChatPanel_Title-button:active {
-    background-color: hsl(95, 70%, 90%);
+    background-color: hsl(95, 70%, 85%);
 }
 .WorkPage_ChatPanel_Title-button.selected {
     color: white;

@@ -10,7 +10,10 @@
             body.removeChild(welcomePage.element)
             body.appendChild(signUpPage.element)
         }, function () {
-            var workPage = WorkPage_Page(getResourceUrl, showWelcomePage)
+            var workPage = WorkPage_Page({
+                username: 'd.tompkins',
+                displayName: 'Daniel Tompkins',
+            }, getResourceUrl, showWelcomePage)
             body.removeChild(welcomePage.element)
             body.appendChild(workPage.element)
         })
@@ -19,7 +22,6 @@
 
 
     var body = document.body
-//    showWelcomePage()
-    body.appendChild(WorkPage_Page(getResourceUrl, showWelcomePage).element)
+    showWelcomePage()
 
 })(revisions)

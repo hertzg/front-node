@@ -1,46 +1,44 @@
-.WelcomePage_Page {
+.AccountPage_Page {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: hsl(95, 70%, 85%);
-    background-repeat: repeat-x, repeat-x;
-    background-position: center bottom, center 30%;
+    background-color: hsla(95, 70%, 55%, 0.5);
     overflow: auto;
 }
 
-.WelcomePage_Page-frame {
+.AccountPage_Page-frame {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 280px;
-    height: 537px;
+    height: 441px;
     margin: auto;
     background-color: white;
     padding: 20px;
 }
 
-.WelcomePage_Page-logoWrapper {
-    text-align: center;
+.AccountPage_Page-title {
+    color: hsl(95, 70%, 55%);
+    font-size: 22px;
+    line-height: 44px;
+    padding-left: 36px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 80px;
 }
 
-.WelcomePage_Page-logo {
-    display: inline-block;
-    width: 112px;
-    height: 154px;
-    vertical-align: top;
-}
-
-.WelcomePage_Page-signInForm {
-    margin-top: 10px;
+.AccountPage_Page-form {
     border-bottom: 1px solid hsl(0, 0%, 90%);
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
-.WelcomePage_Page-signInButton {
+.AccountPage_Page-saveProfileButton {
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 7px 10px;
@@ -49,19 +47,19 @@
     color: white;
     background-color: hsl(95, 70%, 55%);
 }
-.WelcomePage_Page-signInButton:active {
+.AccountPage_Page-saveProfileButton:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 70%, 35%);
 }
 
-.WelcomePage_Page-signUpButton {
+.AccountPage_Page-changePasswordButton {
     padding: 5px 10px;
     cursor: pointer;
     width: 100%;
     color: white;
     background-color: hsl(45, 80%, 55%);
 }
-.WelcomePage_Page-signUpButton:active {
+.AccountPage_Page-changePasswordButton:active {
     color: hsl(45, 80%, 70%);
     background-color: hsl(45, 80%, 35%);
 }

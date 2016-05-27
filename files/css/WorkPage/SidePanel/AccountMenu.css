@@ -16,5 +16,5 @@
     cursor: pointer;
 }
 .WorkPage_SidePanel_AccountMenu-item:active {
-    background-color: hsl(95, 70%, 90%);
+    background-color: hsl(95, 70%, 85%);
 }

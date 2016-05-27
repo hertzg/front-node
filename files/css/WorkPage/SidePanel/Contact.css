@@ -9,7 +9,7 @@
     color: hsl(0, 0%, 70%);
 }
 .WorkPage_SidePanel_Contact:active {
-    background-color: hsl(95, 70%, 90%);
+    background-color: hsl(95, 70%, 85%);
 }
 .WorkPage_SidePanel_Contact.selected {
     color: white;

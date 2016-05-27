@@ -4,7 +4,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: hsl(95, 70%, 90%);
+    background-color: hsl(95, 70%, 85%);
     background-repeat: repeat-x, repeat-x;
     background-position: center bottom, center 30%;
     overflow: auto;
@@ -35,7 +35,7 @@
     text-align: center;
     color: hsl(95, 70%, 55%);
     font-size: 22px;
-    line-height: 50px;
+    line-height: 44px;
 }
 
 .SignUpPage_Page-button {

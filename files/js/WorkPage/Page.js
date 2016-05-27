@@ -1,11 +1,12 @@
-function WorkPage_Page (getResourceUrl, signOutListener) {
+function WorkPage_Page (data, getResourceUrl, signOutListener) {
 
     var classPrefix = 'WorkPage_Page'
 
-    var sidePanel = WorkPage_SidePanel_Panel({
-        displayName: 'Daniel Tompkins',
-    }, getResourceUrl, function () {
-        console.log('account')
+    var sidePanel = WorkPage_SidePanel_Panel(data, getResourceUrl, function () {
+        var accountPage = AccountPage_Page(data, getResourceUrl, function () {
+            element.removeChild(accountPage.element)
+        })
+        element.appendChild(accountPage.element)
     }, signOutListener, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
