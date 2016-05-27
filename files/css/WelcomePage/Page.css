@@ -46,11 +46,11 @@
     cursor: pointer;
     width: 100%;
     color: white;
-    background-color: hsl(95, 70%, 55%);
+    background-color: hsl(95, 60%, 55%);
 }
 .WelcomePage_Page-signInButton:active {
     color: hsl(95, 70%, 70%);
-    background-color: hsl(95, 70%, 35%);
+    background-color: hsl(95, 60%, 35%);
 }
 
 .WelcomePage_Page-signUpButton {
@@ -58,9 +58,9 @@
     cursor: pointer;
     width: 100%;
     color: white;
-    background-color: hsl(45, 80%, 55%);
+    background-color: hsl(45, 70%, 55%);
 }
 .WelcomePage_Page-signUpButton:active {
-    color: hsl(45, 80%, 70%);
-    background-color: hsl(45, 80%, 35%);
+    color: hsl(45, 70%, 70%);
+    background-color: hsl(45, 70%, 35%);
 }

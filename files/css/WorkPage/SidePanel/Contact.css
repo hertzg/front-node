@@ -13,9 +13,9 @@
 }
 .WorkPage_SidePanel_Contact.selected {
     color: white;
-    background-color: hsl(95, 70%, 55%);
+    background-color: hsl(95, 60%, 55%);
 }
 .WorkPage_SidePanel_Contact.selected:active {
     color: hsl(95, 70%, 70%);
-    background-color: hsl(95, 70%, 35%);
+    background-color: hsl(95, 60%, 35%);
 }

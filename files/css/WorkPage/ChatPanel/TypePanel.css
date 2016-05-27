@@ -18,7 +18,7 @@
     white-space: normal;
 }
 .WorkPage_ChatPanel_TypePanel-textarea:focus {
-    border-color: hsl(95, 70%, 55%);
+    border-color: hsl(95, 60%, 55%);
 }
 
 .WorkPage_ChatPanel_TypePanel-sendButton {
@@ -29,9 +29,9 @@
     cursor: pointer;
     width: 80px;
     color: white;
-    background-color: hsl(95, 70%, 55%);
+    background-color: hsl(95, 60%, 55%);
 }
 .WorkPage_ChatPanel_TypePanel-sendButton:active {
     color: hsl(95, 70%, 70%);
-    background-color: hsl(95, 70%, 35%);
+    background-color: hsl(95, 60%, 35%);
 }

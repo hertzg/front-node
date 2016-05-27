@@ -4,7 +4,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: hsla(95, 70%, 55%, 0.5);
+    background-color: hsla(95, 60%, 55%, 0.5);
     overflow: auto;
 }
 
@@ -33,13 +33,13 @@
     left: 20px;
     padding: 7px 10px;
     cursor: pointer;
-    width: calc(60% - 25px);
+    width: calc(55% - 25px);
     color: white;
-    background-color: hsl(95, 70%, 55%);
+    background-color: hsl(95, 60%, 55%);
 }
 .SignOutPage_Page-yesButton:active {
     color: hsl(95, 70%, 70%);
-    background-color: hsl(95, 70%, 35%);
+    background-color: hsl(95, 60%, 35%);
 }
 
 .SignOutPage_Page-noButton {
@@ -48,11 +48,11 @@
     bottom: 20px;
     padding: 7px 10px;
     cursor: pointer;
-    width: calc(40% - 25px);
+    width: calc(45% - 25px);
     color: white;
-    background-color: hsl(45, 80%, 55%);
+    background-color: hsl(45, 70%, 55%);
 }
 .SignOutPage_Page-noButton:active {
-    color: hsl(45, 80%, 70%);
-    background-color: hsl(45, 80%, 35%);
+    color: hsl(45, 70%, 70%);
+    background-color: hsl(45, 70%, 35%);
 }

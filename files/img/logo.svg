@@ -37,12 +37,12 @@
          d="m 15.5,9.5 a 6,6 0 1 1 -12,0 6,6 0 1 1 12,0 z"
          transform="matrix(7.3333334,0,0,7.3333334,2.3333332,892.6958)"
          id="path2989"
-         style="fill:#7fdd3c;fill-opacity:1;stroke:none" />
+         style="fill:#81d147;fill-opacity:1;stroke:none" />
       <path
          d="m 12,3.5 a 2.5,2.5 0 1 1 -5,0 2.5,2.5 0 1 1 5,0 z"
          transform="matrix(8,0,0,8,-4,890.3622)"
          id="path3763"
-         style="fill:#7fdd3c;fill-opacity:1;stroke:none" />
+         style="fill:#81d147;fill-opacity:1;stroke:none" />
       <use
          transform="translate(-44,44)"
          id="use3765"
@@ -68,77 +68,77 @@
     <g
        transform="translate(-12,18)"
        id="g3827"
-       style="stroke:#7fdd3c;stroke-opacity:1">
+       style="stroke:#81d147;stroke-opacity:1">
       <path
          d="m 16,140 0,24"
          inkscape:connector-curvature="0"
          transform="translate(0,860.3622)"
          id="path3789"
-         style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <path
          d="m 32,156 a 8,8 0 1 1 -16,0 8,8 0 1 1 16,0 z"
          transform="translate(0,860.3622)"
          id="path3791"
-         style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:none;stroke:#81d147;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <g
          transform="translate(-2,0)"
          id="g3813"
-         style="stroke:#7fdd3c;stroke-opacity:1">
+         style="stroke:#81d147;stroke-opacity:1">
         <path
            d="m 32,156 a 8,8 0 1 1 -16,0 8,8 0 1 1 16,0 z"
            transform="translate(24,860.3622)"
            id="path3793"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <path
            d="m 56,1008.3622 0,16"
            inkscape:connector-curvature="0"
            id="path3795"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       </g>
       <path
          d="m 60,1008.3622 16,0 -16,16 16,0"
          inkscape:connector-curvature="0"
          id="path3797"
-         style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+         style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       <g
          transform="translate(-6,0)"
          id="g3817"
-         style="stroke:#7fdd3c;stroke-opacity:1">
+         style="stroke:#81d147;stroke-opacity:1">
         <path
            d="m 32,156 a 8,8 0 1 1 -16,0 8,8 0 1 1 16,0 z"
            transform="translate(72,860.3622)"
            id="path3799"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <path
            d="m 104,1008.3622 0,16"
            inkscape:connector-curvature="0"
            id="path3801"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <path
            d="m 32,156 a 8,8 0 0 1 -8,8"
            transform="translate(72,868.3622)"
            id="path3803"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       </g>
       <g
          transform="translate(-6,0)"
          id="g3822"
-         style="stroke:#7fdd3c;stroke-opacity:1">
+         style="stroke:#81d147;stroke-opacity:1">
         <path
            d="m 32,156 a 8,8 0 1 1 -16,0"
            transform="translate(94,860.3622)"
            id="path3805"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <path
            d="m 126,1008.3622 0,16"
            inkscape:connector-curvature="0"
            id="path3807"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
         <path
            d="m 110,1008.3622 0,8"
            inkscape:connector-curvature="0"
            id="path3809"
-           style="fill:none;stroke:#7fdd3c;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+           style="fill:none;stroke:#81d147;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
       </g>
     </g>
   </g>

@@ -17,11 +17,11 @@
 }
 .WorkPage_ChatPanel_Title-button.selected {
     color: white;
-    background-color: hsl(95, 70%, 55%);
+    background-color: hsl(95, 60%, 55%);
 }
 .WorkPage_ChatPanel_Title-button.selected:active {
     color: hsl(95, 70%, 70%);
-    background-color: hsl(95, 70%, 35%);
+    background-color: hsl(95, 60%, 35%);
 }
 
 .WorkPage_ChatPanel_Title-buttonText {
