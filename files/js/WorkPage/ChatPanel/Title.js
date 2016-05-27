@@ -5,6 +5,7 @@ function WorkPage_ChatPanel_Title (data, profileListener, removeListener) {
         button.removeEventListener('click', deselect)
         button.addEventListener('click', select)
         element.removeChild(contactMenu.element)
+        removeEventListener('mousedown', windowMouseDown)
     }
 
     function select () {
@@ -12,6 +13,13 @@ function WorkPage_ChatPanel_Title (data, profileListener, removeListener) {
         button.removeEventListener('click', select)
         button.addEventListener('click', deselect)
         element.appendChild(contactMenu.element)
+        addEventListener('mousedown', windowMouseDown)
+    }
+
+    function windowMouseDown (e) {
+        if (e.button !== 0) return
+        if (IsChildElement(element, e.target)) return
+        deselect()
     }
 
     var classPrefix = 'WorkPage_ChatPanel_Title'
