@@ -1,0 +1,10 @@
+.ContactPage_FullNameItem-input {
+    background-color: white;
+    padding: 5px 10px;
+    cursor: text;
+    width: 100%;
+    border: 2px solid hsl(0, 0%, 70%);
+}
+.ContactPage_FullNameItem-input:focus {
+    border: 2px solid hsl(95, 70%, 55%);
+}

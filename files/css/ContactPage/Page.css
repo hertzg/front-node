@@ -1,0 +1,47 @@
+.ContactPage_Page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(95, 70%, 55%, 0.5);
+    overflow: auto;
+}
+
+.ContactPage_Page-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 280px;
+    height: 360px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+}
+
+.ContactPage_Page-title {
+    color: hsl(95, 70%, 55%);
+    font-size: 22px;
+    line-height: 44px;
+    padding-left: 36px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-right: 80px;
+}
+
+.ContactPage_Page-saveProfileButton {
+    margin-top: 10px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.ContactPage_Page-saveProfileButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}

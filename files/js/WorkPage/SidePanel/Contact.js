@@ -1,5 +1,5 @@
 function WorkPage_SidePanel_Contact (getResourceUrl,
-    data, selectListener, deselectListener) {
+    data, selectListener, deselectListener, profileListener) {
 
     function deselect () {
         classList.remove('selected')
@@ -19,9 +19,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         selectListener()
     }
 
-    var chatPanel = WorkPage_ChatPanel_Panel(data, function () {
-        console.log('profile')
-    }, function () {
+    var chatPanel = WorkPage_ChatPanel_Panel(data, profileListener, function () {
         console.log('remove')
     }, deselectAndCallListener)
 
@@ -35,6 +33,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
 
     return {
         chatPanel: chatPanel,
+        data: data,
         deselect: deselect,
         element: element,
     }

@@ -11,7 +11,7 @@
             body.appendChild(signUpPage.element)
         }, function () {
             var workPage = WorkPage_Page({
-                username: 'd.tompkins',
+                username: 'daniel.tompkins',
                 displayName: 'Daniel Tompkins',
             }, getResourceUrl, showWelcomePage)
             body.removeChild(welcomePage.element)

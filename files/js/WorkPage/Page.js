@@ -22,6 +22,11 @@ function WorkPage_Page (data, getResourceUrl, signOutListener) {
         chatPanel.focus()
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
+    }, function (contact) {
+        var contactPage = ContactPage_Page(contact.data, getResourceUrl, function () {
+            element.removeChild(contactPage.element)
+        })
+        element.appendChild(contactPage.element)
     })
 
     var element = document.createElement('div')

@@ -1,14 +1,14 @@
-function AccountPage_Page (data, getResourceUrl, closeListener, changePasswordListener) {
+function ContactPage_Page (data, getResourceUrl, closeListener) {
 
-    var classPrefix = 'AccountPage_Page'
+    var classPrefix = 'ContactPage_Page'
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = AccountPage_FullNameItem()
+    var fullNameItem = ContactPage_FullNameItem()
 
-    var emailItem = AccountPage_EmailItem()
+    var emailItem = ContactPage_EmailItem()
 
-    var phoneItem = AccountPage_PhoneItem()
+    var phoneItem = ContactPage_PhoneItem()
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
@@ -27,25 +27,15 @@ function AccountPage_Page (data, getResourceUrl, closeListener, changePasswordLi
     form.appendChild(saveProfileButton)
     form.addEventListener('submit', function () {})
 
-    var changePasswordButton = document.createElement('button')
-    changePasswordButton.className = classPrefix + '-changePasswordButton'
-    changePasswordButton.appendChild(document.createTextNode('Change Password'))
-    changePasswordButton.addEventListener('click', changePasswordListener)
-
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
     frameElement.appendChild(form)
-    frameElement.appendChild(changePasswordButton)
 
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(frameElement)
-    element.addEventListener('click', function (e) {
-        if (e.button !== 0) return
-        if (e.target === element) closeListener()
-    })
 
     return { element: element }
 

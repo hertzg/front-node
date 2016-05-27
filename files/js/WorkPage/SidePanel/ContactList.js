@@ -1,4 +1,5 @@
-function WorkPage_SidePanel_ContactList (getResourceUrl, selectListener, deselectListener) {
+function WorkPage_SidePanel_ContactList (getResourceUrl,
+    selectListener, deselectListener, profileListener) {
 
     function add (data) {
         var contact = WorkPage_SidePanel_Contact(getResourceUrl, data, function () {
@@ -11,6 +12,8 @@ function WorkPage_SidePanel_ContactList (getResourceUrl, selectListener, deselec
         }, function () {
             deselectListener(selectedContact)
             selectedContact = null
+        }, function () {
+            profileListener(contact)
         })
         element.appendChild(contact.element)
     }
@@ -25,10 +28,22 @@ function WorkPage_SidePanel_ContactList (getResourceUrl, selectListener, deselec
 
     var element = document.createElement('div')
     element.className = classPrefix
-    add({ displayName: 'Acle Kahney' })
-    add({ displayName: 'Amos Williams' })
-    add({ displayName: 'James Monteith' })
-    add({ displayName: 'Jay Postones' })
+    add({
+        displayName: 'Acle Kahney',
+        username: 'acle.kahney',
+    })
+    add({
+        displayName: 'Amos Williams',
+        username: 'amos.williams',
+    })
+    add({
+        displayName: 'James Monteith',
+        username: 'james.monteith',
+    })
+    add({
+        displayName: 'Jay Postones',
+        username: 'jay.postones',
+    })
 //    element.appendChild(emptyElement)
 
     return { element: element }
