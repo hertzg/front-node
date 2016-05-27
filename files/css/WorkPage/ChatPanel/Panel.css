@@ -1,0 +1,10 @@
+.WorkPage_ChatPanel_Panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 260px;
+    background-color: white;
+    padding: 20px;
+    border-left: 2px solid hsl(95, 70%, 90%);
+}

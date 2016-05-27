@@ -1,10 +1,10 @@
-.WorkPage_SidePanel_Title {
+.WorkPage_ChatPanel_Title {
     display: inline-block;
     vertical-align: top;
     position: relative;
 }
 
-.WorkPage_SidePanel_Title-button {
+.WorkPage_ChatPanel_Title-button {
     display: inline-block;
     vertical-align: top;
     cursor: pointer;
@@ -12,19 +12,19 @@
     padding-right: 14px;
     padding-left: 14px;
 }
-.WorkPage_SidePanel_Title-button:active {
+.WorkPage_ChatPanel_Title-button:active {
     background-color: hsl(95, 70%, 90%);
 }
-.WorkPage_SidePanel_Title-button.selected {
+.WorkPage_ChatPanel_Title-button.selected {
     color: white;
     background-color: hsl(95, 70%, 55%);
 }
-.WorkPage_SidePanel_Title-button.selected:active {
+.WorkPage_ChatPanel_Title-button.selected:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 70%, 35%);
 }
 
-.WorkPage_SidePanel_Title-buttonText {
+.WorkPage_ChatPanel_Title-buttonText {
     display: inline-block;
     vertical-align: top;
     max-width: 100px;

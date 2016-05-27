@@ -3,17 +3,25 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
 
     function deselect () {
         classList.remove('selected')
-        element.removeEventListener('click', deselect)
+        element.removeEventListener('click', deselectAndCallListener)
         element.addEventListener('click', select)
+    }
+
+    function deselectAndCallListener () {
+        deselect()
         deselectListener()
     }
 
     function select () {
         classList.add('selected')
         element.removeEventListener('click', select)
-        element.addEventListener('click', deselect)
+        element.addEventListener('click', deselectAndCallListener)
         selectListener()
     }
+
+    var chatPanel = WorkPage_ChatPanel_Panel(data, function () {
+    }, function () {
+    })
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
@@ -24,6 +32,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
     var classList = element.classList
 
     return {
+        chatPanel: chatPanel,
         deselect: deselect,
         element: element,
     }

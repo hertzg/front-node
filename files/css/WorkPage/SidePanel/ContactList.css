@@ -5,6 +5,7 @@
     bottom: 0;
     left: 0;
     padding: 20px;
+    padding-right: 0;
 }
 
 .WorkPage_SidePanel_ContactList-empty {

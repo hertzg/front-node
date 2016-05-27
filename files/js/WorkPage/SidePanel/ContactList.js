@@ -1,10 +1,15 @@
-function WorkPage_SidePanel_ContactList (getResourceUrl) {
+function WorkPage_SidePanel_ContactList (getResourceUrl, selectListener, deselectListener) {
 
     function add (data) {
         var contact = WorkPage_SidePanel_Contact(getResourceUrl, data, function () {
-            if (selectedContact !== null) selectedContact.deselect()
+            if (selectedContact !== null) {
+                selectedContact.deselect()
+                deselectListener(selectedContact)
+            }
             selectedContact = contact
+            selectListener(contact)
         }, function () {
+            deselectListener(selectedContact)
             selectedContact = null
         })
         element.appendChild(contact.element)

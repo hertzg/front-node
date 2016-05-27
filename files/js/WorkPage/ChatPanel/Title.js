@@ -1,27 +1,27 @@
-function WorkPage_SidePanel_Title (data, accountListener, signOutListener) {
+function WorkPage_ChatPanel_Title (data, profileListener, removeListener) {
 
     function deselect () {
         buttonClassList.remove('selected')
         button.removeEventListener('click', deselect)
         button.addEventListener('click', select)
-        element.removeChild(accountMenu.element)
+        element.removeChild(contactMenu.element)
     }
 
     function select () {
         buttonClassList.add('selected')
         button.removeEventListener('click', select)
         button.addEventListener('click', deselect)
-        element.appendChild(accountMenu.element)
+        element.appendChild(contactMenu.element)
     }
 
-    var classPrefix = 'WorkPage_SidePanel_Title'
+    var classPrefix = 'WorkPage_ChatPanel_Title'
 
-    var accountMenu = WorkPage_SidePanel_AccountMenu(function () {
+    var contactMenu = WorkPage_ChatPanel_ContactMenu(function () {
         deselect()
-        accountListener()
+        profileListener()
     }, function () {
         deselect()
-        signOutListener()
+        removeListener()
     })
 
     var buttonTextElement = document.createElement('span')
