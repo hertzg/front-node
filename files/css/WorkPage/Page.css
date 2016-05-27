@@ -7,5 +7,5 @@
     background-color: hsl(95, 70%, 90%);
     background-repeat: repeat-x, repeat-x;
     background-position: center bottom, center 30%;
-    overflow: auto;
+    overflow-y: auto;
 }

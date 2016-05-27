@@ -7,3 +7,11 @@
     background-color: white;
     padding: 20px;
 }
+@media (max-width: 600px) {
+    .WorkPage_SidePanel_Panel {
+        width: 100%;
+    }
+    .WorkPage_SidePanel_Panel.chatOpen {
+        display: none;
+    }
+}

@@ -1,0 +1,36 @@
+.WorkPage_ChatPanel_TypePanel {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    left: 20px;
+    height: 100px;
+}
+
+.WorkPage_ChatPanel_TypePanel-textarea {
+    padding: 5px 10px;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    height: 100%;
+    cursor: text;
+    padding-right: 80px;
+    border-top: 2px solid hsl(0, 0%, 70%);
+}
+.WorkPage_ChatPanel_TypePanel-textarea:focus {
+    border-color: hsl(95, 70%, 55%);
+}
+
+.WorkPage_ChatPanel_TypePanel-sendButton {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: 80px;
+    color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.WorkPage_ChatPanel_TypePanel-sendButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}

@@ -3,13 +3,20 @@ function WorkPage_SidePanel_Panel (data, getResourceUrl, accountListener,
 
     var title = WorkPage_SidePanel_Title(data, accountListener, signOutListener)
 
-    var contactList = WorkPage_SidePanel_ContactList(getResourceUrl,
-        contactSelectListener, contactDeselectListener)
+    var contactList = WorkPage_SidePanel_ContactList(getResourceUrl, function (contact) {
+        contactSelectListener(contact)
+        classList.add('chatOpen')
+    }, function (contact) {
+        contactDeselectListener(contact)
+        classList.remove('chatOpen')
+    })
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Panel'
     element.appendChild(title.element)
     element.appendChild(contactList.element)
+
+    var classList = element.classList
 
     return { element: element }
 

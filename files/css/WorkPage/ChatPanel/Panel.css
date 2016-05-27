@@ -8,3 +8,10 @@
     padding: 20px;
     border-left: 2px solid hsl(95, 70%, 90%);
 }
+
+@media (max-width: 600px) {
+    .WorkPage_ChatPanel_Panel {
+        left: 0;
+        border-left: 0;
+    }
+}

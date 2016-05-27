@@ -20,8 +20,10 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
     }
 
     var chatPanel = WorkPage_ChatPanel_Panel(data, function () {
+        console.log('profile')
     }, function () {
-    })
+        console.log('remove')
+    }, deselectAndCallListener)
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'

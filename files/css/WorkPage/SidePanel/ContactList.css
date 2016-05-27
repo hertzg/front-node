@@ -1,15 +1,20 @@
 .WorkPage_SidePanel_ContactList {
     position: absolute;
-    top: 54px;
+    top: 74px;
     right: 0;
     bottom: 0;
-    left: 0;
-    padding: 20px;
-    padding-right: 0;
+    left: 20px;
+    overflow-y: auto;
 }
 
 .WorkPage_SidePanel_ContactList-empty {
     color: hsl(0, 0%, 70%);
     padding: 30px;
     text-align: center;
+}
+
+@media (max-width: 600px) {
+    .WorkPage_SidePanel_ContactList {
+        right: 20px;
+    }
 }

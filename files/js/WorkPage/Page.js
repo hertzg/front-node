@@ -7,7 +7,9 @@ function WorkPage_Page (getResourceUrl, signOutListener) {
     }, getResourceUrl, function () {
         console.log('account')
     }, signOutListener, function (contact) {
-        element.appendChild(contact.chatPanel.element)
+        var chatPanel = contact.chatPanel
+        element.appendChild(chatPanel.element)
+        chatPanel.focus()
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     })
