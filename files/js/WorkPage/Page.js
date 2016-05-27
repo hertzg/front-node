@@ -16,7 +16,15 @@ function WorkPage_Page (data, getResourceUrl, signOutListener) {
             element.appendChild(changePasswordPage.element)
         })
         element.appendChild(accountPage.element)
-    }, signOutListener, function (contact) {
+    }, function () {
+        var signOutPage = SignOutPage_Page(function () {
+            element.removeChild(signOutPage.element)
+            signOutListener()
+        }, function () {
+            element.removeChild(signOutPage.element)
+        })
+        element.appendChild(signOutPage.element)
+    }, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
         chatPanel.focus()

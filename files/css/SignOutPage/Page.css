@@ -1,0 +1,58 @@
+.SignOutPage_Page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(95, 70%, 55%, 0.5);
+    overflow: auto;
+}
+
+.SignOutPage_Page-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 194px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+}
+
+.SignOutPage_Page-text {
+    text-align: center;
+    padding: 20px;
+    white-space: normal;
+}
+
+.SignOutPage_Page-yesButton {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: calc(60% - 25px);
+    color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.SignOutPage_Page-yesButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}
+
+.SignOutPage_Page-noButton {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: calc(40% - 25px);
+    color: white;
+    background-color: hsl(45, 80%, 55%);
+}
+.SignOutPage_Page-noButton:active {
+    color: hsl(45, 80%, 70%);
+    background-color: hsl(45, 80%, 35%);
+}
