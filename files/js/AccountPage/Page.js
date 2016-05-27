@@ -1,4 +1,4 @@
-function AccountPage_Page (data, getResourceUrl, closeListener) {
+function AccountPage_Page (data, getResourceUrl, closeListener, changePasswordListener) {
 
     var classPrefix = 'AccountPage_Page'
 
@@ -31,6 +31,7 @@ function AccountPage_Page (data, getResourceUrl, closeListener) {
     var changePasswordButton = document.createElement('button')
     changePasswordButton.className = classPrefix + '-changePasswordButton'
     changePasswordButton.appendChild(document.createTextNode('Change Password'))
+    changePasswordButton.addEventListener('click', changePasswordListener)
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'

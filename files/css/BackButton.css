@@ -1,13 +1,12 @@
-.CloseButton {
-    position: absolute;
-    top: 20px;
-    right: 20px;
+.BackButton {
+    display: inline-block;
+    vertical-align: top;
     line-height: 44px;
     padding-right: 14px;
     padding-left: 14px;
     cursor: pointer;
     color: hsl(95, 70%, 55%)
 }
-.CloseButton:active {
+.BackButton:active {
     background-color: hsl(95, 70%, 85%);
 }

@@ -17,7 +17,7 @@
     bottom: 0;
     left: 0;
     width: 280px;
-    height: 537px;
+    height: 517px;
     margin: auto;
     background-color: white;
     padding: 20px;
@@ -35,14 +35,13 @@
 }
 
 .WelcomePage_Page-signInForm {
-    margin-top: 10px;
     border-bottom: 1px solid hsl(0, 0%, 90%);
-    margin-bottom: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
 }
 
 .WelcomePage_Page-signInButton {
     margin-top: 10px;
-    margin-bottom: 20px;
     padding: 7px 10px;
     cursor: pointer;
     width: 100%;

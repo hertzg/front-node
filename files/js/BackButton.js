@@ -1,8 +1,8 @@
-function CloseButton (listener) {
+function BackButton (listener) {
 
     var element = document.createElement('button')
-    element.className = 'CloseButton'
-    element.appendChild(document.createTextNode('Close \xd7'))
+    element.className = 'BackButton'
+    element.appendChild(document.createTextNode('\u2039 Back'))
     element.addEventListener('click', listener)
 
     return { element: element }

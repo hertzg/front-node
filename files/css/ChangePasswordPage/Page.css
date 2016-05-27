@@ -1,16 +1,14 @@
-.SignUpPage_Page {
+.ChangePasswordPage_Page {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: hsl(95, 70%, 85%);
-    background-repeat: repeat-x, repeat-x;
-    background-position: center bottom, center 30%;
+    background-color: hsla(95, 70%, 55%, 0.5);
     overflow: auto;
 }
 
-.SignUpPage_Page-frame {
+.ChangePasswordPage_Page-frame {
     position: absolute;
     top: 0;
     right: 0;
@@ -23,14 +21,14 @@
     padding: 20px;
 }
 
-.SignUpPage_Page-title {
+.ChangePasswordPage_Page-title {
     text-align: center;
     color: hsl(95, 70%, 55%);
     font-size: 22px;
     line-height: 44px;
 }
 
-.SignUpPage_Page-button {
+.ChangePasswordPage_Page-button {
     margin-top: 10px;
     margin-bottom: 20px;
     padding: 7px 10px;
@@ -39,7 +37,7 @@
     color: white;
     background-color: hsl(95, 70%, 55%);
 }
-.SignUpPage_Page-button:active {
+.ChangePasswordPage_Page-button:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 70%, 35%);
 }

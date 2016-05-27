@@ -1,41 +1,41 @@
-function SignUpPage_Page (getResourceUrl, backListener) {
+function ChangePasswordPage_Page (backListener, closeListener) {
 
-    var classPrefix = 'SignUpPage_Page'
+    var classPrefix = 'ChangePasswordPage_Page'
 
-    var usernameItem = SignUpPage_UsernameItem()
-
-    var passwordItem = SignUpPage_PasswordItem()
-
-    var repeatPasswordItem = SignUpPage_RepeatPasswordItem()
+    var closeButton = CloseButton(closeListener)
 
     var backButton = BackButton(backListener)
 
     var titleElement = document.createElement('h1')
     titleElement.className = classPrefix + '-title'
-    titleElement.appendChild(document.createTextNode('Create an Account'))
+    titleElement.appendChild(document.createTextNode('Change Password'))
+
+    var currentPasswordItem = ChangePasswordPage_CurrentPasswordItem()
+
+    var newPasswordItem = ChangePasswordPage_NewPasswordItem()
+
+    var repeatNewPasswordItem = ChangePasswordPage_RepeatNewPasswordItem()
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Sign Up'))
+    button.appendChild(document.createTextNode('Save'))
 
     var form = document.createElement('form')
     form.className = classPrefix + '-form'
-    form.appendChild(usernameItem.element)
-    form.appendChild(passwordItem.element)
-    form.appendChild(repeatPasswordItem.element)
+    form.appendChild(currentPasswordItem.element)
+    form.appendChild(newPasswordItem.element)
+    form.appendChild(repeatNewPasswordItem.element)
     form.appendChild(button)
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
+    frameElement.appendChild(closeButton.element)
     frameElement.appendChild(backButton.element)
     frameElement.appendChild(titleElement)
     frameElement.appendChild(form)
 
     var element = document.createElement('div')
     element.className = classPrefix
-    element.style.backgroundImage =
-        'url(' + getResourceUrl('img/grass.svg') + '),' +
-        ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(frameElement)
 
     return { element: element }
