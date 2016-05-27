@@ -24,7 +24,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl, data,
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
-    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-offline.svg') + ')'
+    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-' + (data.online ? 'online' : 'offline') + '.svg') + ')'
     element.appendChild(document.createTextNode(data.displayName))
     element.addEventListener('click', select)
 

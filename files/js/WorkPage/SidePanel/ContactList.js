@@ -34,18 +34,22 @@ function WorkPage_SidePanel_ContactList (getResourceUrl,
     add({
         displayName: 'Acle Kahney',
         username: 'acle.kahney',
+        online: true,
     })
     add({
         displayName: 'Amos Williams',
         username: 'amos.williams',
+        online: true,
     })
     add({
         displayName: 'James Monteith',
         username: 'james.monteith',
+        online: false,
     })
     add({
         displayName: 'Jay Postones',
         username: 'jay.postones',
+        online: true,
     })
 
     var element = document.createElement('div')

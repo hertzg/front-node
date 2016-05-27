@@ -1,0 +1,70 @@
+.ContactRequestPage_Page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(95, 60%, 55%, 0.5);
+    overflow: auto;
+}
+
+.ContactRequestPage_Page-frame {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 300px;
+    height: 368px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+}
+
+.ContactRequestPage_Page-title {
+    color: hsl(95, 60%, 55%);
+    font-size: 22px;
+    line-height: 44px;
+    padding-left: 36px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 10px;
+}
+
+.ContactRequestPage_Page-text {
+    text-align: center;
+    padding: 20px;
+    white-space: normal;
+}
+
+.ContactRequestPage_Page-yesButton {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: calc(60% - 25px);
+    color: white;
+    background-color: hsl(95, 60%, 55%);
+}
+.ContactRequestPage_Page-yesButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 60%, 35%);
+}
+
+.ContactRequestPage_Page-noButton {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 7px 10px;
+    cursor: pointer;
+    width: calc(40% - 25px);
+    color: white;
+    background-color: hsl(45, 70%, 55%);
+}
+.ContactRequestPage_Page-noButton:active {
+    color: hsl(45, 70%, 70%);
+    background-color: hsl(45, 70%, 35%);
+}
