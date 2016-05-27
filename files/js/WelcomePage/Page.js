@@ -1,4 +1,4 @@
-function WelcomePage_Page (signUpListener) {
+function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
 
     var classPrefix = 'WelcomePage_Page'
 
@@ -18,10 +18,11 @@ function WelcomePage_Page (signUpListener) {
     signInForm.appendChild(passwordItem.element)
     signInForm.appendChild(staySignedInItem.element)
     signInForm.appendChild(signInButton)
+    signInForm.addEventListener('submit', signInListener)
 
     var logoElement = document.createElement('img')
     logoElement.className = classPrefix + '-logo'
-    logoElement.src = 'img/logo.svg'
+    logoElement.src = getResourceUrl('img/logo.svg')
 
     var logoWrapperElement = document.createElement('div')
     logoWrapperElement.className = classPrefix + '-logoWrapper'
@@ -37,11 +38,14 @@ function WelcomePage_Page (signUpListener) {
     frameElement.appendChild(logoWrapperElement)
     frameElement.appendChild(signInForm)
     frameElement.appendChild(document.createTextNode('New to Bazgu?'))
+    frameElement.appendChild(document.createElement('br'))
     frameElement.appendChild(signUpButton)
 
     var element = document.createElement('div')
     element.className = classPrefix
-    element.style.backgroundImage = 'url(img/grass.svg), url(img/clouds.svg)'
+    element.style.backgroundImage =
+        'url(' + getResourceUrl('img/grass.svg') + '),' +
+        ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(frameElement)
 
     return { element: element }

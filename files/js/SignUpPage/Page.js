@@ -1,4 +1,4 @@
-function SignUpPage_Page (backListener) {
+function SignUpPage_Page (getResourceUrl, backListener) {
 
     var classPrefix = 'SignUpPage_Page'
 
@@ -36,7 +36,9 @@ function SignUpPage_Page (backListener) {
 
     var element = document.createElement('div')
     element.className = classPrefix
-    element.style.backgroundImage = 'url(img/grass.svg), url(img/clouds.svg)'
+    element.style.backgroundImage =
+        'url(' + getResourceUrl('img/grass.svg') + '),' +
+        ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(frameElement)
 
     return { element: element }

@@ -1,0 +1,34 @@
+.WorkPage_SidePanel_Title {
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+}
+
+.WorkPage_SidePanel_Title-button {
+    display: inline-block;
+    vertical-align: top;
+    cursor: pointer;
+    line-height: 44px;
+    padding-right: 14px;
+    padding-left: 14px;
+}
+.WorkPage_SidePanel_Title-button:active {
+    background-color: hsl(95, 70%, 90%);
+}
+.WorkPage_SidePanel_Title-button.selected {
+    color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.WorkPage_SidePanel_Title-button.selected:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}
+
+.WorkPage_SidePanel_Title-buttonText {
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: inherit;
+}

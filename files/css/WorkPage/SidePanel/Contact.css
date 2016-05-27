@@ -1,0 +1,21 @@
+.WorkPage_SidePanel_Contact {
+    line-height: 64px;
+    cursor: pointer;
+    padding-left: 64px;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+.WorkPage_SidePanel_Contact.offline {
+    color: hsl(0, 0%, 70%);
+}
+.WorkPage_SidePanel_Contact:active {
+    background-color: hsl(95, 70%, 90%);
+}
+.WorkPage_SidePanel_Contact.selected {
+    color: white;
+    background-color: hsl(95, 70%, 55%);
+}
+.WorkPage_SidePanel_Contact.selected:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 70%, 35%);
+}
