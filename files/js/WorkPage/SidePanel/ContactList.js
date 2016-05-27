@@ -17,7 +17,7 @@ function WorkPage_SidePanel_ContactList (getResourceUrl,
         }, function () {
             removeListener(contact)
         })
-        element.appendChild(contact.element)
+        contentElement.appendChild(contact.element)
     }
 
     var selectedContact = null
@@ -28,8 +28,9 @@ function WorkPage_SidePanel_ContactList (getResourceUrl,
     emptyElement.className = classPrefix + '-empty'
     emptyElement.appendChild(document.createTextNode('You have no contacts'))
 
-    var element = document.createElement('div')
-    element.className = classPrefix
+    var contentElement = document.createElement('div')
+    contentElement.className = classPrefix + '-content'
+//    contentElement.appendChild(emptyElement)
     add({
         displayName: 'Acle Kahney',
         username: 'acle.kahney',
@@ -46,7 +47,10 @@ function WorkPage_SidePanel_ContactList (getResourceUrl,
         displayName: 'Jay Postones',
         username: 'jay.postones',
     })
-//    element.appendChild(emptyElement)
+
+    var element = document.createElement('div')
+    element.className = classPrefix
+    element.appendChild(contentElement)
 
     return { element: element }
 

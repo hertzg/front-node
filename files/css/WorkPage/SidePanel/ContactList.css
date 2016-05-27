@@ -3,8 +3,13 @@
     top: 74px;
     right: 0;
     bottom: 0;
-    left: 20px;
+    left: 0;
     overflow-y: auto;
+}
+
+.WorkPage_SidePanel_ContactList-content {
+    padding-bottom: 20px;
+    padding-left: 20px;
 }
 
 .WorkPage_SidePanel_ContactList-empty {
@@ -14,7 +19,7 @@
 }
 
 @media (max-width: 600px) {
-    .WorkPage_SidePanel_ContactList {
-        right: 20px;
+    .WorkPage_SidePanel_ContactList-content {
+        padding-right: 20px;
     }
 }

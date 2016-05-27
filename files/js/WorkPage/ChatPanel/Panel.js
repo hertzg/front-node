@@ -1,4 +1,5 @@
-function WorkPage_ChatPanel_Panel (data, profileListener, removeListener, closeListener) {
+function WorkPage_ChatPanel_Panel (data, getResourceUrl,
+    profileListener, removeListener, closeListener) {
 
     var title = WorkPage_ChatPanel_Title(data, profileListener, removeListener)
 
@@ -8,6 +9,7 @@ function WorkPage_ChatPanel_Panel (data, profileListener, removeListener, closeL
 
     var element = document.createElement('div')
     element.className = 'WorkPage_ChatPanel_Panel'
+    element.style.backgroundImage = 'url(' + getResourceUrl('img/light-grass.svg') + ')'
     element.appendChild(closeButton.element)
     element.appendChild(title.element)
     element.appendChild(messages.element)

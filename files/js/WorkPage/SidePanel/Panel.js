@@ -14,6 +14,7 @@ function WorkPage_SidePanel_Panel (data, getResourceUrl,
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Panel'
+    element.style.backgroundImage = 'url(' + getResourceUrl('img/light-grass.svg') + ')'
     element.appendChild(title.element)
     element.appendChild(contactList.element)
 

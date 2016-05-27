@@ -4,8 +4,10 @@
     bottom: 0;
     left: 0;
     width: 260px;
-    background-color: white;
     padding: 20px;
+    background-color: white;
+    background-position: center bottom;
+    background-repeat: repeat-x;
 }
 @media (max-width: 600px) {
     .WorkPage_SidePanel_Panel {

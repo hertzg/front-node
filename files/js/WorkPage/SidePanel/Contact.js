@@ -19,7 +19,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl, data,
         selectListener()
     }
 
-    var chatPanel = WorkPage_ChatPanel_Panel(data,
+    var chatPanel = WorkPage_ChatPanel_Panel(data, getResourceUrl,
         profileListener, removeListener, deselectAndCallListener)
 
     var element = document.createElement('div')

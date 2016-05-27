@@ -4,9 +4,11 @@
     right: 0;
     bottom: 0;
     left: 260px;
-    background-color: white;
     padding: 20px;
     border-left: 2px solid hsl(95, 70%, 85%);
+    background-color: white;
+    background-position: center bottom;
+    background-repeat: repeat-x;
 }
 
 @media (max-width: 600px) {
