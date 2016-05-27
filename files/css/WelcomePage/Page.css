@@ -16,8 +16,8 @@
     right: 0;
     bottom: 0;
     left: 0;
-    width: 280px;
-    height: 517px;
+    width: 300px;
+    height: 521px;
     margin: auto;
     background-color: white;
     padding: 20px;
@@ -54,7 +54,7 @@
 }
 
 .WelcomePage_Page-signUpButton {
-    padding: 5px 10px;
+    padding: 7px 10px;
     cursor: pointer;
     width: 100%;
     color: white;

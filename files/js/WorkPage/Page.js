@@ -27,6 +27,11 @@ function WorkPage_Page (data, getResourceUrl, signOutListener) {
             element.removeChild(contactPage.element)
         })
         element.appendChild(contactPage.element)
+    }, function (contact) {
+        var removeContactPage = RemoveContactPage_Page(contact.data, function () {
+            element.removeChild(removeContactPage.element)
+        })
+        element.appendChild(removeContactPage.element)
     })
 
     var element = document.createElement('div')

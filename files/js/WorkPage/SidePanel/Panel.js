@@ -1,5 +1,6 @@
-function WorkPage_SidePanel_Panel (data, getResourceUrl, accountListener,
-    signOutListener, contactSelectListener, contactDeselectListener, contactProfileListener) {
+function WorkPage_SidePanel_Panel (data, getResourceUrl,
+    accountListener, signOutListener, contactSelectListener,
+    contactDeselectListener, contactProfileListener, contactRemoveListener) {
 
     var title = WorkPage_SidePanel_Title(data, accountListener, signOutListener)
 
@@ -9,7 +10,7 @@ function WorkPage_SidePanel_Panel (data, getResourceUrl, accountListener,
     }, function (contact) {
         contactDeselectListener(contact)
         classList.remove('chatOpen')
-    }, contactProfileListener)
+    }, contactProfileListener, contactRemoveListener)
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Panel'

@@ -36,6 +36,10 @@ function ContactPage_Page (data, getResourceUrl, closeListener) {
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(frameElement)
+    element.addEventListener('click', function (e) {
+        if (e.button !== 0) return
+        if (e.target === element) closeListener()
+    })
 
     return { element: element }
 
