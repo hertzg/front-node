@@ -22,6 +22,7 @@
 
 
     var body = document.body
-    showWelcomePage()
+//    showWelcomePage()
+    body.appendChild(SignUpPage_Page(getResourceUrl, showWelcomePage).element)
 
 })(revisions)

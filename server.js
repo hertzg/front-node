@@ -9,6 +9,7 @@ var config = require('./config.js'),
 
 var pages = Object.create(null)
 pages['/'] = require('./lib/IndexPage.js')
+pages['/data/captcha'] = require('./lib/DataPage/Captcha.js')
 scanFiles('files', pages)
 
 http.createServer((req, res) => {

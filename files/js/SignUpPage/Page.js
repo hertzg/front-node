@@ -8,6 +8,8 @@ function SignUpPage_Page (getResourceUrl, backListener) {
 
     var repeatPasswordItem = SignUpPage_RepeatPasswordItem()
 
+    var captchaItem = SignUpPage_CaptchaItem()
+
     var backButton = BackButton(backListener)
 
     var titleElement = document.createElement('h1')
@@ -23,6 +25,7 @@ function SignUpPage_Page (getResourceUrl, backListener) {
     form.appendChild(usernameItem.element)
     form.appendChild(passwordItem.element)
     form.appendChild(repeatPasswordItem.element)
+    form.appendChild(captchaItem.element)
     form.appendChild(button)
 
     var frameElement = document.createElement('div')

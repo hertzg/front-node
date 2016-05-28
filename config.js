@@ -1,2 +1,7 @@
-exports.port = 7076
-exports.host = '0.0.0.0'
+exports.port = 7700
+exports.host = '127.0.0.1'
+
+exports.captchaNode = {
+    host: '127.0.0.1',
+    port: 7701,
+}
