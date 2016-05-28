@@ -27,6 +27,32 @@ function SignUpPage_Page (getResourceUrl, backListener) {
     form.appendChild(repeatPasswordItem.element)
     form.appendChild(captchaItem.element)
     form.appendChild(button)
+    form.addEventListener('submit', function (e) {
+
+        e.preventDefault()
+
+        var username = usernameItem.getValue()
+
+        var password = passwordItem.getValue()
+
+        var repeatPassword = repeatPasswordItem.getValue()
+
+        var captcha = captchaItem.getValue()
+
+        var url = 'data/signUp?username=' + encodeURIComponent(username) +
+            '&password=' + encodeURIComponent(password) +
+            '&captcha_token=' + encodeURIComponent(captcha.token) +
+            '&captcha_value=' + encodeURIComponent(captcha.value)
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onload = function () {
+            var response = JSON.parse(request.responseText)
+            console.log(response)
+        }
+
+    })
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'

@@ -20,6 +20,11 @@ function SignUpPage_PasswordItem () {
     element.appendChild(labelElement)
     element.appendChild(input)
 
-    return { element: element }
+    return {
+        element: element,
+        getValue: function () {
+            return value
+        },
+    }
 
 }

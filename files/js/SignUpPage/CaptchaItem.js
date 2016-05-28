@@ -35,6 +35,14 @@ function SignUpPage_CaptchaItem () {
         token = response.token
     }
 
-    return { element: element }
+    return {
+        element: element,
+        getValue: function () {
+            return {
+                value: input.value,
+                token: token,
+            }
+        },
+    }
 
 }
