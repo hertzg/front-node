@@ -5,3 +5,8 @@ exports.captchaNode = {
     host: '127.0.0.1',
     port: 7701,
 }
+
+exports.accountNode = {
+    host: '127.0.0.1',
+    port: 7702,
+}

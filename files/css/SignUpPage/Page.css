@@ -8,19 +8,23 @@
     background-repeat: repeat-x, repeat-x;
     background-position: center bottom, center 30%;
     overflow: auto;
+    text-align: center;
+}
+
+.SignUpPage_Page-aligner {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
 }
 
 .SignUpPage_Page-frame {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    display: inline-block;
+    vertical-align: middle;
     width: 300px;
-    height: 528px;
     margin: auto;
     background-color: white;
     padding: 20px;
+    text-align: left;
 }
 
 .SignUpPage_Page-title {
@@ -32,7 +36,6 @@
 
 .SignUpPage_Page-button {
     margin-top: 10px;
-    margin-bottom: 20px;
     padding: 7px 10px;
     cursor: pointer;
     width: 100%;

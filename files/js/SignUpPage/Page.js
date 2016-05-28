@@ -1,4 +1,11 @@
-function SignUpPage_Page (getResourceUrl, backListener) {
+function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
+
+    function enableItems () {
+        usernameItem.enable()
+        passwordItem.enable()
+        repeatPasswordItem.enable()
+        captchaItem.enable()
+    }
 
     var classPrefix = 'SignUpPage_Page'
 
@@ -32,12 +39,21 @@ function SignUpPage_Page (getResourceUrl, backListener) {
         e.preventDefault()
 
         var username = usernameItem.getValue()
+        if (username === null) return
 
         var password = passwordItem.getValue()
+        if (password === null) return
 
-        var repeatPassword = repeatPasswordItem.getValue()
+        var repeatPassword = repeatPasswordItem.getValue(password)
+        if (repeatPassword === null) return
 
         var captcha = captchaItem.getValue()
+        if (captcha === null) return
+
+        usernameItem.disable()
+        passwordItem.disable()
+        repeatPasswordItem.disable()
+        captchaItem.disable()
 
         var url = 'data/signUp?username=' + encodeURIComponent(username) +
             '&password=' + encodeURIComponent(password) +
@@ -47,9 +63,47 @@ function SignUpPage_Page (getResourceUrl, backListener) {
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = enableItems
         request.onload = function () {
+
             var response = JSON.parse(request.responseText)
-            console.log(response)
+
+            if (response === 'USERNAME_UNAVAILABLE') {
+                enableItems()
+                usernameItem.showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The username is unavailable.'))
+                    errorElement.appendChild(document.createElement('br'))
+                    errorElement.appendChild(document.createTextNode('Please, try something else.'))
+                })
+                return
+            }
+
+            if (response.error === 'INVALID_CAPTCHA_TOKEN') {
+                enableItems()
+                captchaItem.setNewCaptcha(response.newCaptcha)
+                captchaItem.showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The verification has expired.'))
+                    errorElement.appendChild(document.createElement('br'))
+                    errorElement.appendChild(document.createTextNode('Please, try again.'))
+                })
+                return
+            }
+
+            if (response === 'INVALID_CAPTCHA_VALUE') {
+                enableItems()
+                captchaItem.showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The verification is invalid.'))
+                })
+            }
+
+            if (response !== true) {
+                enableItems()
+                console.log(response)
+                return
+            }
+
+            signUpListener()
+
         }
 
     })
@@ -60,12 +114,16 @@ function SignUpPage_Page (getResourceUrl, backListener) {
     frameElement.appendChild(titleElement)
     frameElement.appendChild(form)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.style.backgroundImage =
         'url(' + getResourceUrl('img/grass.svg') + '),' +
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(frameElement)
+    element.appendChild(alignerElement)
 
     return { element: element }
 

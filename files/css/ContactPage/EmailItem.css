@@ -6,5 +6,5 @@
     border: 2px solid hsl(0, 0%, 70%);
 }
 .ContactPage_EmailItem-input:focus {
-    border: 2px solid hsl(95, 60%, 55%);
+    border-color: hsl(95, 60%, 55%);
 }

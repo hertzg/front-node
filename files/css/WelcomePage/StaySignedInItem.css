@@ -9,5 +9,5 @@
     cursor: pointer;
 }
 .WelcomePage_StaySignedInItem-box:focus {
-    border: 2px solid hsl(95, 60%, 55%);
+    border-color: hsl(95, 60%, 55%);
 }

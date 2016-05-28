@@ -1,5 +1,32 @@
 function SignUpPage_PasswordItem () {
 
+    function hideError () {
+        inputClassList.remove('error')
+        element.removeChild(errorElement)
+        input.removeEventListener('input', inputListener)
+    }
+
+    function inputListener () {
+        hideError()
+        errorElement = null
+    }
+
+    function showError (callback) {
+
+        if (errorElement !== null) hideError()
+        errorElement = document.createElement('div')
+        errorElement.className = classPrefix + '-error'
+        callback(errorElement)
+
+        inputClassList.add('error')
+        element.appendChild(errorElement)
+        input.addEventListener('input', inputListener)
+        input.focus()
+
+    }
+
+    var errorElement = null
+
     var classPrefix = 'SignUpPage_PasswordItem'
 
     var label = document.createElement('label')
@@ -15,6 +42,8 @@ function SignUpPage_PasswordItem () {
     input.type = 'password'
     input.className = classPrefix + '-input'
 
+    var inputClassList = input.classList
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(labelElement)
@@ -22,7 +51,29 @@ function SignUpPage_PasswordItem () {
 
     return {
         element: element,
+        disable: function () {
+            input.disabled = true
+            input.blur()
+        },
+        enable: function () {
+            input.disabled = false
+        },
         getValue: function () {
+            var value = input.value
+            if (value === '') {
+                showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('This field is required.'))
+                })
+                return null
+            }
+            if (Password_IsShort(value)) {
+                showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The password is too short.'))
+                    errorElement.appendChild(document.createElement('br'))
+                    errorElement.appendChild(document.createTextNode('Minimum ' + Password_minLength + ' characters required.'))
+                })
+                return null
+            }
             return value
         },
     }
