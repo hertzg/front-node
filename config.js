@@ -10,3 +10,8 @@ exports.accountNode = {
     host: '127.0.0.1',
     port: 7702,
 }
+
+exports.sessionNode = {
+    host: '127.0.0.1',
+    port: 7703,
+}

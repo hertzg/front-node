@@ -49,10 +49,10 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
 
             var response = JSON.parse(request.responseText)
 
-            if (response === 'NO_SUCH_USERNAME') {
+            if (response === 'NO_SUCH_USER') {
                 enableItems()
                 usernameItem.showError(function (errorElement) {
-                    errorElement.appendChild(document.createTextNode('There is no such username.'))
+                    errorElement.appendChild(document.createTextNode('There is no such user.'))
                 })
                 return
             }
@@ -65,13 +65,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
                 return
             }
 
-            if (response !== true) {
-                enableItems()
-                console.log(response)
-                return
-            }
-
-            signInListener()
+            signInListener(username, response)
 
         }
 
@@ -111,6 +105,9 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
     element.appendChild(alignerElement)
     element.appendChild(frameElement)
 
-    return { element: element }
+    return {
+        element: element,
+        focus: usernameItem.focus,
+    }
 
 }

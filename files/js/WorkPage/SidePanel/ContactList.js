@@ -32,22 +32,22 @@ function WorkPage_SidePanel_ContactList (getResourceUrl,
     contentElement.className = classPrefix + '-content'
 //    contentElement.appendChild(emptyElement)
     add({
-        displayName: 'Acle Kahney',
+        fullName: 'Acle Kahney',
         username: 'acle.kahney',
         online: true,
     })
     add({
-        displayName: 'Amos Williams',
+        fullName: 'Amos Williams',
         username: 'amos.williams',
         online: true,
     })
     add({
-        displayName: 'James Monteith',
+        fullName: 'James Monteith',
         username: 'james.monteith',
         online: false,
     })
     add({
-        displayName: 'Jay Postones',
+        fullName: 'Jay Postones',
         username: 'jay.postones',
         online: true,
     })

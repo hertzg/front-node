@@ -59,6 +59,9 @@ function WelcomePage_UsernameItem () {
         enable: function () {
             input.disabled = false
         },
+        focus: function () {
+            input.focus()
+        },
         getValue: function () {
             var value = input.value
             if (value === '') {

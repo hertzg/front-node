@@ -20,6 +20,18 @@ function AccountPage_PhoneItem () {
     element.appendChild(labelElement)
     element.appendChild(input)
 
-    return { element: element }
+    return {
+        element: element,
+        disable: function () {
+            input.disabled = true
+            input.blur()
+        },
+        enable: function () {
+            input.disabled = false
+        },
+        getValue: function () {
+            return input.value
+        },
+    }
 
 }

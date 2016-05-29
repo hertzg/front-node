@@ -1,9 +1,9 @@
-function WorkPage_Page (data, getResourceUrl, signOutListener) {
+function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
     var classPrefix = 'WorkPage_Page'
 
-    var sidePanel = WorkPage_SidePanel_Panel(data, getResourceUrl, function () {
-        var accountPage = AccountPage_Page(data, getResourceUrl, function () {
+    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
+        var accountPage = AccountPage_Page(username, session, getResourceUrl, function () {
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(function () {
@@ -16,6 +16,7 @@ function WorkPage_Page (data, getResourceUrl, signOutListener) {
             element.appendChild(changePasswordPage.element)
         })
         element.appendChild(accountPage.element)
+        accountPage.focus()
     }, function () {
         var signOutPage = SignOutPage_Page(function () {
             element.removeChild(signOutPage.element)

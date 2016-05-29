@@ -98,13 +98,7 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
                 })
             }
 
-            if (response !== true) {
-                enableItems()
-                console.log(response)
-                return
-            }
-
-            signUpListener()
+            signUpListener(username, response)
 
         }
 

@@ -1,4 +1,4 @@
-function WorkPage_SidePanel_Title (data, accountListener, signOutListener) {
+function WorkPage_SidePanel_Title (username, session, accountListener, signOutListener) {
 
     function deselect () {
         buttonClassList.remove('selected')
@@ -34,7 +34,7 @@ function WorkPage_SidePanel_Title (data, accountListener, signOutListener) {
 
     var buttonTextElement = document.createElement('span')
     buttonTextElement.className = classPrefix + '-buttonText'
-    buttonTextElement.appendChild(document.createTextNode(data.displayName))
+    buttonTextElement.appendChild(document.createTextNode(session.user.displayName || username))
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
