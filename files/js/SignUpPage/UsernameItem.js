@@ -71,6 +71,14 @@ function SignUpPage_UsernameItem () {
                 })
                 return null
             }
+            if (Username_ContainsIllegalChars(value)) {
+                showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The username is illegal.'))
+                    errorElement.appendChild(document.createElement('br'))
+                    errorElement.appendChild(document.createTextNode('Use latin letters, digits, underscore, dot and dash.'))
+                })
+                return null
+            }
             if (Username_IsShort(value)) {
                 showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The username is too short.'))
