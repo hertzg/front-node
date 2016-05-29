@@ -12,6 +12,7 @@
 }
 .SignUpPage_CaptchaItem-input:focus {
     border-color: hsl(95, 60%, 55%);
+    background-color: hsl(95, 70%, 95%);
 }
 .SignUpPage_CaptchaItem-input.error {
     border-color: hsl(350, 60%, 55%);

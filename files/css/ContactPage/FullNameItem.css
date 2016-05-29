@@ -7,4 +7,5 @@
 }
 .ContactPage_FullNameItem-input:focus {
     border-color: hsl(95, 60%, 55%);
+    background-color: hsl(95, 70%, 95%);
 }

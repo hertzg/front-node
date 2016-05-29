@@ -10,4 +10,5 @@
 }
 .WelcomePage_StaySignedInItem-box:focus {
     border-color: hsl(95, 60%, 55%);
+    background-color: hsl(95, 70%, 95%);
 }
