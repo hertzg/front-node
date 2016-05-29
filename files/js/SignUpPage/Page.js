@@ -5,6 +5,7 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
         passwordItem.enable()
         repeatPasswordItem.enable()
         captchaItem.enable()
+        button.disabled = false
     }
 
     var classPrefix = 'SignUpPage_Page'
@@ -54,6 +55,7 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
         passwordItem.disable()
         repeatPasswordItem.disable()
         captchaItem.disable()
+        button.disabled = true
 
         var url = 'data/signUp?username=' + encodeURIComponent(username) +
             '&password=' + encodeURIComponent(password) +
@@ -122,9 +124,12 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
     element.style.backgroundImage =
         'url(' + getResourceUrl('img/grass.svg') + '),' +
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
-    element.appendChild(frameElement)
     element.appendChild(alignerElement)
+    element.appendChild(frameElement)
 
-    return { element: element }
+    return {
+        element: element,
+        focus: usernameItem.focus,
+    }
 
 }

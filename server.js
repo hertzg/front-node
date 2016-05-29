@@ -10,6 +10,7 @@ var config = require('./config.js'),
 var pages = Object.create(null)
 pages['/'] = require('./lib/IndexPage.js')
 pages['/data/captcha'] = require('./lib/DataPage/Captcha.js')
+pages['/data/signIn'] = require('./lib/DataPage/SignIn.js')
 pages['/data/signUp'] = require('./lib/DataPage/SignUp.js')
 scanFiles('files', pages)
 

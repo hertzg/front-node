@@ -13,6 +13,7 @@
             })
             body.removeChild(welcomePage.element)
             body.appendChild(signUpPage.element)
+            signUpPage.focus()
         }, function () {
             body.removeChild(welcomePage.element)
             showWorkPage()

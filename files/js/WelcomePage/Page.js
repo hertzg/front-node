@@ -1,5 +1,11 @@
 function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
 
+    function enableItems () {
+        usernameItem.enable()
+        passwordItem.enable()
+        signInButton.disabled = false
+    }
+
     var classPrefix = 'WelcomePage_Page'
 
     var usernameItem = WelcomePage_UsernameItem()
@@ -18,7 +24,58 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
     signInForm.appendChild(passwordItem.element)
     signInForm.appendChild(staySignedInItem.element)
     signInForm.appendChild(signInButton)
-    signInForm.addEventListener('submit', signInListener)
+    signInForm.addEventListener('submit', function (e) {
+
+        e.preventDefault()
+
+        var username = usernameItem.getValue()
+        if (username === null) return
+
+        var password = passwordItem.getValue()
+        if (password === null) return
+
+        usernameItem.disable()
+        passwordItem.disable()
+        signInButton.disabled = true
+
+        var url = 'data/signIn?username=' + encodeURIComponent(username) +
+            '&password=' + encodeURIComponent(password)
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+
+            var response = JSON.parse(request.responseText)
+
+            if (response === 'NO_SUCH_USERNAME') {
+                enableItems()
+                usernameItem.showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('There is no such username.'))
+                })
+                return
+            }
+
+            if (response === 'INCORRECT_PASSWORD') {
+                enableItems()
+                passwordItem.showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The password is incorrect.'))
+                })
+                return
+            }
+
+            if (response !== true) {
+                enableItems()
+                console.log(response)
+                return
+            }
+
+            signInListener()
+
+        }
+
+    })
 
     var logoElement = document.createElement('img')
     logoElement.className = classPrefix + '-logo'
@@ -33,6 +90,8 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
     signUpButton.appendChild(document.createTextNode('Create an Account'))
     signUpButton.addEventListener('click', signUpListener)
 
+    var form = document.createElement('form')
+
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(logoWrapperElement)
@@ -41,11 +100,15 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
     frameElement.appendChild(document.createElement('br'))
     frameElement.appendChild(signUpButton)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.style.backgroundImage =
         'url(' + getResourceUrl('img/grass.svg') + '),' +
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
+    element.appendChild(alignerElement)
     element.appendChild(frameElement)
 
     return { element: element }
