@@ -74,6 +74,13 @@ function SignUpPage_PasswordItem () {
                 })
                 return null
             }
+            if (Password_ContainsOnlyDigits(value)) {
+                showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('The password is too simple.'))
+                    errorElement.appendChild(document.createElement('br'))
+                    errorElement.appendChild(document.createTextNode('Use some different symbols.'))
+                })
+            }
             return value
         },
     }
