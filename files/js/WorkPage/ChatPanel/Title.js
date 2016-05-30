@@ -32,9 +32,11 @@ function WorkPage_ChatPanel_Title (username, data, profileListener, removeListen
         removeListener()
     })
 
+    var buttonTextNode = document.createTextNode(data.fullName || username)
+
     var buttonTextElement = document.createElement('span')
     buttonTextElement.className = classPrefix + '-buttonText'
-    buttonTextElement.appendChild(document.createTextNode(data.fullName || username))
+    buttonTextElement.appendChild(buttonTextNode)
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
@@ -48,6 +50,11 @@ function WorkPage_ChatPanel_Title (username, data, profileListener, removeListen
     element.className = classPrefix
     element.appendChild(button)
 
-    return { element: element }
+    return {
+        element: element,
+        editContact: function (data) {
+            buttonTextNode.nodeValue = data.fullName || username
+        },
+    }
 
 }

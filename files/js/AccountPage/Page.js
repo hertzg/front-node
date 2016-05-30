@@ -1,5 +1,5 @@
-function AccountPage_Page (username,
-    session, closeListener, changePasswordListener) {
+function AccountPage_Page (username, session,
+    editProfileListener, changePasswordListener, closeListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -70,7 +70,11 @@ function AccountPage_Page (username,
                 return
             }
 
-            closeListener()
+            editProfileListener({
+                fullName: fullName,
+                email: email,
+                phone: phone,
+            })
 
         }
 

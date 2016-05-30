@@ -1,4 +1,5 @@
-function ContactPage_Page (session, username, data, closeListener) {
+function ContactPage_Page (session, username,
+    data, editContactListener, closeListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -70,7 +71,11 @@ function ContactPage_Page (session, username, data, closeListener) {
                 return
             }
 
-            closeListener()
+            editContactListener({
+                fullName: fullName,
+                email: email,
+                phone: phone,
+            })
 
         }
 

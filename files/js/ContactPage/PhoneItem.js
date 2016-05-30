@@ -14,7 +14,7 @@ function ContactPage_PhoneItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.placeholder = data.phone
+    input.value = data.phone
 
     var element = document.createElement('div')
     element.className = classPrefix

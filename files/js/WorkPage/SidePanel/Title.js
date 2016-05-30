@@ -32,9 +32,11 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
         signOutListener()
     })
 
+    var buttonTextNode = document.createTextNode(session.user.fullName || username)
+
     var buttonTextElement = document.createElement('span')
     buttonTextElement.className = classPrefix + '-buttonText'
-    buttonTextElement.appendChild(document.createTextNode(session.user.displayName || username))
+    buttonTextElement.appendChild(buttonTextNode)
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
@@ -48,6 +50,11 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
     element.className = classPrefix
     element.appendChild(button)
 
-    return { element: element }
+    return {
+        element: element,
+        editProfile: function (data) {
+            buttonTextNode.nodeValue = data.fullName || username
+        },
+    }
 
 }

@@ -1,7 +1,9 @@
 function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
     function showAccountPage () {
-        var accountPage = AccountPage_Page(username, session, function () {
+        var accountPage = AccountPage_Page(username, session, function (data) {
+            session.user = data
+            sidePanel.editProfile(data)
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
@@ -13,19 +15,21 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             element.removeChild(accountPage.element)
             element.appendChild(changePasswordPage.element)
             changePasswordPage.focus()
+        }, function () {
+            element.removeChild(accountPage.element)
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
     }
 
-    function showAddAccountPage () {
+    function showAddContactPage () {
         var addContactPage = AddContactPage_Page(username, function (username, data) {
             var publicProfilePage = PublicProfilePage_Page(session, username, data, function (data) {
                 element.removeChild(publicProfilePage.element)
                 sidePanel.addContact(username, data)
             }, function () {
                 element.removeChild(publicProfilePage.element)
-                showAddAccountPage()
+                showAddContactPage()
             }, function () {
                 element.removeChild(publicProfilePage.element)
             })
@@ -64,14 +68,17 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             element.removeChild(signOutPage.element)
         })
         element.appendChild(signOutPage.element)
-    }, showAddAccountPage, function (contact) {
+    }, showAddContactPage, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
         chatPanel.focus()
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
-        var contactPage = ContactPage_Page(session, contact.username, contact.data, function () {
+        var contactPage = ContactPage_Page(session, contact.username, contact.getData(), function (data) {
+            contact.edit(data)
+            element.removeChild(contactPage.element)
+        }, function () {
             element.removeChild(contactPage.element)
         })
         element.appendChild(contactPage.element)

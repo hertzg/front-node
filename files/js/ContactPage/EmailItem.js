@@ -14,7 +14,7 @@ function ContactPage_EmailItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.placeholder = data.email
+    input.value = data.email
 
     var element = document.createElement('div')
     element.className = classPrefix

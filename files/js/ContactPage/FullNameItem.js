@@ -14,7 +14,7 @@ function ContactPage_FullNameItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.placeholder = data.fullName
+    input.value = data.fullName
 
     var element = document.createElement('div')
     element.className = classPrefix

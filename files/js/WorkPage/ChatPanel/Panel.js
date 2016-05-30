@@ -18,6 +18,7 @@ function WorkPage_ChatPanel_Panel (username, data,
     return {
         element: element,
         focus: messages.focus,
+        editContact: title.editContact,
     }
 
 }
