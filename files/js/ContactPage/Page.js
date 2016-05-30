@@ -1,14 +1,21 @@
-function ContactPage_Page (username, closeListener) {
+function ContactPage_Page (session, username, data, closeListener) {
+
+    function enableItems () {
+        fullNameItem.enable()
+        emailItem.enable()
+        phoneItem.enable()
+        saveProfileButton.disabled = false
+    }
 
     var classPrefix = 'ContactPage_Page'
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = ContactPage_FullNameItem()
+    var fullNameItem = ContactPage_FullNameItem(data)
 
-    var emailItem = ContactPage_EmailItem()
+    var emailItem = ContactPage_EmailItem(data)
 
-    var phoneItem = ContactPage_PhoneItem()
+    var phoneItem = ContactPage_PhoneItem(data)
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
@@ -24,7 +31,50 @@ function ContactPage_Page (username, closeListener) {
     form.appendChild(emailItem.element)
     form.appendChild(phoneItem.element)
     form.appendChild(saveProfileButton)
-    form.addEventListener('submit', function () {})
+    form.addEventListener('submit', function (e) {
+
+        e.preventDefault()
+
+        var fullName = fullNameItem.getValue()
+        var email = emailItem.getValue()
+        var phone = phoneItem.getValue()
+
+        fullNameItem.disable()
+        emailItem.disable()
+        phoneItem.disable()
+        saveProfileButton.disabled = true
+
+        var url = 'data/editContact' +
+            '?token=' + encodeURIComponent(session.token) +
+            '&username=' + encodeURIComponent(username) +
+            '&fullName=' + encodeURIComponent(fullName) +
+            '&email=' + encodeURIComponent(email) +
+            '&phone=' + encodeURIComponent(phone)
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
+
+            var response = JSON.parse(request.responseText)
+            if (response !== true) {
+                enableItems()
+                console.log(response)
+                return
+            }
+
+            closeListener()
+
+        }
+
+    })
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
@@ -40,6 +90,9 @@ function ContactPage_Page (username, closeListener) {
         if (e.target === element) closeListener()
     })
 
-    return { element: element }
+    return {
+        element: element,
+        focus: fullNameItem.focus,
+    }
 
 }

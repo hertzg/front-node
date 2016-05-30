@@ -32,6 +32,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, data,
 
     return {
         chatPanel: chatPanel,
+        data: data,
         deselect: deselect,
         element: element,
         username: username,

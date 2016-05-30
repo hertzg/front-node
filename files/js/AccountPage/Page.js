@@ -37,9 +37,7 @@ function AccountPage_Page (username,
         e.preventDefault()
 
         var fullName = fullNameItem.getValue()
-
         var email = emailItem.getValue()
-
         var phone = phoneItem.getValue()
 
         fullNameItem.disable()

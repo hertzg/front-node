@@ -1,14 +1,12 @@
 function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
-    var classPrefix = 'WorkPage_Page'
-
-    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
+    function showAccountPage () {
         var accountPage = AccountPage_Page(username, session, function () {
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
                 element.removeChild(changePasswordPage.element)
-                element.appendChild(accountPage.element)
+                showAccountPage()
             }, function () {
                 element.removeChild(changePasswordPage.element)
             })
@@ -18,7 +16,30 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
-    }, function () {
+    }
+
+    function showAddAccountPage () {
+        var addContactPage = AddContactPage_Page(session, function (username, data) {
+            var publicProfilePage = PublicProfilePage_Page(session, username, data, function () {
+                element.removeChild(publicProfilePage.element)
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+                showAddAccountPage()
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+            })
+            element.removeChild(addContactPage.element)
+            element.appendChild(publicProfilePage.element)
+        }, function () {
+            element.removeChild(addContactPage.element)
+        })
+        element.appendChild(addContactPage.element)
+        addContactPage.focus()
+    }
+
+    var classPrefix = 'WorkPage_Page'
+
+    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, showAccountPage, function () {
         var signOutPage = SignOutPage_Page(function () {
 
             element.removeChild(signOutPage.element)
@@ -42,34 +63,18 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             element.removeChild(signOutPage.element)
         })
         element.appendChild(signOutPage.element)
-    }, function () {
-        var addContactPage = AddContactPage_Page(session, function (username, data) {
-            var publicProfilePage = PublicProfilePage_Page(session, username, data, function () {
-                element.removeChild(publicProfilePage.element)
-            }, function () {
-                element.removeChild(publicProfilePage.element)
-                element.appendChild(addContactPage.element)
-            }, function () {
-                element.removeChild(publicProfilePage.element)
-            })
-            element.removeChild(addContactPage.element)
-            element.appendChild(publicProfilePage.element)
-        }, function () {
-            element.removeChild(addContactPage.element)
-        })
-        element.appendChild(addContactPage.element)
-        addContactPage.focus()
-    }, function (contact) {
+    }, showAddAccountPage, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
         chatPanel.focus()
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
-        var contactPage = ContactPage_Page(contact.username, function () {
+        var contactPage = ContactPage_Page(session, contact.username, contact.data, function () {
             element.removeChild(contactPage.element)
         })
         element.appendChild(contactPage.element)
+        contactPage.focus()
     }, function (contact) {
         var removeContactPage = RemoveContactPage_Page(contact.username, function () {
             element.removeChild(removeContactPage.element)

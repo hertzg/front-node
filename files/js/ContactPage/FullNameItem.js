@@ -1,4 +1,4 @@
-function ContactPage_FullNameItem () {
+function ContactPage_FullNameItem (data) {
 
     var classPrefix = 'ContactPage_FullNameItem'
 
@@ -14,12 +14,28 @@ function ContactPage_FullNameItem () {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.placeholder = data.fullName
 
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(labelElement)
     element.appendChild(input)
 
-    return { element: element }
+    return {
+        element: element,
+        disable: function () {
+            input.disabled = true
+            input.blur()
+        },
+        enable: function () {
+            input.disabled = false
+        },
+        focus: function () {
+            input.focus()
+        },
+        getValue: function () {
+            return input.value
+        },
+    }
 
 }
