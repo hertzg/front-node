@@ -28,7 +28,14 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             request.open('get', 'data/signOut?token=' + encodeURIComponent(session.token))
             request.send()
             request.onload = function () {
+
+                if (request.status !== 200) {
+                    console.log(request.responseText)
+                    return
+                }
+
                 console.log(JSON.parse(request.response))
+
             }
 
         }, function () {

@@ -64,7 +64,15 @@ function SignUpPage_CaptchaItem () {
     request.open('get', 'data/captcha')
     request.send()
     request.onload = function () {
+
+        if (request.status !== 200) {
+            enableItems()
+            console.log(request.responseText)
+            return
+        }
+
         setCaptcha(JSON.parse(request.responseText))
+
     }
 
     return {

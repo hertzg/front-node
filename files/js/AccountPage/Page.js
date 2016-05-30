@@ -1,7 +1,7 @@
 function AccountPage_Page (username,
     session, closeListener, changePasswordListener) {
 
-    function enabledItems () {
+    function enableItems () {
         fullNameItem.enable()
         emailItem.enable()
         phoneItem.enable()
@@ -56,12 +56,18 @@ function AccountPage_Page (username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enabledItems
+        request.onerror = enableItems
         request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
 
             var response = JSON.parse(request.responseText)
             if (response !== true) {
-                enabledItems()
+                enableItems()
                 console.log(response)
                 return
             }

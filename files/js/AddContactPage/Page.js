@@ -38,10 +38,15 @@ function AddContactPage_Page (session, foundListener, closeListener) {
         request.onerror = enableItems
         request.onload = function () {
 
-            enableItems()
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
 
             var response = JSON.parse(request.responseText)
             if (response === 'NO_SUCH_USER') {
+                enableItems()
                 usernameItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('There is no such user.'))
                 })

@@ -35,7 +35,15 @@ function PublicProfilePage_Page (session, username,
         request.send()
         request.onerror = enableItems
         request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
+
             addContactListener(data)
+
         }
 
     })

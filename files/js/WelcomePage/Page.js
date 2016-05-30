@@ -47,6 +47,12 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
         request.onerror = enableItems
         request.onload = function () {
 
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
+
             var response = JSON.parse(request.responseText)
 
             if (response === 'NO_SUCH_USER') {
