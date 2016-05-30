@@ -9,10 +9,12 @@ var config = require('./config.js'),
 
 var pages = Object.create(null)
 pages['/'] = require('./lib/IndexPage.js')
+pages['/data/addContact'] = require('./lib/DataPage/AddContact.js')
 pages['/data/captcha'] = require('./lib/DataPage/Captcha.js')
 pages['/data/changePassword'] = require('./lib/DataPage/ChangePassword.js')
 pages['/data/editProfile'] = require('./lib/DataPage/EditProfile.js')
 pages['/data/publicProfile'] = require('./lib/DataPage/PublicProfile.js')
+pages['/data/removeContact'] = require('./lib/DataPage/RemoveContact.js')
 pages['/data/signIn'] = require('./lib/DataPage/SignIn.js')
 pages['/data/signOut'] = require('./lib/DataPage/SignOut.js')
 pages['/data/signUp'] = require('./lib/DataPage/SignUp.js')

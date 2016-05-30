@@ -1,4 +1,4 @@
-function ContactPage_Page (data, closeListener) {
+function ContactPage_Page (username, closeListener) {
 
     var classPrefix = 'ContactPage_Page'
 
@@ -12,7 +12,7 @@ function ContactPage_Page (data, closeListener) {
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
-    titleElement.appendChild(document.createTextNode(data.username))
+    titleElement.appendChild(document.createTextNode(username))
 
     var saveProfileButton = document.createElement('button')
     saveProfileButton.className = classPrefix + '-saveProfileButton'

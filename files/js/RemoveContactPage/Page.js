@@ -1,10 +1,10 @@
-function RemoveContactPage_Page (data, closeListener) {
+function RemoveContactPage_Page (username, closeListener) {
 
     var classPrefix = 'RemoveContactPage_Page'
 
     var usernameElement = document.createElement('b')
     usernameElement.className = classPrefix + '-username'
-    usernameElement.appendChild(document.createTextNode(data.username))
+    usernameElement.appendChild(document.createTextNode(username))
 
     var textElement = document.createElement('div')
     textElement.className = classPrefix + '-text'
@@ -27,8 +27,12 @@ function RemoveContactPage_Page (data, closeListener) {
     frameElement.appendChild(yesButton)
     frameElement.appendChild(noButton)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
+    element.appendChild(alignerElement)
     element.appendChild(frameElement)
     element.addEventListener('click', function (e) {
         if (e.button !== 0) return

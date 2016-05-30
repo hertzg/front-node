@@ -6,19 +6,22 @@
     left: 0;
     background-color: hsla(95, 60%, 55%, 0.5);
     overflow: auto;
+    text-align: center;
+}
+
+.RemoveContactPage_Page-aligner {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
 }
 
 .RemoveContactPage_Page-frame {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    display: inline-block;
+    vertical-align: middle;
     width: 300px;
-    height: 224px;
-    margin: auto;
     background-color: white;
     padding: 20px;
+    text-align: left;
 }
 
 .RemoveContactPage_Page-text {
@@ -32,13 +35,10 @@
 }
 
 .RemoveContactPage_Page-yesButton {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
-    width: calc(65% - 25px);
+    width: calc(65% - 5px);
     color: white;
     background-color: hsl(95, 60%, 55%);
 }
@@ -48,15 +48,13 @@
 }
 
 .RemoveContactPage_Page-noButton {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
-    width: calc(35% - 25px);
+    width: calc(35% - 5px);
     color: white;
     background-color: hsl(45, 70%, 55%);
+    margin-left: 10px;
 }
 .RemoveContactPage_Page-noButton:active {
     color: hsl(45, 70%, 70%);

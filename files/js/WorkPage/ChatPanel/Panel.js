@@ -1,7 +1,8 @@
-function WorkPage_ChatPanel_Panel (data, getResourceUrl,
-    profileListener, removeListener, closeListener) {
+function WorkPage_ChatPanel_Panel (username, data,
+    getResourceUrl, profileListener, removeListener, closeListener) {
 
-    var title = WorkPage_ChatPanel_Title(data, profileListener, removeListener)
+    var title = WorkPage_ChatPanel_Title(username,
+        data, profileListener, removeListener)
 
     var messages = WorkPage_ChatPanel_Messages()
 

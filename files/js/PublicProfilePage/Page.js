@@ -1,4 +1,9 @@
-function PublicProfilePage_Page (username, data, backListener, closeListener) {
+function PublicProfilePage_Page (session, username,
+    data, addContactListener, backListener, closeListener) {
+
+    function enableItems () {
+        button.disabled = false
+    }
 
     var backButton = BackButton(backListener)
 
@@ -19,6 +24,21 @@ function PublicProfilePage_Page (username, data, backListener, closeListener) {
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
     button.appendChild(document.createTextNode('Add Contact'))
+    button.addEventListener('click', function () {
+
+        var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
+            '&username=' + username + '&fullName=' + data.fullName +
+            '&email=' + data.email + '&phone=' + data.phone
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+            addContactListener(data)
+        }
+
+    })
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
