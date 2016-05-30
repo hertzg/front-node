@@ -35,7 +35,8 @@
 
 .SignUpPage_Page-button {
     margin-top: 10px;
-    padding: 7px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     cursor: pointer;
     width: 100%;
     color: white;

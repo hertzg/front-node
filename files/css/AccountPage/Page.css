@@ -45,7 +45,8 @@
 
 .AccountPage_Page-saveProfileButton {
     margin-top: 10px;
-    padding: 7px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     cursor: pointer;
     width: 100%;
     color: white;
@@ -57,7 +58,8 @@
 }
 
 .AccountPage_Page-changePasswordButton {
-    padding: 7px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     cursor: pointer;
     width: 100%;
     color: white;

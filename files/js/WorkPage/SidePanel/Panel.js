@@ -2,6 +2,12 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     accountListener, signOutListener, contactSelectListener,
     contactDeselectListener, contactProfileListener, contactRemoveListener) {
 
+    var classPrefix = 'WorkPage_SidePanel_Panel'
+
+    var addContactButton = document.createElement('div')
+    addContactButton.className = classPrefix + '-addContactButton'
+    addContactButton.appendChild(document.createTextNode('Add Contact'))
+
     var title = WorkPage_SidePanel_Title(username, session, accountListener, signOutListener)
 
     var contactList = WorkPage_SidePanel_ContactList(getResourceUrl, function (contact) {
@@ -13,8 +19,9 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     }, contactProfileListener, contactRemoveListener)
 
     var element = document.createElement('div')
-    element.className = 'WorkPage_SidePanel_Panel'
+    element.className = classPrefix
     element.style.backgroundImage = 'url(' + getResourceUrl('img/light-grass.svg') + ')'
+    element.appendChild(addContactButton)
     element.appendChild(title.element)
     element.appendChild(contactList.element)
 

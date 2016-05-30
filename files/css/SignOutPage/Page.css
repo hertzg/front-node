@@ -31,7 +31,8 @@
     position: absolute;
     bottom: 20px;
     left: 20px;
-    padding: 7px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     cursor: pointer;
     width: calc(55% - 25px);
     color: white;
@@ -46,7 +47,8 @@
     position: absolute;
     right: 20px;
     bottom: 20px;
-    padding: 7px 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
     cursor: pointer;
     width: calc(45% - 25px);
     color: white;

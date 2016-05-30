@@ -9,6 +9,21 @@
     background-position: center bottom;
     background-repeat: repeat-x;
 }
+
+.WorkPage_SidePanel_Panel-addContactButton {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 7px 14px;
+    cursor: pointer;
+    color: white;
+    background-color: hsl(95, 60%, 55%);
+}
+.WorkPage_SidePanel_Panel-addContactButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 60%, 35%);
+}
+
 @media (max-width: 600px) {
     .WorkPage_SidePanel_Panel {
         width: 100%;
