@@ -1,4 +1,4 @@
-function AccountPage_EmailItem () {
+function AccountPage_EmailItem (session) {
 
     var classPrefix = 'AccountPage_EmailItem'
 
@@ -14,6 +14,7 @@ function AccountPage_EmailItem () {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.value = session.user.email
 
     var element = document.createElement('div')
     element.className = classPrefix

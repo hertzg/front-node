@@ -1,4 +1,4 @@
-function AccountPage_PhoneItem () {
+function AccountPage_PhoneItem (session) {
 
     var classPrefix = 'AccountPage_PhoneItem'
 
@@ -14,6 +14,7 @@ function AccountPage_PhoneItem () {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.value = session.user.phone
 
     var element = document.createElement('div')
     element.className = classPrefix

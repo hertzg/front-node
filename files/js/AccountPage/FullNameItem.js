@@ -1,4 +1,4 @@
-function AccountPage_FullNameItem () {
+function AccountPage_FullNameItem (session) {
 
     var classPrefix = 'AccountPage_FullNameItem'
 
@@ -14,6 +14,7 @@ function AccountPage_FullNameItem () {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.value = session.user.fullName
 
     var element = document.createElement('div')
     element.className = classPrefix

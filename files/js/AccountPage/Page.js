@@ -12,11 +12,11 @@ function AccountPage_Page (username, session,
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = AccountPage_FullNameItem()
+    var fullNameItem = AccountPage_FullNameItem(session)
 
-    var emailItem = AccountPage_EmailItem()
+    var emailItem = AccountPage_EmailItem(session)
 
-    var phoneItem = AccountPage_PhoneItem()
+    var phoneItem = AccountPage_PhoneItem(session)
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
@@ -48,7 +48,8 @@ function AccountPage_Page (username, session,
         phoneItem.disable()
         saveProfileButton.disabled = true
 
-        var url = 'data/editProfile?token=' + encodeURIComponent(session.token) +
+        var url = 'data/editProfile' +
+            '?token=' + encodeURIComponent(session.token) +
             '&fullName=' + encodeURIComponent(fullName) +
             '&email=' + encodeURIComponent(email) +
             '&phone=' + encodeURIComponent(phone)
@@ -59,9 +60,14 @@ function AccountPage_Page (username, session,
         request.onerror = enabledItems
         request.onload = function () {
 
-            enabledItems()
-
             var response = JSON.parse(request.responseText)
+            if (response !== true) {
+                enabledItems()
+                console.log(response)
+                return
+            }
+
+            closeListener()
 
         }
 
@@ -79,8 +85,12 @@ function AccountPage_Page (username, session,
     frameElement.appendChild(form)
     frameElement.appendChild(changePasswordButton)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
+    element.appendChild(alignerElement)
     element.appendChild(frameElement)
     element.addEventListener('click', function (e) {
         if (e.button !== 0) return

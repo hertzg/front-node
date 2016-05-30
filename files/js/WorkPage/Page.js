@@ -6,7 +6,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         var accountPage = AccountPage_Page(username, session, getResourceUrl, function () {
             element.removeChild(accountPage.element)
         }, function () {
-            var changePasswordPage = ChangePasswordPage_Page(function () {
+            var changePasswordPage = ChangePasswordPage_Page(session, function () {
                 element.removeChild(changePasswordPage.element)
                 element.appendChild(accountPage.element)
             }, function () {
@@ -14,6 +14,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             })
             element.removeChild(accountPage.element)
             element.appendChild(changePasswordPage.element)
+            changePasswordPage.focus()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
