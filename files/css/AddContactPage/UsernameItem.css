@@ -1,0 +1,26 @@
+.AddContactPage_UsernameItem-input {
+    background-color: white;
+    padding: 5px 10px;
+    cursor: text;
+    width: 100%;
+    border: 2px solid hsl(0, 0%, 70%);
+}
+.AddContactPage_UsernameItem-input:focus {
+    border-color: hsl(95, 60%, 55%);
+    background-color: hsl(95, 70%, 95%);
+}
+.AddContactPage_UsernameItem-input.error {
+    border-color: hsl(350, 60%, 55%);
+    background-color: hsl(350, 70%, 95%);
+}
+.AddContactPage_UsernameItem-input[disabled] {
+    background-color: hsl(0, 0%, 95%);
+}
+
+.AddContactPage_UsernameItem-error {
+    color: hsl(350, 60%, 55%);
+    white-space: normal;
+    line-height: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

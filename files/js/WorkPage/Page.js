@@ -3,7 +3,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
     var classPrefix = 'WorkPage_Page'
 
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
-        var accountPage = AccountPage_Page(username, session, getResourceUrl, function () {
+        var accountPage = AccountPage_Page(username, session, function () {
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
@@ -35,6 +35,12 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             element.removeChild(signOutPage.element)
         })
         element.appendChild(signOutPage.element)
+    }, function () {
+        var addContactPage = AddContactPage_Page(session, function () {
+            element.removeChild(addContactPage.element)
+        })
+        element.appendChild(addContactPage.element)
+        addContactPage.focus()
     }, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
@@ -42,7 +48,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
-        var contactPage = ContactPage_Page(contact.data, getResourceUrl, function () {
+        var contactPage = ContactPage_Page(contact.data, function () {
             element.removeChild(contactPage.element)
         })
         element.appendChild(contactPage.element)

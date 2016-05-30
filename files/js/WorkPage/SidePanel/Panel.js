@@ -1,5 +1,5 @@
 function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
-    accountListener, signOutListener, contactSelectListener,
+    accountListener, signOutListener, addContactListener, contactSelectListener,
     contactDeselectListener, contactProfileListener, contactRemoveListener) {
 
     var classPrefix = 'WorkPage_SidePanel_Panel'
@@ -7,6 +7,7 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     var addContactButton = document.createElement('div')
     addContactButton.className = classPrefix + '-addContactButton'
     addContactButton.appendChild(document.createTextNode('Add Contact'))
+    addContactButton.addEventListener('click', addContactListener)
 
     var title = WorkPage_SidePanel_Title(username, session, accountListener, signOutListener)
 

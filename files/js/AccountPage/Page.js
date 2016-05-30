@@ -1,5 +1,5 @@
-function AccountPage_Page (username, session,
-    getResourceUrl, closeListener, changePasswordListener) {
+function AccountPage_Page (username,
+    session, closeListener, changePasswordListener) {
 
     function enabledItems () {
         fullNameItem.enable()
@@ -20,7 +20,6 @@ function AccountPage_Page (username, session,
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
-    titleElement.style.backgroundImage = 'url(' + getResourceUrl('img/icon/32.svg') + ')'
     titleElement.appendChild(document.createTextNode(username))
 
     var saveProfileButton = document.createElement('button')

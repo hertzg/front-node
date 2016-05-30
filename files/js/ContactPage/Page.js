@@ -1,4 +1,4 @@
-function ContactPage_Page (data, getResourceUrl, closeListener) {
+function ContactPage_Page (data, closeListener) {
 
     var classPrefix = 'ContactPage_Page'
 
@@ -12,7 +12,6 @@ function ContactPage_Page (data, getResourceUrl, closeListener) {
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
-    titleElement.style.backgroundImage = 'url(' + getResourceUrl('img/icon/32.svg') + ')'
     titleElement.appendChild(document.createTextNode(data.username))
 
     var saveProfileButton = document.createElement('button')
