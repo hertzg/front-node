@@ -1,4 +1,4 @@
-function ContactRequestPage_Page (data, getResourceUrl, closeListener) {
+function ContactRequestPage_Page (data, closeListener) {
 
     var classPrefix = 'ContactRequestPage_Page'
 
@@ -10,7 +10,6 @@ function ContactRequestPage_Page (data, getResourceUrl, closeListener) {
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
-    titleElement.style.backgroundImage = 'url(' + getResourceUrl('img/icon/32.svg') + ')'
     titleElement.appendChild(document.createTextNode(data.username))
 
     var textElement = document.createElement('div')

@@ -36,7 +36,16 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         })
         element.appendChild(signOutPage.element)
     }, function () {
-        var addContactPage = AddContactPage_Page(session, function () {
+        var addContactPage = AddContactPage_Page(session, function (username, data) {
+            var publicProfilePage = PublicProfilePage_Page(username, data, function () {
+                element.removeChild(publicProfilePage.element)
+                element.appendChild(addContactPage.element)
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+            })
+            element.removeChild(addContactPage.element)
+            element.appendChild(publicProfilePage.element)
+        }, function () {
             element.removeChild(addContactPage.element)
         })
         element.appendChild(addContactPage.element)

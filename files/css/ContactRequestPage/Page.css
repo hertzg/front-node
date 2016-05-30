@@ -25,9 +25,7 @@
     color: hsl(95, 60%, 55%);
     font-size: 22px;
     line-height: 44px;
-    padding-left: 36px;
-    background-repeat: no-repeat;
-    background-position: left center;
+    padding-left: 14px;
     overflow: hidden;
     text-overflow: ellipsis;
     margin-bottom: 10px;

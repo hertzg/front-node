@@ -1,0 +1,50 @@
+.PublicProfilePage_Page {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: hsla(95, 60%, 55%, 0.5);
+    overflow: auto;
+    text-align: center;
+}
+
+.PublicProfilePage_Page-aligner {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
+.PublicProfilePage_Page-frame {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    width: 300px;
+    margin: auto;
+    background-color: white;
+    padding: 20px;
+    text-align: left;
+}
+
+.PublicProfilePage_Page-title {
+    text-align: center;
+    color: hsl(95, 60%, 55%);
+    font-size: 22px;
+    line-height: 44px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.PublicProfilePage_Page-button {
+    margin-top: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    cursor: pointer;
+    width: 100%;
+    color: white;
+    background-color: hsl(95, 60%, 55%);
+}
+.PublicProfilePage_Page-button:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 60%, 35%);
+}

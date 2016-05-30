@@ -1,4 +1,4 @@
-function AddContactPage_Page (session, closeListener) {
+function AddContactPage_Page (session, foundListener, closeListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -48,7 +48,7 @@ function AddContactPage_Page (session, closeListener) {
                 return
             }
 
-            console.log(response)
+            foundListener(username, response)
 
         }
 
