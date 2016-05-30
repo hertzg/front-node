@@ -1,7 +1,7 @@
 function WorkPage_SidePanel_ContactList (session, getResourceUrl,
     selectListener, deselectListener, profileListener, removeListener) {
 
-    function add (username, data) {
+    function addContact (username, data) {
         var contact = WorkPage_SidePanel_Contact(getResourceUrl, username, data, function () {
             if (selectedContact !== null) {
                 selectedContact.deselect()
@@ -18,7 +18,12 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             removeListener(contact)
         })
         contentElement.appendChild(contact.element)
+        contacts[username] = contact
+        numContacts++
     }
+
+    var numContacts = 0
+    var contacts = Object.create(null)
 
     var selectedContact = null
 
@@ -30,21 +35,33 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
 
     var contentElement = document.createElement('div')
     contentElement.className = classPrefix + '-content'
-
     ;(function () {
-        var empty = true
         var contacts = session.user.contacts
-        for (var i in contacts) {
-            empty = false
-            add(i, contacts[i])
-        }
-        if (empty) contentElement.appendChild(emptyElement)
+        for (var i in contacts) addContact(i, contacts[i])
     })()
+    if (numContacts === 0) contentElement.appendChild(emptyElement)
 
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(contentElement)
 
-    return { element: element }
+    return {
+        element: element,
+        addContact: function (username, data) {
+            if (numContacts === 0) contentElement.removeChild(emptyElement)
+            addContact(username, data)
+        },
+        removeContact: function (contact) {
+            if (contact === selectedContact) {
+                selectedContact.deselect()
+                deselectListener(selectedContact)
+                selectedContact = null
+            }
+            contentElement.removeChild(contact.element)
+            delete contacts[contact.username]
+            numContacts--
+            if (numContacts === 0) contentElement.appendChild(emptyElement)
+        },
+    }
 
 }

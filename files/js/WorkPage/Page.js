@@ -19,9 +19,10 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
     }
 
     function showAddAccountPage () {
-        var addContactPage = AddContactPage_Page(session, function (username, data) {
-            var publicProfilePage = PublicProfilePage_Page(session, username, data, function () {
+        var addContactPage = AddContactPage_Page(username, function (username, data) {
+            var publicProfilePage = PublicProfilePage_Page(session, username, data, function (data) {
                 element.removeChild(publicProfilePage.element)
+                sidePanel.addContact(username, data)
             }, function () {
                 element.removeChild(publicProfilePage.element)
                 showAddAccountPage()
@@ -76,7 +77,10 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         element.appendChild(contactPage.element)
         contactPage.focus()
     }, function (contact) {
-        var removeContactPage = RemoveContactPage_Page(contact.username, function () {
+        var removeContactPage = RemoveContactPage_Page(contact.username, session, function () {
+            element.removeChild(removeContactPage.element)
+            sidePanel.removeContact(contact)
+        }, function () {
             element.removeChild(removeContactPage.element)
         })
         element.appendChild(removeContactPage.element)

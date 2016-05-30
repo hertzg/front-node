@@ -1,4 +1,4 @@
-function AddContactPage_Page (session, foundListener, closeListener) {
+function AddContactPage_Page (username, foundListener, closeListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -12,7 +12,7 @@ function AddContactPage_Page (session, foundListener, closeListener) {
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode('Add Contact'))
 
-    var usernameItem = AddContactPage_UsernameItem()
+    var usernameItem = AddContactPage_UsernameItem(username)
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'

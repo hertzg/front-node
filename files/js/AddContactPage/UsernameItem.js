@@ -1,4 +1,4 @@
-function AddContactPage_UsernameItem () {
+function AddContactPage_UsernameItem (username) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -73,6 +73,12 @@ function AddContactPage_UsernameItem () {
             if (!Username_IsValid(value)) {
                 showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The username is invalid.'))
+                })
+                return null
+            }
+            if (value === username) {
+                showError(function (errorElement) {
+                    errorElement.appendChild(document.createTextNode('You cannot add yourself.'))
                 })
                 return null
             }

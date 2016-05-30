@@ -1,4 +1,9 @@
-function RemoveContactPage_Page (username, closeListener) {
+function RemoveContactPage_Page (username, session, removeListener, closeListener) {
+
+    function enableItems () {
+        yesButton.disabled = false
+        noButton.disabled = false
+    }
 
     var classPrefix = 'RemoveContactPage_Page'
 
@@ -15,6 +20,39 @@ function RemoveContactPage_Page (username, closeListener) {
     var yesButton = document.createElement('button')
     yesButton.className = classPrefix + '-yesButton'
     yesButton.appendChild(document.createTextNode('Remove Contact'))
+    yesButton.addEventListener('click', function () {
+
+        yesButton.disabled = true
+        noButton.disabled = true
+
+        var url = 'data/removeContact' +
+            '?token=' + encodeURIComponent(session.token) +
+            '&username=' + encodeURIComponent(username)
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(response)
+                return
+            }
+
+            var response = JSON.parse(request.response)
+            if (response !== true) {
+                enableItems()
+                console.log(response)
+                return
+            }
+
+            removeListener()
+
+        }
+
+    })
 
     var noButton = document.createElement('button')
     noButton.className = classPrefix + '-noButton'

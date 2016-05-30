@@ -28,6 +28,10 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
 
     var classList = element.classList
 
-    return { element: element }
+    return {
+        addContact: contactList.addContact,
+        element: element,
+        removeContact: contactList.removeContact,
+    }
 
 }
