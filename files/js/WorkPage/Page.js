@@ -20,8 +20,17 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         accountPage.focus()
     }, function () {
         var signOutPage = SignOutPage_Page(function () {
+
             element.removeChild(signOutPage.element)
             signOutListener()
+
+            var request = new XMLHttpRequest
+            request.open('get', 'data/signOut?token=' + encodeURIComponent(session.token))
+            request.send()
+            request.onload = function () {
+                console.log(JSON.parse(request.response))
+            }
+
         }, function () {
             element.removeChild(signOutPage.element)
         })

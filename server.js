@@ -13,6 +13,7 @@ pages['/data/captcha'] = require('./lib/DataPage/Captcha.js')
 pages['/data/changePassword'] = require('./lib/DataPage/ChangePassword.js')
 pages['/data/editProfile'] = require('./lib/DataPage/EditProfile.js')
 pages['/data/signIn'] = require('./lib/DataPage/SignIn.js')
+pages['/data/signOut'] = require('./lib/DataPage/SignOut.js')
 pages['/data/signUp'] = require('./lib/DataPage/SignUp.js')
 scanFiles('files', pages)
 
