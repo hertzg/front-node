@@ -1,7 +1,7 @@
 function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
     function editProfile (data) {
-        session.user = data
+        session.profile = data
         sidePanel.editProfile(data)
     }
 

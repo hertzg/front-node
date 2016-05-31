@@ -32,7 +32,7 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
         signOutListener()
     })
 
-    var buttonTextNode = document.createTextNode(session.user.fullName || username)
+    var buttonTextNode = document.createTextNode(session.profile.fullName || username)
 
     var buttonTextElement = document.createElement('span')
     buttonTextElement.className = classPrefix + '-buttonText'

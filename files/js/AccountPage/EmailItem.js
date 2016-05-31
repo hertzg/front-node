@@ -14,7 +14,7 @@ function AccountPage_EmailItem (session) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = session.user.email
+    input.value = session.profile.email
 
     var element = document.createElement('div')
     element.className = classPrefix

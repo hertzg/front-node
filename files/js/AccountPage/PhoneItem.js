@@ -14,7 +14,7 @@ function AccountPage_PhoneItem (session) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = session.user.phone
+    input.value = session.profile.phone
 
     var element = document.createElement('div')
     element.className = classPrefix

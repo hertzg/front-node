@@ -70,7 +70,7 @@ function ChangePasswordPage_Page (session, backListener, closeListener) {
 
             var response = JSON.parse(request.responseText)
 
-            if (response === 'INCORRECT_CURRENT_PASSWORD') {
+            if (response === 'INVALID_CURRENT_PASSWORD') {
                 enableItems()
                 currentPasswordItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The password is incorrect.'))

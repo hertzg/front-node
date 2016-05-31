@@ -36,7 +36,7 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
     var contentElement = document.createElement('div')
     contentElement.className = classPrefix + '-content'
     ;(function () {
-        var contacts = session.user.contacts
+        var contacts = session.contacts
         for (var i in contacts) addContact(i, contacts[i])
     })()
     if (numContacts === 0) contentElement.appendChild(emptyElement)

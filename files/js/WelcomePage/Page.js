@@ -55,7 +55,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
 
             var response = JSON.parse(request.responseText)
 
-            if (response === 'NO_SUCH_USER') {
+            if (response === 'INVALID_USERNAME') {
                 enableItems()
                 usernameItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('There is no such user.'))
@@ -63,7 +63,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
                 return
             }
 
-            if (response === 'INCORRECT_PASSWORD') {
+            if (response === 'INVALID_PASSWORD') {
                 enableItems()
                 passwordItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The password is incorrect.'))

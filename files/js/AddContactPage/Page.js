@@ -45,7 +45,7 @@ function AddContactPage_Page (username, foundListener, closeListener) {
             }
 
             var response = JSON.parse(request.responseText)
-            if (response === 'NO_SUCH_USER') {
+            if (response === 'INVALID_USERNAME') {
                 enableItems()
                 usernameItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('There is no such user.'))
