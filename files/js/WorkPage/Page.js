@@ -106,11 +106,25 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         var action = message[0],
             data = message[1]
 
+        if (action === 'addContact') {
+            var username = data[0]
+            var contact = sidePanel.getContact(username)
+            if (contact === undefined) sidePanel.addContact(username, data[1])
+            return
+        }
+
         if (action === 'editProfile') {
             sidePanel.editProfile(data)
-        } else {
-            console.log('message', message)
+            return
         }
+
+        if (action === 'removeContact') {
+            var contact = sidePanel.getContact(data)
+            if (contact !== undefined) sidePanel.removeContact(contact)
+            return
+        }
+
+        console.log('message', message)
 
     })
 

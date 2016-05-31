@@ -51,6 +51,9 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             if (numContacts === 0) contentElement.removeChild(emptyElement)
             addContact(username, data)
         },
+        getContact: function (username) {
+            return contacts[username]
+        },
         removeContact: function (contact) {
             if (contact === selectedContact) {
                 selectedContact.deselect()
