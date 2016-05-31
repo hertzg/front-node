@@ -47,6 +47,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, showAccountPage, function () {
         var signOutPage = SignOutPage_Page(function () {
 
+            pullMessages.abort()
             element.removeChild(signOutPage.element)
             signOutListener()
 
@@ -99,6 +100,19 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         'url(' + getResourceUrl('img/grass.svg') + '),' +
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(sidePanel.element)
+
+    var pullMessages = WorkPage_PullMessages(session, function (message) {
+
+        var action = message[0],
+            data = message[1]
+
+        if (action === 'editProfile') {
+            sidePanel.editProfile(data)
+        } else {
+            console.log('message', message)
+        }
+
+    })
 
     return { element: element }
 
