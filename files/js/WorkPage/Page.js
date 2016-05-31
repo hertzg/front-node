@@ -1,9 +1,13 @@
 function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
+    function editProfile (data) {
+        session.user = data
+        sidePanel.editProfile(data)
+    }
+
     function showAccountPage () {
         var accountPage = AccountPage_Page(username, session, function (data) {
-            session.user = data
-            sidePanel.editProfile(data)
+            editProfile(data)
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
@@ -113,8 +117,14 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             return
         }
 
+        if (action === 'editContact') {
+            var contact = sidePanel.getContact(data[0])
+            if (contact !== undefined) contact.edit(data[1])
+            return
+        }
+
         if (action === 'editProfile') {
-            sidePanel.editProfile(data)
+            editProfile(data)
             return
         }
 
