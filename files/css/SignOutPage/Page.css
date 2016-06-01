@@ -6,6 +6,7 @@
     left: 0;
     background-color: hsla(95, 60%, 55%, 0.5);
     overflow: auto;
+    text-align: center;
 }
 
 .SignOutPage_Page-frame {
@@ -22,7 +23,6 @@
 }
 
 .SignOutPage_Page-text {
-    text-align: center;
     padding: 20px;
     white-space: normal;
 }
@@ -37,6 +37,7 @@
     width: calc(55% - 25px);
     color: white;
     background-color: hsl(95, 60%, 55%);
+    text-align: center;
 }
 .SignOutPage_Page-yesButton:active {
     color: hsl(95, 70%, 70%);
@@ -53,6 +54,7 @@
     width: calc(45% - 25px);
     color: white;
     background-color: hsl(45, 70%, 55%);
+    text-align: center;
 }
 .SignOutPage_Page-noButton:active {
     color: hsl(45, 70%, 70%);

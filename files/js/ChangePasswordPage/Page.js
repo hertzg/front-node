@@ -1,5 +1,5 @@
 function ChangePasswordPage_Page (session,
-    backListener, closeListener, signOutListener) {
+    backListener, closeListener, signOutListener, crashListener) {
 
     function enableItems () {
         currentPasswordItem.enable()
@@ -69,7 +69,12 @@ function ChangePasswordPage_Page (session,
                 return
             }
 
-            var response = JSON.parse(request.responseText)
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
 
             if (response === 'INVALID_TOKEN') {
                 signOutListener()

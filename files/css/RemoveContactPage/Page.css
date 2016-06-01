@@ -21,11 +21,9 @@
     width: 300px;
     background-color: white;
     padding: 20px;
-    text-align: left;
 }
 
 .RemoveContactPage_Page-text {
-    text-align: center;
     padding: 20px;
     margin-bottom: 10px;
     white-space: normal;
@@ -42,6 +40,7 @@
     width: calc(65% - 5px);
     color: white;
     background-color: hsl(95, 60%, 55%);
+    text-align: center;
 }
 .RemoveContactPage_Page-yesButton:active {
     color: hsl(95, 70%, 70%);
@@ -56,6 +55,7 @@
     color: white;
     background-color: hsl(45, 70%, 55%);
     margin-left: 10px;
+    text-align: center;
 }
 .RemoveContactPage_Page-noButton:active {
     color: hsl(45, 70%, 70%);

@@ -1,9 +1,10 @@
 .WorkPage_ChatPanel_SentMessage {
     border: 2px solid hsl(95, 70%, 85%);
-    padding: 8px 12px;
+    padding: 10px;
     margin-top: 8px;
     white-space: normal;
     word-wrap: break-word;
+    line-height: 20px;
 }
 .WorkPage_ChatPanel_SentMessage:first-child {
     margin-top: 0;

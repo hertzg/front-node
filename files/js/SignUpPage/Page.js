@@ -1,4 +1,5 @@
-function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
+function SignUpPage_Page (getResourceUrl,
+    backListener, signUpListener, crashListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -16,7 +17,7 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
 
     var repeatPasswordItem = SignUpPage_RepeatPasswordItem()
 
-    var captchaItem = SignUpPage_CaptchaItem()
+    var captchaItem = SignUpPage_CaptchaItem(crashListener)
 
     var backButton = BackButton(backListener)
 
@@ -74,7 +75,12 @@ function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
                 return
             }
 
-            var response = JSON.parse(request.responseText)
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
 
             if (response === 'USERNAME_UNAVAILABLE') {
                 enableItems()

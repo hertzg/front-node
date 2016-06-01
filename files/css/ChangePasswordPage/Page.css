@@ -40,6 +40,7 @@
     width: 100%;
     color: white;
     background-color: hsl(95, 60%, 55%);
+    text-align: center;
 }
 .ChangePasswordPage_Page-button:active {
     color: hsl(95, 70%, 70%);

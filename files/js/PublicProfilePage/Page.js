@@ -1,5 +1,5 @@
-function PublicProfilePage_Page (session, username, data,
-    addContactListener, backListener, closeListener, signOutListener) {
+function PublicProfilePage_Page (session, username, data, addContactListener,
+    backListener, closeListener, signOutListener, crashListener) {
 
     function enableItems () {
         button.disabled = false
@@ -42,7 +42,13 @@ function PublicProfilePage_Page (session, username, data,
                 return
             }
 
-            var response = JSON.parse(request.responseText)
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
+
             if (response === 'INVALID_TOKEN') {
                 signOutListener()
                 return

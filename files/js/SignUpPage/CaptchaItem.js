@@ -1,4 +1,4 @@
-function SignUpPage_CaptchaItem () {
+function SignUpPage_CaptchaItem (crashListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -71,7 +71,14 @@ function SignUpPage_CaptchaItem () {
             return
         }
 
-        setCaptcha(JSON.parse(request.responseText))
+        try {
+            var response = JSON.parse(request.responseText)
+        } catch (e) {
+            crashListener()
+            return
+        }
+
+        setCaptcha(response)
 
     }
 

@@ -19,6 +19,7 @@
     color: white;
     background-color: hsl(95, 60%, 55%);
     width: 108px;
+    text-align: center;
 }
 .WorkPage_SidePanel_Panel-addContactButton:active {
     color: hsl(95, 70%, 70%);

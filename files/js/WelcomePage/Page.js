@@ -1,4 +1,5 @@
-function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
+function WelcomePage_Page (getResourceUrl,
+    signUpListener, signInListener, crashListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -53,7 +54,12 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
                 return
             }
 
-            var response = JSON.parse(request.responseText)
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
 
             if (response === 'INVALID_USERNAME') {
                 enableItems()

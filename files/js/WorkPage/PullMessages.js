@@ -1,4 +1,4 @@
-function WorkPage_PullMessages (session, messageListener) {
+function WorkPage_PullMessages (session, messageListener, crashListener) {
 
     function pull () {
 
@@ -12,11 +12,20 @@ function WorkPage_PullMessages (session, messageListener) {
             }
         }
         request.onload = function () {
-            var response = JSON.parse(request.responseText)
+
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
+
             if (response !== 'NOTHING_TO_PULL') {
                 response.forEach(messageListener)
             }
+
             pull()
+
         }
 
         abortFunction = function () {

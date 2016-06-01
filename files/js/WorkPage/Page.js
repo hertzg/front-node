@@ -1,4 +1,5 @@
-function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
+function WorkPage_Page (username, session,
+    getResourceUrl, signOutListener, crashListener) {
 
     function editProfile (data) {
         session.profile = data
@@ -18,6 +19,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             }, function () {
                 element.removeChild(changePasswordPage.element)
                 signOutListener()
+            }, function () {
+                element.removeChild(changePasswordPage.element)
+                crashListener()
             })
             element.removeChild(accountPage.element)
             element.appendChild(changePasswordPage.element)
@@ -27,6 +31,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         }, function () {
             element.removeChild(accountPage.element)
             signOutListener()
+        }, function () {
+            element.removeChild(accountPage.element)
+            crashListener()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
@@ -45,11 +52,17 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             }, function () {
                 element.removeChild(publicProfilePage.element)
                 signOutListener()
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+                crashListener()
             })
             element.removeChild(addContactPage.element)
             element.appendChild(publicProfilePage.element)
         }, function () {
             element.removeChild(addContactPage.element)
+        }, function () {
+            element.removeChild(addContactPage.element)
+            crashListener()
         })
         element.appendChild(addContactPage.element)
         addContactPage.focus()
@@ -97,6 +110,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         }, function () {
             element.removeChild(contactPage.element)
             signOutListener()
+        }, function () {
+            element.removeChild(contactPage.element)
+            crashListener()
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
@@ -109,6 +125,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
         }, function () {
             element.removeChild(removeContactPage.element)
             signOutListener()
+        }, function () {
+            element.removeChild(removeContactPage.element)
+            crashListener()
         })
         element.appendChild(removeContactPage.element)
     })
@@ -151,7 +170,7 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
 
         console.log('message', message)
 
-    })
+    }, crashListener)
 
     return { element: element }
 
