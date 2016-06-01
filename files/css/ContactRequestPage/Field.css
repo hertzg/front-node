@@ -1,4 +1,5 @@
 .ContactRequestPage_Field {
     overflow: hidden;
     text-overflow: ellipsis;
+    line-height: 20px;
 }

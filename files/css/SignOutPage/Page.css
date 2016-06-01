@@ -9,15 +9,16 @@
     text-align: center;
 }
 
+.SignOutPage_Page-aligner {
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+}
+
 .SignOutPage_Page-frame {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    display: inline-block;
+    vertical-align: middle;
     width: 300px;
-    height: 194px;
-    margin: auto;
     background-color: white;
     padding: 20px;
 }
@@ -25,19 +26,17 @@
 .SignOutPage_Page-text {
     padding: 20px;
     white-space: normal;
+    line-height: 20px;
+    margin-bottom: 10px;
 }
 
 .SignOutPage_Page-yesButton {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
-    width: calc(55% - 25px);
+    width: calc(55% - 5px);
     color: white;
     background-color: hsl(95, 60%, 55%);
-    text-align: center;
 }
 .SignOutPage_Page-yesButton:active {
     color: hsl(95, 70%, 70%);
@@ -45,16 +44,13 @@
 }
 
 .SignOutPage_Page-noButton {
-    position: absolute;
-    right: 20px;
-    bottom: 20px;
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
-    width: calc(45% - 25px);
+    width: calc(45% - 5px);
     color: white;
     background-color: hsl(45, 70%, 55%);
-    text-align: center;
+    margin-left: 10px;
 }
 .SignOutPage_Page-noButton:active {
     color: hsl(45, 70%, 70%);

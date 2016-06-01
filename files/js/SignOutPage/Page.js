@@ -24,9 +24,13 @@ function SignOutPage_Page (confirmListener, closeListener) {
     frameElement.appendChild(yesButton)
     frameElement.appendChild(noButton)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(frameElement)
+    element.appendChild(alignerElement)
     element.addEventListener('click', function (e) {
         if (e.button !== 0) return
         if (e.target === element) closeListener()
