@@ -1,4 +1,9 @@
-function ContactRequestPage_Page (username, profile, closeListener) {
+function ContactRequestPage_Page (session, username,
+    profile, addContactListener, closeListener) {
+
+    function enableItems () {
+        yesButton.disabled = false
+    }
 
     var classPrefix = 'ContactRequestPage_Page'
 
@@ -19,6 +24,50 @@ function ContactRequestPage_Page (username, profile, closeListener) {
     var yesButton = document.createElement('button')
     yesButton.className = classPrefix + '-yesButton'
     yesButton.appendChild(document.createTextNode('Add Contact'))
+    yesButton.addEventListener('click', function () {
+
+        var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
+            '&username=' + encodeURIComponent(username) +
+            '&fullName=' + encodeURIComponent(profile.fullName) +
+            '&email=' + encodeURIComponent(profile.email) +
+            '&phone=' + encodeURIComponent(profile.phone)
+
+        yesButton.disabled = true
+
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
+
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
+                return
+            }
+
+            if (response !== true) {
+                console.log(response)
+                return
+            }
+
+            addContactListener()
+
+        }
+
+    })
 
     var noButton = document.createElement('button')
     noButton.className = classPrefix + '-noButton'

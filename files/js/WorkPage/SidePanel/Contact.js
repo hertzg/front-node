@@ -1,4 +1,4 @@
-function WorkPage_SidePanel_Contact (getResourceUrl, username, data,
+function WorkPage_SidePanel_Contact (getResourceUrl, username, profile,
     selectListener, deselectListener, profileListener, removeListener) {
 
     function deselect () {
@@ -19,14 +19,14 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, data,
         selectListener()
     }
 
-    var chatPanel = WorkPage_ChatPanel_Panel(username, data, getResourceUrl,
+    var chatPanel = WorkPage_ChatPanel_Panel(username, profile, getResourceUrl,
         profileListener, removeListener, deselectAndCallListener)
 
-    var node = document.createTextNode(data.fullName || username)
+    var node = document.createTextNode(profile.fullName || username)
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
-    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-' + (data.online ? 'online' : 'offline') + '.svg') + ')'
+    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-' + (profile.online ? 'online' : 'offline') + '.svg') + ')'
     element.appendChild(node)
     element.addEventListener('click', select)
 
@@ -37,13 +37,13 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, data,
         deselect: deselect,
         element: element,
         username: username,
-        edit: function (_data) {
-            data = _data
-            node.nodeValue = data.fullName || username
-            chatPanel.editContact(data)
+        edit: function (_profile) {
+            profile = _profile
+            node.nodeValue = profile.fullName || username
+            chatPanel.editContact(profile)
         },
-        getData: function () {
-            return data
+        getProfile: function () {
+            return profile
         },
     }
 

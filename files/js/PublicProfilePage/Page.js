@@ -1,4 +1,4 @@
-function PublicProfilePage_Page (session, username, data, addContactListener,
+function PublicProfilePage_Page (session, username, profile, addContactListener,
     backListener, closeListener, signOutListener, crashListener) {
 
     function enableItems () {
@@ -11,11 +11,11 @@ function PublicProfilePage_Page (session, username, data, addContactListener,
 
     var classPrefix = 'PublicProfilePage_Page'
 
-    var fullNameItem = PublicProfilePage_FullNameItem(data)
+    var fullNameItem = PublicProfilePage_FullNameItem(profile)
 
-    var emailItem = PublicProfilePage_EmailItem(data)
+    var emailItem = PublicProfilePage_EmailItem(profile)
 
-    var phoneItem = PublicProfilePage_PhoneItem(data)
+    var phoneItem = PublicProfilePage_PhoneItem(profile)
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
@@ -27,8 +27,10 @@ function PublicProfilePage_Page (session, username, data, addContactListener,
     button.addEventListener('click', function () {
 
         var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
-            '&username=' + username + '&fullName=' + data.fullName +
-            '&email=' + data.email + '&phone=' + data.phone
+            '&username=' + encodeURIComponent(username) +
+            '&fullName=' + encodeURIComponent(profile.fullName) +
+            '&email=' + encodeURIComponent(profile.email) +
+            '&phone=' + encodeURIComponent(profile.phone)
 
         var request = new XMLHttpRequest
         request.open('get', url)
@@ -54,7 +56,7 @@ function PublicProfilePage_Page (session, username, data, addContactListener,
                 return
             }
 
-            addContactListener(data)
+            addContactListener()
 
         }
 

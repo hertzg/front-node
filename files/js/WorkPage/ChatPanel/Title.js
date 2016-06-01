@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_Title (username, data, profileListener, removeListener) {
+function WorkPage_ChatPanel_Title (username, profile, profileListener, removeListener) {
 
     function deselect () {
         buttonClassList.remove('selected')
@@ -32,7 +32,7 @@ function WorkPage_ChatPanel_Title (username, data, profileListener, removeListen
         removeListener()
     })
 
-    var buttonTextNode = document.createTextNode(data.fullName || username)
+    var buttonTextNode = document.createTextNode(profile.fullName || username)
 
     var buttonTextElement = document.createElement('span')
     buttonTextElement.className = classPrefix + '-buttonText'
@@ -52,8 +52,8 @@ function WorkPage_ChatPanel_Title (username, data, profileListener, removeListen
 
     return {
         element: element,
-        editContact: function (data) {
-            buttonTextNode.nodeValue = data.fullName || username
+        editContact: function (profile) {
+            buttonTextNode.nodeValue = profile.fullName || username
         },
     }
 

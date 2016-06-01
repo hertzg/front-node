@@ -1,4 +1,4 @@
-function PublicProfilePage_EmailItem (data) {
+function PublicProfilePage_EmailItem (profile) {
 
     var classPrefix = 'PublicProfilePage_Field'
 
@@ -8,7 +8,7 @@ function PublicProfilePage_EmailItem (data) {
 
     var valueElement = document.createElement('span')
     valueElement.className = classPrefix + '-value'
-    valueElement.appendChild(document.createTextNode(data.email))
+    valueElement.appendChild(document.createTextNode(profile.email))
 
     var element = document.createElement('div')
     element.className = classPrefix

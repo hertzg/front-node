@@ -52,8 +52,8 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
 
     return {
         element: element,
-        editProfile: function (data) {
-            buttonTextNode.nodeValue = data.fullName || username
+        editProfile: function (profile) {
+            buttonTextNode.nodeValue = profile.fullName || username
         },
     }
 

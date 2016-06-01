@@ -1,4 +1,4 @@
-function ContactPage_Page (session, username, data,
+function ContactPage_Page (session, username, profile,
     editContactListener, closeListener, signOutListener, crashListener) {
 
     function enableItems () {
@@ -12,11 +12,11 @@ function ContactPage_Page (session, username, data,
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = ContactPage_FullNameItem(data)
+    var fullNameItem = ContactPage_FullNameItem(profile)
 
-    var emailItem = ContactPage_EmailItem(data)
+    var emailItem = ContactPage_EmailItem(profile)
 
-    var phoneItem = ContactPage_PhoneItem(data)
+    var phoneItem = ContactPage_PhoneItem(profile)
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'

@@ -1,4 +1,4 @@
-function ContactPage_EmailItem (data) {
+function ContactPage_EmailItem (profile) {
 
     var classPrefix = 'ContactPage_EmailItem'
 
@@ -14,7 +14,7 @@ function ContactPage_EmailItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = data.email
+    input.value = profile.email
 
     var element = document.createElement('div')
     element.className = classPrefix

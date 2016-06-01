@@ -1,14 +1,14 @@
 function WorkPage_Page (username, session,
     getResourceUrl, signOutListener, crashListener) {
 
-    function editProfile (data) {
-        session.profile = data
-        sidePanel.editProfile(data)
+    function editProfile (profile) {
+        session.profile = profile
+        sidePanel.editProfile(profile)
     }
 
     function showAccountPage () {
-        var accountPage = AccountPage_Page(username, session, function (data) {
-            editProfile(data)
+        var accountPage = AccountPage_Page(username, session, function (profile) {
+            editProfile(profile)
             element.removeChild(accountPage.element)
         }, function () {
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
@@ -40,10 +40,10 @@ function WorkPage_Page (username, session,
     }
 
     function showAddContactPage () {
-        var addContactPage = AddContactPage_Page(username, function (username, data) {
-            var publicProfilePage = PublicProfilePage_Page(session, username, data, function (data) {
+        var addContactPage = AddContactPage_Page(username, function (username, profile) {
+            var publicProfilePage = PublicProfilePage_Page(session, username, profile, function () {
                 element.removeChild(publicProfilePage.element)
-                sidePanel.addContact(username, data)
+                sidePanel.addContact(username, profile)
             }, function () {
                 element.removeChild(publicProfilePage.element)
                 showAddContactPage()
@@ -69,7 +69,10 @@ function WorkPage_Page (username, session,
     }
 
     function showContactRequest (username, profile) {
-        var contactRequestPage = ContactRequestPage_Page(username, profile, function () {
+        var contactRequestPage = ContactRequestPage_Page(session, username, profile, function () {
+            console.log(username, profile)
+            sidePanel.addContact(username, profile)
+        }, function () {
             element.removeChild(contactRequestPage.element)
         })
         element.appendChild(contactRequestPage.element)
@@ -109,8 +112,8 @@ function WorkPage_Page (username, session,
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
-        var contactPage = ContactPage_Page(session, contact.username, contact.getData(), function (data) {
-            contact.edit(data)
+        var contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), function (profile) {
+            contact.edit(profile)
             element.removeChild(contactPage.element)
         }, function () {
             element.removeChild(contactPage.element)
@@ -146,8 +149,8 @@ function WorkPage_Page (username, session,
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(sidePanel.element)
 
-    for (var i in session.contactRequests) {
-        showContactRequest(i, session.contactRequests[i])
+    for (var i in session.requests) {
+        showContactRequest(i, session.requests[i])
     }
 
     var pullMessages = WorkPage_PullMessages(session, function (message) {
@@ -159,6 +162,11 @@ function WorkPage_Page (username, session,
             var username = data[0]
             var contact = sidePanel.getContact(username)
             if (contact === undefined) sidePanel.addContact(username, data[1])
+            return
+        }
+
+        if (action === 'addRequest') {
+            showContactRequest(data[0], data[1])
             return
         }
 
@@ -176,11 +184,6 @@ function WorkPage_Page (username, session,
         if (action === 'removeContact') {
             var contact = sidePanel.getContact(data)
             if (contact !== undefined) sidePanel.removeContact(contact)
-            return
-        }
-
-        if (account === 'contactRequest') {
-            showContactRequest(data[0], data[1])
             return
         }
 

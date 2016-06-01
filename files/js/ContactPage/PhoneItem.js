@@ -1,4 +1,4 @@
-function ContactPage_PhoneItem (data) {
+function ContactPage_PhoneItem (profile) {
 
     var classPrefix = 'ContactPage_PhoneItem'
 
@@ -14,7 +14,7 @@ function ContactPage_PhoneItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = data.phone
+    input.value = profile.phone
 
     var element = document.createElement('div')
     element.className = classPrefix

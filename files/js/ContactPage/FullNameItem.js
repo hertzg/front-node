@@ -1,4 +1,4 @@
-function ContactPage_FullNameItem (data) {
+function ContactPage_FullNameItem (profile) {
 
     var classPrefix = 'ContactPage_FullNameItem'
 
@@ -14,7 +14,7 @@ function ContactPage_FullNameItem (data) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = data.fullName
+    input.value = profile.fullName
 
     var element = document.createElement('div')
     element.className = classPrefix
