@@ -1,4 +1,4 @@
-function ContactRequestPage_EmailItem (data) {
+function ContactRequestPage_EmailItem (profile) {
 
     var classPrefix = 'ContactRequestPage_Field'
 
@@ -8,7 +8,7 @@ function ContactRequestPage_EmailItem (data) {
 
     var valueElement = document.createElement('span')
     valueElement.className = classPrefix + '-value'
-    valueElement.appendChild(document.createTextNode(data.email))
+    valueElement.appendChild(document.createTextNode(profile.email))
 
     var element = document.createElement('div')
     element.className = classPrefix

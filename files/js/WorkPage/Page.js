@@ -68,6 +68,13 @@ function WorkPage_Page (username, session,
         addContactPage.focus()
     }
 
+    function showContactRequest (username, profile) {
+        var contactRequestPage = ContactRequestPage_Page(username, profile, function () {
+            element.removeChild(contactRequestPage.element)
+        })
+        element.appendChild(contactRequestPage.element)
+    }
+
     var classPrefix = 'WorkPage_Page'
 
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, showAccountPage, function () {
@@ -139,6 +146,10 @@ function WorkPage_Page (username, session,
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(sidePanel.element)
 
+    for (var i in session.contactRequests) {
+        showContactRequest(i, session.contactRequests[i])
+    }
+
     var pullMessages = WorkPage_PullMessages(session, function (message) {
 
         var action = message[0],
@@ -168,7 +179,10 @@ function WorkPage_Page (username, session,
             return
         }
 
-        console.log('message', message)
+        if (account === 'contactRequest') {
+            showContactRequest(data[0], data[1])
+            return
+        }
 
     }, crashListener)
 
