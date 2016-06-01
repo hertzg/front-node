@@ -1,5 +1,5 @@
-function AccountPage_Page (username, session,
-    editProfileListener, changePasswordListener, closeListener) {
+function AccountPage_Page (username, session, editProfileListener,
+    changePasswordListener, closeListener, signOutListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -64,6 +64,12 @@ function AccountPage_Page (username, session,
             }
 
             var response = JSON.parse(request.responseText)
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
+                return
+            }
+
             if (response !== true) {
                 enableItems()
                 console.log(response)

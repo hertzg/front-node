@@ -1,5 +1,5 @@
-function ContactPage_Page (session, username,
-    data, editContactListener, closeListener) {
+function ContactPage_Page (session, username, data,
+    editContactListener, closeListener, signOutListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -65,6 +65,12 @@ function ContactPage_Page (session, username,
             }
 
             var response = JSON.parse(request.responseText)
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
+                return
+            }
+
             if (response !== true) {
                 enableItems()
                 console.log(response)

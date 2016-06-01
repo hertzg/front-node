@@ -1,4 +1,5 @@
-function RemoveContactPage_Page (username, session, removeListener, closeListener) {
+function RemoveContactPage_Page (username, session,
+    removeListener, closeListener, signOutListener) {
 
     function enableItems () {
         yesButton.disabled = false
@@ -42,6 +43,12 @@ function RemoveContactPage_Page (username, session, removeListener, closeListene
             }
 
             var response = JSON.parse(request.response)
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
+                return
+            }
+
             if (response !== true) {
                 enableItems()
                 console.log(response)

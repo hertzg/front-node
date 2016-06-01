@@ -15,12 +15,18 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
                 showAccountPage()
             }, function () {
                 element.removeChild(changePasswordPage.element)
+            }, function () {
+                element.removeChild(changePasswordPage.element)
+                signOutListener()
             })
             element.removeChild(accountPage.element)
             element.appendChild(changePasswordPage.element)
             changePasswordPage.focus()
         }, function () {
             element.removeChild(accountPage.element)
+        }, function () {
+            element.removeChild(accountPage.element)
+            signOutListener()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
@@ -36,6 +42,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
                 showAddContactPage()
             }, function () {
                 element.removeChild(publicProfilePage.element)
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+                signOutListener()
             })
             element.removeChild(addContactPage.element)
             element.appendChild(publicProfilePage.element)
@@ -85,6 +94,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             element.removeChild(contactPage.element)
         }, function () {
             element.removeChild(contactPage.element)
+        }, function () {
+            element.removeChild(contactPage.element)
+            signOutListener()
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
@@ -94,6 +106,9 @@ function WorkPage_Page (username, session, getResourceUrl, signOutListener) {
             sidePanel.removeContact(contact)
         }, function () {
             element.removeChild(removeContactPage.element)
+        }, function () {
+            element.removeChild(removeContactPage.element)
+            signOutListener()
         })
         element.appendChild(removeContactPage.element)
     })
