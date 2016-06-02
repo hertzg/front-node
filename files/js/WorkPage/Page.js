@@ -182,6 +182,16 @@ function WorkPage_Page (username, session,
             return
         }
 
+        if (action === 'offline') {
+            sidePanel.offline(data)
+            return
+        }
+
+        if (action === 'online') {
+            sidePanel.online(data)
+            return
+        }
+
         if (action === 'removeContact') {
             var contact = sidePanel.getContact(data)
             if (contact !== undefined) sidePanel.removeContact(contact)

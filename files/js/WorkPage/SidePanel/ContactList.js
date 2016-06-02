@@ -54,6 +54,16 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
         getContact: function (username) {
             return contacts[username]
         },
+        offline: function (username) {
+            var contact = contacts[username]
+            if (contact === undefined) return
+            contact.offline()
+        },
+        online: function (username) {
+            var contact = contacts[username]
+            if (contact === undefined) return
+            contact.online()
+        },
         removeContact: function (contact) {
             if (contact === selectedContact) {
                 selectedContact.deselect()

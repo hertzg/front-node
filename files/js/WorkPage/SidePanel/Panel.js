@@ -33,6 +33,8 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
         editProfile: title.editProfile,
         element: element,
         getContact: contactList.getContact,
+        offline: contactList.offline,
+        online: contactList.online,
         removeContact: contactList.removeContact,
     }
 

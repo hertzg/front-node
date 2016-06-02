@@ -47,6 +47,12 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, contactData,
         getProfile: function () {
             return profile
         },
+        offline: function () {
+            element.style.backgroundImage = 'url(' + getResourceUrl('img/user-offline.svg') + ')'
+        },
+        online: function () {
+            element.style.backgroundImage = 'url(' + getResourceUrl('img/user-online.svg') + ')'
+        },
     }
 
 }
