@@ -56,7 +56,7 @@ function PublicProfilePage_Page (session, username, profile, addContactListener,
                 return
             }
 
-            addContactListener()
+            addContactListener(response)
 
         }
 

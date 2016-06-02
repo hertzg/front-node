@@ -58,12 +58,7 @@ function ContactRequestPage_Page (session, username,
                 return
             }
 
-            if (response !== true) {
-                console.log(response)
-                return
-            }
-
-            addContactListener()
+            addContactListener(response)
 
         }
 

@@ -2,7 +2,7 @@ function WorkPage_ContactRequests (element, session, addContactListener) {
 
     function show (username, profile) {
         visibleUsername = username
-        contactRequestPage = ContactRequestPage_Page(session, username, profile, function () {
+        contactRequestPage = ContactRequestPage_Page(session, username, profile, function (profile) {
             addContactListener(username, profile)
             showNext()
         }, function () {
