@@ -5,18 +5,18 @@ function WorkPage_PullMessages (session, messageListener, crashListener) {
         var request = new XMLHttpRequest
         request.open('get', 'data/pullMessages?token=' + encodeURIComponent(session.token))
         request.send()
-        request.onerror = function () {
-            var timeout = setTimeout(pull, 1000)
-            abortFunction = function () {
-                clearTimeout(timeout)
-            }
-        }
+        request.onerror = schedulePull
         request.onload = function () {
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
                 crashListener()
+                return
+            }
+
+            if (response === 'INTERNAL_SERVER_ERROR') {
+                schedulePull()
                 return
             }
 
@@ -32,6 +32,13 @@ function WorkPage_PullMessages (session, messageListener, crashListener) {
             request.abort()
         }
 
+    }
+
+    function schedulePull () {
+        var timeout = setTimeout(pull, 2000)
+        abortFunction = function () {
+            clearTimeout(timeout)
+        }
     }
 
     var abortFunction

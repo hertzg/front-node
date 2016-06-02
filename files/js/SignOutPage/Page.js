@@ -36,6 +36,11 @@ function SignOutPage_Page (confirmListener, closeListener) {
         if (e.target === element) closeListener()
     })
 
-    return { element: element }
+    return {
+        element: element,
+        focus: function () {
+            yesButton.focus()
+        },
+    }
 
 }

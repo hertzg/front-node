@@ -89,6 +89,11 @@ function RemoveContactPage_Page (username, session,
         if (e.target === element) closeListener()
     })
 
-    return { element: element }
+    return {
+        element: element,
+        focus: function () {
+            yesButton.focus()
+        },
+    }
 
 }

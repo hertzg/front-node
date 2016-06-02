@@ -96,6 +96,7 @@ function WorkPage_Page (username, session,
             element.removeChild(signOutPage.element)
         })
         element.appendChild(signOutPage.element)
+        signOutPage.focus()
     }, showAddContactPage, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
@@ -131,6 +132,7 @@ function WorkPage_Page (username, session,
             crashListener()
         })
         element.appendChild(removeContactPage.element)
+        removeContactPage.focus()
     })
 
     var element = document.createElement('div')
@@ -155,6 +157,7 @@ function WorkPage_Page (username, session,
             var username = data[0]
             var contact = sidePanel.getContact(username)
             if (contact === undefined) sidePanel.addContact(username, data[1])
+            contactRequests.remove(username)
             return
         }
 

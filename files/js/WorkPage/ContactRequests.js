@@ -68,8 +68,8 @@ function WorkPage_ContactRequests (element, session, addContactListener) {
                 numRequets++
             }
         },
-        remove: function (_username) {
-            if (username === _username) showNext()
+        remove: function (username) {
+            if (visibleUsername === username) showNext()
             else {
                 delete requests[username]
                 numRequets++
