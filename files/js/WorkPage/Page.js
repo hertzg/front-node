@@ -41,9 +41,9 @@ function WorkPage_Page (username, session,
 
     function showAddContactPage () {
         var addContactPage = AddContactPage_Page(username, function (username, profile) {
-            var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (profile) {
+            var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (contactData) {
                 element.removeChild(publicProfilePage.element)
-                sidePanel.addContact(username, profile)
+                sidePanel.addContact(username, contactData)
             }, function () {
                 element.removeChild(publicProfilePage.element)
                 showAddContactPage()

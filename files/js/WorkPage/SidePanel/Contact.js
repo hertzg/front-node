@@ -1,4 +1,4 @@
-function WorkPage_SidePanel_Contact (getResourceUrl, username, profile,
+function WorkPage_SidePanel_Contact (getResourceUrl, username, contactData,
     selectListener, deselectListener, profileListener, removeListener) {
 
     function deselect () {
@@ -19,6 +19,8 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, profile,
         selectListener()
     }
 
+    var profile = contactData.profile
+
     var chatPanel = WorkPage_ChatPanel_Panel(username, profile, getResourceUrl,
         profileListener, removeListener, deselectAndCallListener)
 
@@ -26,7 +28,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, profile,
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
-    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-' + (profile.online ? 'online' : 'offline') + '.svg') + ')'
+    element.style.backgroundImage = 'url(' + getResourceUrl('img/user-' + (contactData.online ? 'online' : 'offline') + '.svg') + ')'
     element.appendChild(node)
     element.addEventListener('click', select)
 
