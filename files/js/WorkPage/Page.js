@@ -177,14 +177,14 @@ function WorkPage_Page (username, session,
             return
         }
 
-        if (action === 'removeContact') {
-            var contact = sidePanel.getContact(data)
-            if (contact !== undefined) sidePanel.removeContact(contact)
+        if (action === 'ignoreRequest') {
+            contactRequests.remove(data)
             return
         }
 
-        if (action === 'removeRequest') {
-            contactRequests.remove(data)
+        if (action === 'removeContact') {
+            var contact = sidePanel.getContact(data)
+            if (contact !== undefined) sidePanel.removeContact(contact)
             return
         }
 
