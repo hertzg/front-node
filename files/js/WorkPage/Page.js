@@ -58,6 +58,7 @@ function WorkPage_Page (username, session,
             })
             element.removeChild(addContactPage.element)
             element.appendChild(publicProfilePage.element)
+            publicProfilePage.focus()
         }, function () {
             element.removeChild(addContactPage.element)
         }, function () {
@@ -139,7 +140,8 @@ function WorkPage_Page (username, session,
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(sidePanel.element)
 
-    var contactRequests = WorkPage_ContactRequests(element, session, sidePanel.addContact)
+    var contactRequests = WorkPage_ContactRequests(element,
+        session, sidePanel.addContact, crashListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
     }

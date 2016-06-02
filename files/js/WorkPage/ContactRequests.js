@@ -2,11 +2,36 @@ function WorkPage_ContactRequests (element, session, addContactListener) {
 
     function show (username, profile) {
         visibleUsername = username
-        var contactRequestPage = ContactRequestPage_Page(session, username, profile, function () {
+        contactRequestPage = ContactRequestPage_Page(session, username, profile, function () {
             addContactListener(username, profile)
             showNext()
         }, function () {
-            element.removeChild(contactRequestPage.element)
+
+            showNext()
+
+            var url = 'data/ignoreRequest' +
+                '?token=' + encodeURIComponent(session.token) +
+                '&username=' + encodeURIComponent(username)
+
+            var request = new XMLHttpRequest
+            request.open('get', url)
+            request.send()
+            request.onload = function () {
+
+                try {
+                    var response = JSON.parse(request.responseText)
+                } catch (e) {
+                    if (contactRequestPage !== null) {
+                        element.removeChild(contactRequestPage.element)
+                    }
+                    crashListener()
+                    return
+                }
+
+                console.log(response)
+
+            }
+
         })
         element.appendChild(contactRequestPage.element)
     }
@@ -15,39 +40,39 @@ function WorkPage_ContactRequests (element, session, addContactListener) {
 
         element.removeChild(contactRequestPage.element)
 
-        if (requests.length === 0) {
-            page = null
+        if (numRequets === 0) {
+            contactRequestPage = null
             visibleUsername = null
             return
         }
 
-        var request = requests.shift()
-        show(request.username, request.profile)
+        var username = Object.keys(requests)[0]
+        var profile = requests[username]
+        delete requests[username]
+        numRequets--
+        show(username, profile)
 
     }
 
-    var requests = []
+    var numRequets = 0
+    var requests = Object.create(null)
 
-    var page = null
+    var contactRequestPage = null
     var visibleUsername = null
 
     return {
         add: function (username, profile) {
-            if (page === null) show(username, profile)
-            else requests.push({
-                username: username,
-                profile: profile,
-            })
+            if (contactRequestPage === null) show(username, profile)
+            else {
+                requests[username] = profile
+                numRequets++
+            }
         },
         remove: function (_username) {
             if (username === _username) showNext()
             else {
-                for (var i = 0; i < requests.length; i++) {
-                    if (requests[i].username === _username) {
-                        requests.splice(i, 1)
-                        break
-                    }
-                }
+                delete requests[username]
+                numRequets++
             }
         },
     }

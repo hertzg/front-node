@@ -84,6 +84,11 @@ function PublicProfilePage_Page (session, username, profile, addContactListener,
         if (e.target === element) closeListener()
     })
 
-    return { element: element }
+    return {
+        element: element,
+        focus: function () {
+            button.focus()
+        },
+    }
 
 }
