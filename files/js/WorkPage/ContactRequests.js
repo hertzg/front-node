@@ -1,4 +1,5 @@
-function WorkPage_ContactRequests (element, session, addContactListener) {
+function WorkPage_ContactRequests (element,
+    session, addContactListener, signOutListener) {
 
     function show (username, profile) {
         visibleUsername = username
@@ -32,6 +33,9 @@ function WorkPage_ContactRequests (element, session, addContactListener) {
 
             }
 
+        }, function () {
+            element.removeChild(contactRequestPage.element)
+            signOutListener()
         })
         element.appendChild(contactRequestPage.element)
     }

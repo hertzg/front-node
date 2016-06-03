@@ -1,4 +1,5 @@
-function WorkPage_PullMessages (session, messageListener, crashListener) {
+function WorkPage_PullMessages (session,
+    messageListener, crashListener, signOutListener) {
 
     function pull () {
 
@@ -17,6 +18,11 @@ function WorkPage_PullMessages (session, messageListener, crashListener) {
 
             if (response === 'INTERNAL_SERVER_ERROR') {
                 schedulePull()
+                return
+            }
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
                 return
             }
 

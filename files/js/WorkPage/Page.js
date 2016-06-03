@@ -143,7 +143,7 @@ function WorkPage_Page (username, session,
     element.appendChild(sidePanel.element)
 
     var contactRequests = WorkPage_ContactRequests(element,
-        session, sidePanel.addContact, crashListener)
+        session, sidePanel.addContact, crashListener, signOutListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
     }
@@ -198,7 +198,7 @@ function WorkPage_Page (username, session,
             return
         }
 
-    }, crashListener)
+    }, crashListener, signOutListener)
 
     return { element: element }
 

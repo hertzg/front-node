@@ -1,5 +1,5 @@
 function ContactRequestPage_Page (session, username,
-    profile, addContactListener, closeListener) {
+    profile, addContactListener, closeListener, signOutListener) {
 
     function enableItems () {
         yesButton.disabled = false
