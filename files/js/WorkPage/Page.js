@@ -236,7 +236,7 @@ function WorkPage_Page (username, session, getResourceUrl,
             return
         }
 
-    }, crashListener, signOutListener)
+    }, crashListener, signOutListener, serviceErrorListener)
 
     return { element: element }
 

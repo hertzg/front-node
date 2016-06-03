@@ -1,5 +1,5 @@
-function WorkPage_PullMessages (session,
-    messageListener, crashListener, signOutListener) {
+function WorkPage_PullMessages (session, messageListener,
+    crashListener, signOutListener, serviceErrorListener) {
 
     function pull () {
 
@@ -8,6 +8,11 @@ function WorkPage_PullMessages (session,
         request.send()
         request.onerror = schedulePull
         request.onload = function () {
+
+            if (request.status !== 200) {
+                serviceErrorListener()
+                return
+            }
 
             try {
                 var response = JSON.parse(request.responseText)
