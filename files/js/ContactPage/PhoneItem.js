@@ -31,7 +31,7 @@ function ContactPage_PhoneItem (profile) {
             input.disabled = false
         },
         getValue: function () {
-            return input.value
+            return CollapseSpaces(input.value)
         },
     }
 

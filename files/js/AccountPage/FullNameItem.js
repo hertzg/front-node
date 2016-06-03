@@ -34,7 +34,7 @@ function AccountPage_FullNameItem (session) {
             input.focus()
         },
         getValue: function () {
-            return input.value
+            return CollapseSpaces(input.value)
         },
     }
 

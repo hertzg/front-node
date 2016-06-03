@@ -31,7 +31,7 @@ function AccountPage_EmailItem (session) {
             input.disabled = false
         },
         getValue: function () {
-            return input.value
+            return CollapseSpaces(input.value)
         },
     }
 

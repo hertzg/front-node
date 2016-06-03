@@ -34,7 +34,7 @@ function ContactPage_FullNameItem (profile) {
             input.focus()
         },
         getValue: function () {
-            return input.value
+            return CollapseSpaces(input.value)
         },
     }
 
