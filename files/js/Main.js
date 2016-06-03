@@ -49,6 +49,13 @@
     }
 
     function showWorkPage (username, session) {
+
+        try {
+            localStorage.username = username
+            localStorage.token = session.token
+        } catch (e) {
+        }
+
         var workPage = WorkPage_Page(username, session, getResourceUrl, function () {
             document.title = initialTitle
             body.removeChild(workPage.element)
@@ -60,14 +67,16 @@
         }, function () {
             document.title = initialTitle
             body.removeChild(workPage.element)
-            showServerErrorPage()
+            showServiceErrorPage()
         })
         body.appendChild(workPage.element)
+
     }
 
+    var body = document.body
     var initialTitle = document.title
 
-    var body = document.body
-    showWelcomePage()
+    CheckSession(showWelcomePage, showWorkPage,
+        showCrashPage, showServiceErrorPage)
 
 })(revisions)
