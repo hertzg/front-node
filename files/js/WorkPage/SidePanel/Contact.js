@@ -1,5 +1,6 @@
-function WorkPage_SidePanel_Contact (getResourceUrl, username, contactData,
-    selectListener, deselectListener, profileListener, removeListener) {
+function WorkPage_SidePanel_Contact (getResourceUrl,
+    session, username, contactData, selectListener,
+    deselectListener, profileListener, removeListener) {
 
     function deselect () {
         classList.remove('selected')
@@ -21,8 +22,9 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, contactData,
 
     var profile = contactData.profile
 
-    var chatPanel = WorkPage_ChatPanel_Panel(username, profile, getResourceUrl,
-        profileListener, removeListener, deselectAndCallListener)
+    var chatPanel = WorkPage_ChatPanel_Panel(session,
+        username, profile, getResourceUrl, profileListener,
+        removeListener, deselectAndCallListener)
 
     var node = document.createTextNode(profile.fullName || username)
 
@@ -38,6 +40,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl, username, contactData,
         chatPanel: chatPanel,
         deselect: deselect,
         element: element,
+        sentTextMessage: chatPanel.sentTextMessage,
         username: username,
         edit: function (_profile) {
             profile = _profile

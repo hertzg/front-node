@@ -8,9 +8,10 @@ function WorkPage_ChatPanel_TypePanel (typeListener) {
     textarea.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.keyCode === 13) {
+            e.preventDefault()
             var value = textarea.value
             if (value !== '') {
-                typeListener(textarea.value)
+                typeListener(value)
                 textarea.value = ''
             }
         }

@@ -1,10 +1,10 @@
-function WorkPage_ChatPanel_Panel (username, profile,
+function WorkPage_ChatPanel_Panel (session, username, profile,
     getResourceUrl, profileListener, removeListener, closeListener) {
 
     var title = WorkPage_ChatPanel_Title(username,
         profile, profileListener, removeListener)
 
-    var messages = WorkPage_ChatPanel_Messages()
+    var messages = WorkPage_ChatPanel_Messages(session, username)
 
     var closeButton = CloseButton(closeListener)
 
@@ -17,8 +17,9 @@ function WorkPage_ChatPanel_Panel (username, profile,
 
     return {
         element: element,
-        focus: messages.focus,
         editContact: title.editContact,
+        focus: messages.focus,
+        sentTextMessage: messages.sentTextMessage,
     }
 
 }

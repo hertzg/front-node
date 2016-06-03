@@ -9,3 +9,9 @@
 .WorkPage_ChatPanel_SentMessage:first-child {
     margin-top: 0;
 }
+.WorkPage_ChatPanel_SentMessage.sending {
+    opacity: 0.5;
+}
+.WorkPage_ChatPanel_SentMessage.failed {
+    color: hsl(350, 60%, 55%);
+}

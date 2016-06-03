@@ -2,7 +2,7 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
     selectListener, deselectListener, profileListener, removeListener) {
 
     function addContact (username, contactData) {
-        var contact = WorkPage_SidePanel_Contact(getResourceUrl, username, contactData, function () {
+        var contact = WorkPage_SidePanel_Contact(getResourceUrl, session, username, contactData, function () {
             if (selectedContact !== null) {
                 selectedContact.deselect()
                 deselectListener(selectedContact)
@@ -74,6 +74,19 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             delete contacts[contact.username]
             numContacts--
             if (numContacts === 0) contentElement.appendChild(emptyElement)
+        },
+        sentTextMessage: function (username, text) {
+
+            var contact = contacts[username]
+            if (contact === undefined) return
+
+            contact.sentTextMessage(text)
+
+            if (selectedContact === null) {
+                selectedContact = contact
+                selectListener(contact)
+            }
+
         },
     }
 

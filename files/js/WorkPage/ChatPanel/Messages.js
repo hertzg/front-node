@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_Messages () {
+function WorkPage_ChatPanel_Messages (session, username) {
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -6,8 +6,13 @@ function WorkPage_ChatPanel_Messages () {
     contentElement.className = classPrefix + '-content'
 
     var typePanel = WorkPage_ChatPanel_TypePanel(function (text) {
-        contentElement.appendChild(WorkPage_ChatPanel_SentMessage(text).element)
+
+        var message = WorkPage_ChatPanel_SentMessage(text)
+        message.send(session, username)
+
+        contentElement.appendChild(message.element)
         contentElement.scrollTop = contentElement.scrollHeight
+
     })
 
     var element = document.createElement('div')
@@ -18,6 +23,11 @@ function WorkPage_ChatPanel_Messages () {
     return {
         element: element,
         focus: typePanel.focus,
+        sentTextMessage: function (text) {
+            var message = WorkPage_ChatPanel_SentMessage(text)
+            contentElement.appendChild(message.element)
+            contentElement.scrollTop = contentElement.scrollHeight
+        },
     }
 
 }

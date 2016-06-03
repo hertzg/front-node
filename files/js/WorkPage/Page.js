@@ -198,6 +198,11 @@ function WorkPage_Page (username, session,
             return
         }
 
+        if (action === 'sentTextMessage') {
+            sidePanel.sentTextMessage(data[0], data[1])
+            return
+        }
+
     }, crashListener, signOutListener)
 
     return { element: element }
