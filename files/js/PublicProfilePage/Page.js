@@ -32,6 +32,8 @@ function PublicProfilePage_Page (session, username, profile, addContactListener,
             '&email=' + encodeURIComponent(profile.email) +
             '&phone=' + encodeURIComponent(profile.phone)
 
+        button.disabled = true
+
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()

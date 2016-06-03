@@ -9,7 +9,10 @@ function CrashPage_Page (getResourceUrl, reloadListener) {
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
     button.appendChild(document.createTextNode('Reload'))
-    button.addEventListener('click', reloadListener)
+    button.addEventListener('click', () => {
+        button.disabled = true
+        reloadListener()
+    })
 
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'

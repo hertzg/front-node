@@ -49,3 +49,6 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.AddContactPage_Page-button[disabled] {
+    background-color: hsl(0, 0%, 70%);
+}

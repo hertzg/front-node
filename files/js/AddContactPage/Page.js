@@ -3,6 +3,7 @@ function AddContactPage_Page (username,
 
     function enableItems () {
         usernameItem.enable()
+        button.disabled = false
     }
 
     var classPrefix = 'AddContactPage_Page'
@@ -30,6 +31,7 @@ function AddContactPage_Page (username,
         if (username === null) return
 
         usernameItem.disable()
+        button.disabled = true
 
         var url = 'data/publicProfile?username=' + encodeURIComponent(username)
 

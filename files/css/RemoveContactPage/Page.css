@@ -47,6 +47,9 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.RemoveContactPage_Page-yesButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
+}
 
 .RemoveContactPage_Page-noButton {
     padding-top: 7px;
@@ -61,4 +64,7 @@
 .RemoveContactPage_Page-noButton:active {
     color: hsl(45, 70%, 70%);
     background-color: hsl(45, 70%, 35%);
+}
+.RemoveContactPage_Page-noButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
 }

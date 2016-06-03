@@ -9,3 +9,6 @@
     border-color: hsl(95, 60%, 55%);
     background-color: hsl(95, 70%, 95%);
 }
+.ContactPage_FullNameItem-input[disabled] {
+    background-color: hsl(0, 0%, 95%);
+}

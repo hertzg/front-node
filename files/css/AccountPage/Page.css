@@ -55,6 +55,9 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.AccountPage_Page-saveProfileButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
+}
 
 .AccountPage_Page-changePasswordButton {
     padding-top: 7px;

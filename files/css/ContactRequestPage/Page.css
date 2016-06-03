@@ -56,6 +56,9 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.ContactRequestPage_Page-addContactButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
+}
 
 .ContactRequestPage_Page-ignoreButton {
     padding-top: 7px;
@@ -70,4 +73,7 @@
 .ContactRequestPage_Page-ignoreButton:active {
     color: hsl(45, 70%, 70%);
     background-color: hsl(45, 70%, 35%);
+}
+.ContactRequestPage_Page-ignoreButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
 }

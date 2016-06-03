@@ -45,3 +45,6 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.ContactPage_Page-saveProfileButton[disabled] {
+    background-color: hsl(0, 0%, 70%);
+}
