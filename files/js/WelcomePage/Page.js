@@ -4,6 +4,7 @@ function WelcomePage_Page (getResourceUrl,
     function enableItems () {
         usernameItem.enable()
         passwordItem.enable()
+        staySignedInItem.disable()
         signInButton.disabled = false
     }
 
@@ -37,6 +38,7 @@ function WelcomePage_Page (getResourceUrl,
 
         usernameItem.disable()
         passwordItem.disable()
+        staySignedInItem.disable()
         signInButton.disabled = true
 
         var url = 'data/signIn?username=' + encodeURIComponent(username) +
