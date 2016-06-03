@@ -108,6 +108,7 @@ function SignUpPage_Page (getResourceUrl,
                 captchaItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The verification is invalid.'))
                 })
+                return
             }
 
             signUpListener(username, response)
