@@ -148,6 +148,8 @@ function WorkPage_Page (username, session,
         contactRequests.add(i, session.requests[i])
     }
 
+    document.title = 'Bazgu'
+
     var pullMessages = WorkPage_PullMessages(session, function (message) {
 
         var action = message[0],

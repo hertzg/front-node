@@ -37,10 +37,19 @@
     }
 
     function showWorkPage (username, session) {
-        var workPage = WorkPage_Page(username, session,
-            getResourceUrl, showWelcomePage, showCrashPage)
+        var workPage = WorkPage_Page(username, session, getResourceUrl, function () {
+            document.title = initialTitle
+            body.removeChild(workPage.element)
+            showWelcomePage()
+        }, function () {
+            document.title = initialTitle
+            body.removeChild(workPage.element)
+            showCrashPage()
+        })
         body.appendChild(workPage.element)
     }
+
+    var initialTitle = document.title
 
     var body = document.body
     showWelcomePage()
