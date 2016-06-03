@@ -1,0 +1,11 @@
+.WorkPage_ChatPanel_ReceivedMessage {
+    background-color: hsl(95, 70%, 85%);
+    padding: 12px;
+    margin-top: 8px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 20px;
+}
+.WorkPage_ChatPanel_ReceivedMessage:first-child {
+    margin-top: 0;
+}

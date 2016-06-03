@@ -19,6 +19,7 @@ function WorkPage_ChatPanel_Panel (session, username, profile,
         element: element,
         editContact: title.editContact,
         focus: messages.focus,
+        receiveTextMessage: messages.receiveTextMessage,
         sentTextMessage: messages.sentTextMessage,
     }
 

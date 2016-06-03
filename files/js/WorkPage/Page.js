@@ -192,14 +192,19 @@ function WorkPage_Page (username, session,
             return
         }
 
+        if (action === 'receiveTextMessage') {
+            sidePanel.receiveTextMessage(data[0], data[1])
+            return
+        }
+
         if (action === 'removeContact') {
             var contact = sidePanel.getContact(data)
             if (contact !== undefined) sidePanel.removeContact(contact)
             return
         }
 
-        if (action === 'sentTextMessage') {
-            sidePanel.sentTextMessage(data[0], data[1])
+        if (action === 'sendTextMessage') {
+            sidePanel.sendTextMessage(data[0], data[1])
             return
         }
 

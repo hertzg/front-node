@@ -35,8 +35,9 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
         getContact: contactList.getContact,
         offline: contactList.offline,
         online: contactList.online,
+        receiveTextMessage: contactList.receiveTextMessage,
         removeContact: contactList.removeContact,
-        sentTextMessage: contactList.sentTextMessage,
+        sendTextMessage: contactList.sendTextMessage,
     }
 
 }

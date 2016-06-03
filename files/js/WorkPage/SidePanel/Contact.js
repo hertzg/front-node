@@ -40,7 +40,8 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         chatPanel: chatPanel,
         deselect: deselect,
         element: element,
-        sentTextMessage: chatPanel.sentTextMessage,
+        receiveTextMessage: chatPanel.receiveTextMessage,
+        sendTextMessage: chatPanel.sendTextMessage,
         username: username,
         edit: function (_profile) {
             profile = _profile

@@ -23,6 +23,11 @@ function WorkPage_ChatPanel_Messages (session, username) {
     return {
         element: element,
         focus: typePanel.focus,
+        receiveTextMessage: function (text) {
+            var message = WorkPage_ChatPanel_ReceivedMessage(text)
+            contentElement.appendChild(message.element)
+            contentElement.scrollTop = contentElement.scrollHeight
+        },
         sentTextMessage: function (text) {
             var message = WorkPage_ChatPanel_SentMessage(text)
             contentElement.appendChild(message.element)
