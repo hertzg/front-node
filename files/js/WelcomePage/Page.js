@@ -43,6 +43,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
 
         var url = 'data/signIn?username=' + encodeURIComponent(username) +
             '&password=' + encodeURIComponent(password)
+        if (staySignedInItem.isChecked()) url += '&longTerm=true'
 
         var request = new XMLHttpRequest
         request.open('get', url)

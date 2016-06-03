@@ -3,10 +3,12 @@
     vertical-align: top;
     width: 20px;
     height: 20px;
+    line-height: 16px;
     border: 2px solid hsl(0, 0%, 70%);
     margin-top: 5px;
     margin-right: 5px;
     cursor: pointer;
+    text-align: center;
 }
 .WelcomePage_StaySignedInItem-button:focus {
     border-color: hsl(95, 60%, 55%);
