@@ -1,8 +1,14 @@
-function ContactRequestPage_Page (session, username,
-    profile, addContactListener, closeListener, signOutListener) {
+function ContactRequestPage_Page (session, username, profile,
+    addContactListener, ignoreListener, closeListener, signOutListener) {
+
+    function disableItems () {
+        addContactButton.disabled = true
+        ignoreButton.disabled = true
+    }
 
     function enableItems () {
-        yesButton.disabled = false
+        addContactButton.disabled = false
+        ignoreButton.disabled = false
     }
 
     var classPrefix = 'ContactRequestPage_Page'
@@ -13,6 +19,8 @@ function ContactRequestPage_Page (session, username,
 
     var phoneItem = ContactRequestPage_PhoneItem(profile)
 
+    var closeButton = CloseButton(closeListener)
+
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
@@ -21,10 +29,12 @@ function ContactRequestPage_Page (session, username,
     textElement.className = classPrefix + '-text'
     textElement.appendChild(document.createTextNode('The user has added you to his/her contacts. Would you like to add him/her to your contacts?'))
 
-    var yesButton = document.createElement('button')
-    yesButton.className = classPrefix + '-yesButton'
-    yesButton.appendChild(document.createTextNode('Add Contact'))
-    yesButton.addEventListener('click', function () {
+    var addContactButton = document.createElement('button')
+    addContactButton.className = classPrefix + '-addContactButton'
+    addContactButton.appendChild(document.createTextNode('Add Contact'))
+    addContactButton.addEventListener('click', function () {
+
+        disableItems()
 
         var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
             '&username=' + encodeURIComponent(username) +
@@ -32,7 +42,47 @@ function ContactRequestPage_Page (session, username,
             '&email=' + encodeURIComponent(profile.email) +
             '&phone=' + encodeURIComponent(profile.phone)
 
-        yesButton.disabled = true
+        var request = new XMLHttpRequest
+        request.open('get', url)
+        request.send()
+        request.onerror = enableItems
+        request.onload = function () {
+
+            if (request.status !== 200) {
+                enableItems()
+                console.log(request.responseText)
+                return
+            }
+
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                crashListener()
+                return
+            }
+
+            if (response === 'INVALID_TOKEN') {
+                signOutListener()
+                return
+            }
+
+            ignoreListener(response)
+
+        }
+
+    })
+
+    var ignoreButton = document.createElement('button')
+    ignoreButton.className = classPrefix + '-ignoreButton'
+    ignoreButton.appendChild(document.createTextNode('Ignore'))
+    ignoreButton.addEventListener('click', ignoreListener)
+    ignoreButton.addEventListener('click', function () {
+
+        disableItems()
+
+        var url = 'data/ignoreRequest' +
+            '?token=' + encodeURIComponent(session.token) +
+            '&username=' + encodeURIComponent(username)
 
         var request = new XMLHttpRequest
         request.open('get', url)
@@ -64,20 +114,16 @@ function ContactRequestPage_Page (session, username,
 
     })
 
-    var noButton = document.createElement('button')
-    noButton.className = classPrefix + '-noButton'
-    noButton.appendChild(document.createTextNode('Ignore'))
-    noButton.addEventListener('click', closeListener)
-
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
+    frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
     frameElement.appendChild(fullNameItem.element)
     frameElement.appendChild(emailItem.element)
     frameElement.appendChild(phoneItem.element)
     frameElement.appendChild(textElement)
-    frameElement.appendChild(yesButton)
-    frameElement.appendChild(noButton)
+    frameElement.appendChild(addContactButton)
+    frameElement.appendChild(ignoreButton)
 
     var alignerElement = document.createElement('div')
     alignerElement.className = classPrefix + '-aligner'

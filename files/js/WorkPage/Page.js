@@ -177,7 +177,7 @@ function WorkPage_Page (username, session,
             return
         }
 
-        if (action === 'ignoreRequest') {
+        if (action === 'ignoreRequest' || action === 'removeRequest') {
             contactRequests.remove(data)
             return
         }

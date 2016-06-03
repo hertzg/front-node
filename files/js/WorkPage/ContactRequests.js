@@ -6,11 +6,11 @@ function WorkPage_ContactRequests (element,
         contactRequestPage = ContactRequestPage_Page(session, username, profile, function (profile) {
             addContactListener(username, profile)
             showNext()
-        }, function () {
+        }, showNext, function () {
 
             showNext()
 
-            var url = 'data/ignoreRequest' +
+            var url = 'data/removeRequest' +
                 '?token=' + encodeURIComponent(session.token) +
                 '&username=' + encodeURIComponent(username)
 

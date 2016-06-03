@@ -18,6 +18,7 @@
 .ContactRequestPage_Page-frame {
     display: inline-block;
     vertical-align: middle;
+    position: relative;
     width: 300px;
     background-color: white;
     padding: 20px;
@@ -42,7 +43,7 @@
     line-height: 20px;
 }
 
-.ContactRequestPage_Page-yesButton {
+.ContactRequestPage_Page-addContactButton {
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
@@ -51,12 +52,12 @@
     background-color: hsl(95, 60%, 55%);
     text-align: center;
 }
-.ContactRequestPage_Page-yesButton:active {
+.ContactRequestPage_Page-addContactButton:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
 
-.ContactRequestPage_Page-noButton {
+.ContactRequestPage_Page-ignoreButton {
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
@@ -66,7 +67,7 @@
     margin-left: 10px;
     text-align: center;
 }
-.ContactRequestPage_Page-noButton:active {
+.ContactRequestPage_Page-ignoreButton:active {
     color: hsl(45, 70%, 70%);
     background-color: hsl(45, 70%, 35%);
 }
