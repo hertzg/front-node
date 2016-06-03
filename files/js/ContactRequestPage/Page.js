@@ -66,7 +66,7 @@ function ContactRequestPage_Page (session, username, profile,
                 return
             }
 
-            ignoreListener(response)
+            addContactListener(response)
 
         }
 
@@ -75,7 +75,6 @@ function ContactRequestPage_Page (session, username, profile,
     var ignoreButton = document.createElement('button')
     ignoreButton.className = classPrefix + '-ignoreButton'
     ignoreButton.appendChild(document.createTextNode('Ignore'))
-    ignoreButton.addEventListener('click', ignoreListener)
     ignoreButton.addEventListener('click', function () {
 
         disableItems()
@@ -108,7 +107,7 @@ function ContactRequestPage_Page (session, username, profile,
                 return
             }
 
-            addContactListener(response)
+            ignoreListener(response)
 
         }
 

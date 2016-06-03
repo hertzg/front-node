@@ -3,8 +3,8 @@ function WorkPage_ContactRequests (element,
 
     function show (username, profile) {
         visibleUsername = username
-        contactRequestPage = ContactRequestPage_Page(session, username, profile, function (profile) {
-            addContactListener(username, profile)
+        contactRequestPage = ContactRequestPage_Page(session, username, profile, function (contactData) {
+            addContactListener(username, contactData)
             showNext()
         }, showNext, function () {
 
