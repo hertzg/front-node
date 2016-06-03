@@ -1,5 +1,6 @@
-function AccountPage_Page (username, session, editProfileListener,
-    changePasswordListener, closeListener, signOutListener, crashListener) {
+function AccountPage_Page (username, session,
+    editProfileListener, changePasswordListener, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -58,8 +59,7 @@ function AccountPage_Page (username, session, editProfileListener,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

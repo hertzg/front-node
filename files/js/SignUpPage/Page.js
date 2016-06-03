@@ -1,5 +1,5 @@
-function SignUpPage_Page (getResourceUrl,
-    backListener, signUpListener, crashListener) {
+function SignUpPage_Page (getResourceUrl, backListener,
+    signUpListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -70,8 +70,7 @@ function SignUpPage_Page (getResourceUrl,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

@@ -1,4 +1,4 @@
-.CrashPage_Page {
+.ServiceErrorPage_Page {
     position: absolute;
     top: 0;
     right: 0;
@@ -11,13 +11,13 @@
     text-align: center;
 }
 
-.CrashPage_Page-aligner {
+.ServiceErrorPage_Page-aligner {
     display: inline-block;
     vertical-align: middle;
     height: 100%;
 }
 
-.CrashPage_Page-frame {
+.ServiceErrorPage_Page-frame {
     display: inline-block;
     vertical-align: middle;
     width: 300px;
@@ -25,14 +25,14 @@
     padding: 20px;
 }
 
-.CrashPage_Page-text {
+.ServiceErrorPage_Page-text {
     padding: 20px;
     margin-bottom: 10px;
     white-space: normal;
     line-height: 20px;
 }
 
-.CrashPage_Page-button {
+.ServiceErrorPage_Page-button {
     padding-top: 7px;
     padding-bottom: 7px;
     cursor: pointer;
@@ -41,10 +41,10 @@
     background-color: hsl(95, 60%, 55%);
     text-align: center;
 }
-.CrashPage_Page-button:active {
+.ServiceErrorPage_Page-button:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
-.CrashPage_Page-button[disabled] {
+.ServiceErrorPage_Page-button[disabled] {
     background-color: hsl(0, 0%, 70%);
 }

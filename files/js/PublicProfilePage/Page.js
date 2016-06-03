@@ -1,5 +1,6 @@
-function PublicProfilePage_Page (session, username, profile, addContactListener,
-    backListener, closeListener, signOutListener, crashListener) {
+function PublicProfilePage_Page (session, username,
+    profile, addContactListener, backListener, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         button.disabled = false
@@ -41,8 +42,7 @@ function PublicProfilePage_Page (session, username, profile, addContactListener,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

@@ -1,5 +1,5 @@
-function AddContactPage_Page (username,
-    foundListener, closeListener, crashListener) {
+function AddContactPage_Page (username, foundListener,
+    closeListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -42,8 +42,7 @@ function AddContactPage_Page (username,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

@@ -10,6 +10,12 @@
         }).element)
     }
 
+    function showServiceErrorPage () {
+        body.appendChild(ServiceErrorPage_Page(getResourceUrl, function () {
+            location.reload(true)
+        }).element)
+    }
+
     function showWelcomePage () {
 
         var welcomePage = WelcomePage_Page(getResourceUrl, function () {
@@ -19,6 +25,9 @@
             }, function () {
                 body.removeChild(signUpPage.element)
                 showCrashPage()
+            }, function () {
+                body.removeChild(signUpPage.element)
+                showServiceErrorPage()
             })
             body.removeChild(welcomePage.element)
             body.appendChild(signUpPage.element)
@@ -29,6 +38,9 @@
         }, function () {
             body.removeChild(welcomePage.element)
             showCrashPage()
+        }, function () {
+            body.removeChild(welcomePage.element)
+            showServiceErrorPage()
         })
 
         body.appendChild(welcomePage.element)
@@ -45,6 +57,10 @@
             document.title = initialTitle
             body.removeChild(workPage.element)
             showCrashPage()
+        }, function () {
+            document.title = initialTitle
+            body.removeChild(workPage.element)
+            showServerErrorPage()
         })
         body.appendChild(workPage.element)
     }

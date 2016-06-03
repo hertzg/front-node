@@ -1,5 +1,5 @@
-function ContactPage_Page (session, username, profile,
-    editContactListener, closeListener, signOutListener, crashListener) {
+function ContactPage_Page (session, username, profile, editContactListener,
+    closeListener, signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -59,8 +59,7 @@ function ContactPage_Page (session, username, profile,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

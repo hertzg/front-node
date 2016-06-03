@@ -1,4 +1,4 @@
-function SignUpPage_CaptchaItem (crashListener) {
+function SignUpPage_CaptchaItem (crashListener, serviceErrorListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -66,8 +66,7 @@ function SignUpPage_CaptchaItem (crashListener) {
     request.onload = function () {
 
         if (request.status !== 200) {
-            enableItems()
-            console.log(request.responseText)
+            serviceErrorListener()
             return
         }
 

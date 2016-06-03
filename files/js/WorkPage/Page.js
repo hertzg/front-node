@@ -1,5 +1,5 @@
-function WorkPage_Page (username, session,
-    getResourceUrl, signOutListener, crashListener) {
+function WorkPage_Page (username, session, getResourceUrl,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function editProfile (profile) {
         session.profile = profile
@@ -22,6 +22,9 @@ function WorkPage_Page (username, session,
             }, function () {
                 element.removeChild(changePasswordPage.element)
                 crashListener()
+            }, function () {
+                element.removeChild(changePasswordPage.element)
+                serviceErrorListener()
             })
             element.removeChild(accountPage.element)
             element.appendChild(changePasswordPage.element)
@@ -34,6 +37,9 @@ function WorkPage_Page (username, session,
         }, function () {
             element.removeChild(accountPage.element)
             crashListener()
+        }, function () {
+            element.removeChild(accountPage.element)
+            serviceErrorListener()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
@@ -55,6 +61,9 @@ function WorkPage_Page (username, session,
             }, function () {
                 element.removeChild(publicProfilePage.element)
                 crashListener()
+            }, function () {
+                element.removeChild(publicProfilePage.element)
+                serviceErrorListener()
             })
             element.removeChild(addContactPage.element)
             element.appendChild(publicProfilePage.element)
@@ -64,6 +73,9 @@ function WorkPage_Page (username, session,
         }, function () {
             element.removeChild(addContactPage.element)
             crashListener()
+        }, function () {
+            element.removeChild(addContactPage.element)
+            serviceErrorListener()
         })
         element.appendChild(addContactPage.element)
         addContactPage.focus()
@@ -84,11 +96,18 @@ function WorkPage_Page (username, session,
             request.onload = function () {
 
                 if (request.status !== 200) {
-                    console.log(request.responseText)
+                    serviceErrorListener()
                     return
                 }
 
-                console.log(JSON.parse(request.response))
+                try {
+                    var response = JSON.parse(request.response)
+                } catch (e) {
+                    crashListener()
+                    return
+                }
+
+                if (response !== true) serviceErrorListener()
 
             }
 
@@ -115,6 +134,9 @@ function WorkPage_Page (username, session,
         }, function () {
             element.removeChild(contactPage.element)
             crashListener()
+        }, function () {
+            element.removeChild(contactPage.element)
+            serviceErrorListener()
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
@@ -130,6 +152,9 @@ function WorkPage_Page (username, session,
         }, function () {
             element.removeChild(removeContactPage.element)
             crashListener()
+        }, function () {
+            element.removeChild(removeContactPage.element)
+            serviceErrorListener()
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
@@ -143,7 +168,8 @@ function WorkPage_Page (username, session,
     element.appendChild(sidePanel.element)
 
     var contactRequests = WorkPage_ContactRequests(element,
-        session, sidePanel.addContact, crashListener, signOutListener)
+        session, sidePanel.addContact, crashListener,
+        signOutListener, crashListener, serviceErrorListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
     }

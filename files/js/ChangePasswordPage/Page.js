@@ -1,5 +1,5 @@
-function ChangePasswordPage_Page (session,
-    backListener, closeListener, signOutListener, crashListener) {
+function ChangePasswordPage_Page (session, backListener,
+    closeListener, signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         currentPasswordItem.enable()
@@ -64,8 +64,7 @@ function ChangePasswordPage_Page (session,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

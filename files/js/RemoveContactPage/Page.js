@@ -1,5 +1,5 @@
-function RemoveContactPage_Page (username, session,
-    removeListener, closeListener, signOutListener, crashListener) {
+function RemoveContactPage_Page (username, session, removeListener,
+    closeListener, signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         yesButton.disabled = false
@@ -37,8 +37,7 @@ function RemoveContactPage_Page (username, session,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(response)
+                serviceErrorListener()
                 return
             }
 

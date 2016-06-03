@@ -1,5 +1,6 @@
-function ContactRequestPage_Page (session, username, profile,
-    addContactListener, ignoreListener, closeListener, signOutListener) {
+function ContactRequestPage_Page (session, username,
+    profile, addContactListener, ignoreListener, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function disableItems () {
         addContactButton.disabled = true
@@ -49,8 +50,7 @@ function ContactRequestPage_Page (session, username, profile,
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 
