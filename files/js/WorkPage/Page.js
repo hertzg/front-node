@@ -181,8 +181,6 @@ function WorkPage_Page (username, session, getResourceUrl,
         var action = message[0],
             data = message[1]
 
-        console.log(action, data)
-
         if (action === 'addContact') {
             var username = data[0]
             var contact = sidePanel.getContact(username)

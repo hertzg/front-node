@@ -7,11 +7,6 @@ function ContactRequestPage_Page (session, username,
         ignoreButton.disabled = true
     }
 
-    function enableItems () {
-        addContactButton.disabled = false
-        ignoreButton.disabled = false
-    }
-
     var classPrefix = 'ContactRequestPage_Page'
 
     var closeButton = CloseButton(closeListener)
@@ -40,7 +35,6 @@ function ContactRequestPage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -85,12 +79,10 @@ function ContactRequestPage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
-                enableItems()
-                console.log(request.responseText)
+                serviceErrorListener()
                 return
             }
 

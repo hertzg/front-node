@@ -1,11 +1,6 @@
 function RemoveContactPage_Page (username, session, removeListener,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
-    function enableItems () {
-        yesButton.disabled = false
-        noButton.disabled = false
-    }
-
     var classPrefix = 'RemoveContactPage_Page'
 
     var usernameElement = document.createElement('b')
@@ -33,7 +28,6 @@ function RemoveContactPage_Page (username, session, removeListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -54,8 +48,7 @@ function RemoveContactPage_Page (username, session, removeListener,
             }
 
             if (response !== true) {
-                enableItems()
-                console.log(response)
+                crashListener()
                 return
             }
 

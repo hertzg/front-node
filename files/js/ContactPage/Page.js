@@ -2,16 +2,13 @@ function ContactPage_Page (session, username, profile,
     overrideProfile, overrideProfileListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
-    function enableItems () {
-        fullNameItem.enable()
-        emailItem.enable()
-        phoneItem.enable()
-        saveProfileButton.disabled = false
-    }
-
     var classPrefix = 'ContactPage_Page'
 
     var closeButton = CloseButton(closeListener)
+
+    var titleElement = document.createElement('div')
+    titleElement.className = classPrefix + '-title'
+    titleElement.appendChild(document.createTextNode(username))
 
     var fullNameItem = ContactPage_FullNameItem(profile, overrideProfile)
 
@@ -19,20 +16,18 @@ function ContactPage_Page (session, username, profile,
 
     var phoneItem = ContactPage_PhoneItem(profile, overrideProfile)
 
-    var titleElement = document.createElement('div')
-    titleElement.className = classPrefix + '-title'
-    titleElement.appendChild(document.createTextNode(username))
+    var saveChangesNode = document.createTextNode('Save Changes')
 
-    var saveProfileButton = document.createElement('button')
-    saveProfileButton.className = classPrefix + '-saveProfileButton'
-    saveProfileButton.appendChild(document.createTextNode('Save Changes'))
+    var saveChangesButton = document.createElement('button')
+    saveChangesButton.className = classPrefix + '-saveChangesButton'
+    saveChangesButton.appendChild(saveChangesNode)
 
     var form = document.createElement('form')
     form.className = classPrefix + '-form'
     form.appendChild(fullNameItem.element)
     form.appendChild(emailItem.element)
     form.appendChild(phoneItem.element)
-    form.appendChild(saveProfileButton)
+    form.appendChild(saveChangesButton)
     form.addEventListener('submit', function (e) {
 
         e.preventDefault()
@@ -44,7 +39,8 @@ function ContactPage_Page (session, username, profile,
         fullNameItem.disable()
         emailItem.disable()
         phoneItem.disable()
-        saveProfileButton.disabled = true
+        saveChangesButton.disabled = true
+        saveChangesNode.nodeValue = 'Saving...'
 
         var url = 'data/overrideContactProfile' +
             '?token=' + encodeURIComponent(session.token) +
@@ -56,7 +52,6 @@ function ContactPage_Page (session, username, profile,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -77,8 +72,7 @@ function ContactPage_Page (session, username, profile,
             }
 
             if (response !== true) {
-                enableItems()
-                console.log(response)
+                crashListener()
                 return
             }
 

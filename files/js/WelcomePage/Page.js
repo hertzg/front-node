@@ -6,6 +6,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         passwordItem.enable()
         staySignedInItem.disable()
         signInButton.disabled = false
+        signInNode.nodeValue = 'Sign In'
     }
 
     var classPrefix = 'WelcomePage_Page'
@@ -14,9 +15,11 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
 
     var passwordItem = WelcomePage_PasswordItem()
 
+    var signInNode = document.createTextNode('Sign In')
+
     var signInButton = document.createElement('button')
     signInButton.className = classPrefix + '-signInButton'
-    signInButton.appendChild(document.createTextNode('Sign In'))
+    signInButton.appendChild(signInNode)
 
     var staySignedInItem = WelcomePage_StaySignedInItem()
 
@@ -40,6 +43,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         passwordItem.disable()
         staySignedInItem.disable()
         signInButton.disabled = true
+        signInNode.nodeValue = 'Signing in...'
 
         var url = 'data/signIn?username=' + encodeURIComponent(username) +
             '&password=' + encodeURIComponent(password)
@@ -48,7 +52,6 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {

@@ -1,13 +1,6 @@
 function ChangePasswordPage_Page (session, backListener,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
-    function enableItems () {
-        currentPasswordItem.enable()
-        newPasswordItem.enable()
-        repeatNewPasswordItem.enable()
-        button.disabled = false
-    }
-
     var classPrefix = 'ChangePasswordPage_Page'
 
     var closeButton = CloseButton(closeListener)
@@ -24,9 +17,11 @@ function ChangePasswordPage_Page (session, backListener,
 
     var repeatNewPasswordItem = ChangePasswordPage_RepeatNewPasswordItem()
 
+    var buttonNode = document.createTextNode('Save')
+
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Save'))
+    button.appendChild(buttonNode)
 
     var form = document.createElement('form')
     form.className = classPrefix + '-form'
@@ -51,6 +46,7 @@ function ChangePasswordPage_Page (session, backListener,
         newPasswordItem.disable()
         repeatNewPasswordItem.disable()
         button.disabled = true
+        buttonNode.nodeValue = 'Saving...'
 
         var url = 'data/changePassword' +
             '?token=' + encodeURIComponent(session.token) +
@@ -60,7 +56,6 @@ function ChangePasswordPage_Page (session, backListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -81,7 +76,11 @@ function ChangePasswordPage_Page (session, backListener,
             }
 
             if (response === 'INVALID_CURRENT_PASSWORD') {
-                enableItems()
+                currentPasswordItem.enable()
+                newPasswordItem.enable()
+                repeatNewPasswordItem.enable()
+                button.disabled = false
+                buttonNode.nodeValue = 'Save'
                 currentPasswordItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('The password is incorrect.'))
                 })
@@ -89,8 +88,7 @@ function ChangePasswordPage_Page (session, backListener,
             }
 
             if (response !== true) {
-                enableItems()
-                console.log(response)
+                crashListener()
                 return
             }
 

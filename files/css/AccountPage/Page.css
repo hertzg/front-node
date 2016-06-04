@@ -41,7 +41,7 @@
     margin-bottom: 10px;
 }
 
-.AccountPage_Page-saveProfileButton {
+.AccountPage_Page-saveChangesButton {
     margin-top: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -51,11 +51,11 @@
     background-color: hsl(95, 60%, 55%);
     text-align: center;
 }
-.AccountPage_Page-saveProfileButton:active {
+.AccountPage_Page-saveChangesButton:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
-.AccountPage_Page-saveProfileButton[disabled] {
+.AccountPage_Page-saveChangesButton[disabled] {
     background-color: hsl(0, 0%, 70%);
 }
 

@@ -2,16 +2,13 @@ function AccountPage_Page (username, session,
     editProfileListener, changePasswordListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
-    function enableItems () {
-        fullNameItem.enable()
-        emailItem.enable()
-        phoneItem.enable()
-        saveProfileButton.disabled = false
-    }
-
     var classPrefix = 'AccountPage_Page'
 
     var closeButton = CloseButton(closeListener)
+
+    var titleElement = document.createElement('div')
+    titleElement.className = classPrefix + '-title'
+    titleElement.appendChild(document.createTextNode(username))
 
     var fullNameItem = AccountPage_FullNameItem(session)
 
@@ -19,32 +16,31 @@ function AccountPage_Page (username, session,
 
     var phoneItem = AccountPage_PhoneItem(session)
 
-    var titleElement = document.createElement('div')
-    titleElement.className = classPrefix + '-title'
-    titleElement.appendChild(document.createTextNode(username))
+    var saveChangesNode = document.createTextNode('Save Changes')
 
-    var saveProfileButton = document.createElement('button')
-    saveProfileButton.className = classPrefix + '-saveProfileButton'
-    saveProfileButton.appendChild(document.createTextNode('Save Changes'))
+    var saveChangesButton = document.createElement('button')
+    saveChangesButton.className = classPrefix + '-saveChangesButton'
+    saveChangesButton.appendChild(saveChangesNode)
 
     var form = document.createElement('form')
     form.className = classPrefix + '-form'
     form.appendChild(fullNameItem.element)
     form.appendChild(emailItem.element)
     form.appendChild(phoneItem.element)
-    form.appendChild(saveProfileButton)
+    form.appendChild(saveChangesButton)
     form.addEventListener('submit', function (e) {
 
         e.preventDefault()
 
-        var fullName = fullNameItem.getValue()
-        var email = emailItem.getValue()
-        var phone = phoneItem.getValue()
+        var fullName = fullNameItem.getValue(),
+            email = emailItem.getValue(),
+            phone = phoneItem.getValue()
 
         fullNameItem.disable()
         emailItem.disable()
         phoneItem.disable()
-        saveProfileButton.disabled = true
+        saveChangesButton.disabled = true
+        saveChangesNode.nodeValue = 'Saving...'
 
         var url = 'data/editProfile' +
             '?token=' + encodeURIComponent(session.token) +
@@ -55,7 +51,6 @@ function AccountPage_Page (username, session,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -76,8 +71,7 @@ function AccountPage_Page (username, session,
             }
 
             if (response !== true) {
-                enableItems()
-                console.log(response)
+                crashListener()
                 return
             }
 

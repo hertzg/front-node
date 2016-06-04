@@ -2,10 +2,6 @@ function PublicProfilePage_Page (session, username,
     profile, addContactListener, backListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
-    function enableItems () {
-        button.disabled = false
-    }
-
     var backButton = BackButton(backListener)
 
     var closeButton = CloseButton(closeListener)
@@ -32,7 +28,6 @@ function PublicProfilePage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {

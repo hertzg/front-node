@@ -1,10 +1,5 @@
-function AddContactPage_Page (username, foundListener,
+function AddContactPage_Page (username, userFoundListener,
     closeListener, crashListener, serviceErrorListener) {
-
-    function enableItems () {
-        usernameItem.enable()
-        button.disabled = false
-    }
 
     var classPrefix = 'AddContactPage_Page'
 
@@ -16,9 +11,11 @@ function AddContactPage_Page (username, foundListener,
 
     var usernameItem = AddContactPage_UsernameItem(username)
 
+    var buttonNode = document.createTextNode('Find User')
+
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Find User'))
+    button.appendChild(buttonNode)
 
     var form = document.createElement('form')
     form.appendChild(usernameItem.element)
@@ -32,13 +29,13 @@ function AddContactPage_Page (username, foundListener,
 
         usernameItem.disable()
         button.disabled = true
+        buttonNode.nodeValue = 'Finding...'
 
         var url = 'data/publicProfile?username=' + encodeURIComponent(username)
 
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {
@@ -54,14 +51,16 @@ function AddContactPage_Page (username, foundListener,
             }
 
             if (response === 'INVALID_USERNAME') {
-                enableItems()
+                usernameItem.enable()
+                button.disabled = false
+                buttonNode.nodeValue = 'Find User'
                 usernameItem.showError(function (errorElement) {
                     errorElement.appendChild(document.createTextNode('There is no such user.'))
                 })
                 return
             }
 
-            foundListener(username, response)
+            userFoundListener(username, response)
 
         }
 

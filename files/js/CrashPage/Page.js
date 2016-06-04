@@ -8,11 +8,14 @@ function CrashPage_Page (getResourceUrl, reloadListener) {
     textElement.appendChild(document.createElement('br'))
     textElement.appendChild(document.createTextNode('Reloading may fix the problem.'))
 
+    var buttonNode = document.createTextNode('Reload')
+
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Reload'))
+    button.appendChild(buttonNode)
     button.addEventListener('click', () => {
         button.disabled = true
+        buttonNode.nodeValue = 'Reloading...'
         reloadListener()
     })
 

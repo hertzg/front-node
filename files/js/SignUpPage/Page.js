@@ -7,9 +7,16 @@ function SignUpPage_Page (getResourceUrl, backListener,
         repeatPasswordItem.enable()
         captchaItem.enable()
         button.disabled = false
+        buttonNode.nodeValue = 'Sign Up'
     }
 
     var classPrefix = 'SignUpPage_Page'
+
+    var backButton = BackButton(backListener)
+
+    var titleElement = document.createElement('h1')
+    titleElement.className = classPrefix + '-title'
+    titleElement.appendChild(document.createTextNode('Create an Account'))
 
     var usernameItem = SignUpPage_UsernameItem()
 
@@ -19,15 +26,11 @@ function SignUpPage_Page (getResourceUrl, backListener,
 
     var captchaItem = SignUpPage_CaptchaItem(crashListener)
 
-    var backButton = BackButton(backListener)
-
-    var titleElement = document.createElement('h1')
-    titleElement.className = classPrefix + '-title'
-    titleElement.appendChild(document.createTextNode('Create an Account'))
+    var buttonNode = document.createTextNode('Sign Up')
 
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Sign Up'))
+    button.appendChild(buttonNode)
 
     var form = document.createElement('form')
     form.className = classPrefix + '-form'
@@ -57,6 +60,7 @@ function SignUpPage_Page (getResourceUrl, backListener,
         repeatPasswordItem.disable()
         captchaItem.disable()
         button.disabled = true
+        buttonNode.nodeValue = 'Signing up...'
 
         var url = 'data/signUp?username=' + encodeURIComponent(username) +
             '&password=' + encodeURIComponent(password) +
@@ -66,7 +70,6 @@ function SignUpPage_Page (getResourceUrl, backListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
-        request.onerror = enableItems
         request.onload = function () {
 
             if (request.status !== 200) {

@@ -31,7 +31,7 @@
     margin-right: 90px;
 }
 
-.ContactPage_Page-saveProfileButton {
+.ContactPage_Page-saveChangesButton {
     margin-top: 10px;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -41,10 +41,10 @@
     background-color: hsl(95, 60%, 55%);
     text-align: center;
 }
-.ContactPage_Page-saveProfileButton:active {
+.ContactPage_Page-saveChangesButton:active {
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
-.ContactPage_Page-saveProfileButton[disabled] {
+.ContactPage_Page-saveChangesButton[disabled] {
     background-color: hsl(0, 0%, 70%);
 }

@@ -9,11 +9,14 @@ function ServiceErrorPage_Page (getResourceUrl, reloadListener) {
     textElement.className = classPrefix + '-text'
     textElement.appendChild(document.createTextNode(text))
 
+    var buttonNode = document.createTextNode('Reload')
+
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Reload'))
+    button.appendChild(buttonNode)
     button.addEventListener('click', () => {
         button.disabled = true
+        buttonNode.nodeValue = 'Reloading...'
         reloadListener()
     })
 

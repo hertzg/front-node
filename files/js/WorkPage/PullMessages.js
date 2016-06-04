@@ -6,7 +6,6 @@ function WorkPage_PullMessages (session, messageListener,
         var request = new XMLHttpRequest
         request.open('get', 'data/pullMessages?token=' + encodeURIComponent(session.token))
         request.send()
-        request.onerror = schedulePull
         request.onload = function () {
 
             if (request.status !== 200) {
