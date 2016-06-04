@@ -78,6 +78,10 @@ function WorkPage_ContactRequests (element, session,
                 numRequets++
             }
         },
+        edit: function (username, profile) {
+            if (visibleUsername === username) contactRequestPage.edit(profile)
+            else requests[username] = profile
+        },
         remove: function (username) {
             if (visibleUsername === username) showNext()
             else {

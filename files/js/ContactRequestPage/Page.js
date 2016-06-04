@@ -16,6 +16,12 @@ function ContactRequestPage_Page (session, username,
 
     var closeButton = CloseButton(closeListener)
 
+    var fullNameItem = ContactRequestPage_FullNameItem(profile)
+
+    var emailItem = ContactRequestPage_EmailItem(profile)
+
+    var phoneItem = ContactRequestPage_PhoneItem(profile)
+
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
@@ -111,18 +117,9 @@ function ContactRequestPage_Page (session, username,
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
-    if (profile.fullName !== '') {
-        var fullNameItem = ContactRequestPage_FullNameItem(profile)
-        frameElement.appendChild(fullNameItem.element)
-    }
-    if (profile.email !== '') {
-        var emailItem = ContactRequestPage_EmailItem(profile)
-        frameElement.appendChild(emailItem.element)
-    }
-    if (profile.phone !== '') {
-        var phoneItem = ContactRequestPage_PhoneItem(profile)
-        frameElement.appendChild(phoneItem.element)
-    }
+    frameElement.appendChild(fullNameItem.element)
+    frameElement.appendChild(emailItem.element)
+    frameElement.appendChild(phoneItem.element)
     frameElement.appendChild(textElement)
     frameElement.appendChild(addContactButton)
     frameElement.appendChild(ignoreButton)
@@ -139,6 +136,14 @@ function ContactRequestPage_Page (session, username,
         if (e.target === element) closeListener()
     })
 
-    return { element: element }
+    return {
+        element: element,
+        edit: function (_profile) {
+            profile = _profile
+            fullNameItem.edit(profile)
+            emailItem.edit(profile)
+            phoneItem.edit(profile)
+        },
+    }
 
 }
