@@ -63,23 +63,14 @@ function PublicProfilePage_Page (session, username,
 
     })
 
+    var fields = PublicProfilePage_Fields(profile)
+
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(backButton.element)
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
-    if (profile.fullName !== '') {
-        var fullNameItem = PublicProfilePage_FullNameItem(profile)
-        frameElement.appendChild(fullNameItem.element)
-    }
-    if (profile.email !== '') {
-        var emailItem = PublicProfilePage_EmailItem(profile)
-        frameElement.appendChild(emailItem.element)
-    }
-    if (profile.phone !== '') {
-        var phoneItem = PublicProfilePage_PhoneItem(profile)
-        frameElement.appendChild(phoneItem.element)
-    }
+    frameElement.appendChild(fields.element)
     frameElement.appendChild(button)
 
     var alignerElement = document.createElement('div')

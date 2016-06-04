@@ -1,6 +1,6 @@
 function PublicProfilePage_EmailItem (profile) {
 
-    var classPrefix = 'PublicProfilePage_Field'
+    var classPrefix = 'PublicProfilePage_Fields-item'
 
     var labelElement = document.createElement('span')
     labelElement.className = classPrefix + '-label'

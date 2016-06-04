@@ -1,0 +1,10 @@
+.PublicProfilePage_Fields-empty {
+    color: hsl(0, 0%, 70%);
+    text-align: center;
+}
+
+.PublicProfilePage_Fields-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+}
