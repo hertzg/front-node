@@ -44,10 +44,10 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         receiveTextMessage: chatPanel.receiveTextMessage,
         sendTextMessage: chatPanel.sendTextMessage,
         username: username,
-        overrideProfile: function (_overrideProfile) {
-            overrideProfile = _overrideProfile
+        editProfile: function (_profile) {
+            profile = _profile
             node.nodeValue = overrideProfile.fullName || profile.fullName || username
-            chatPanel.overrideContactProfile(overrideProfile)
+            chatPanel.editContactProfile(profile)
         },
         getOverrideProfile: function () {
             return overrideProfile
@@ -60,6 +60,11 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         },
         online: function () {
             element.style.backgroundImage = 'url(' + getResourceUrl('img/user-online.svg') + ')'
+        },
+        overrideProfile: function (_overrideProfile) {
+            overrideProfile = _overrideProfile
+            node.nodeValue = overrideProfile.fullName || profile.fullName || username
+            chatPanel.overrideContactProfile(overrideProfile)
         },
     }
 

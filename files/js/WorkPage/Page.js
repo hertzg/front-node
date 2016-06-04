@@ -194,9 +194,9 @@ function WorkPage_Page (username, session, getResourceUrl,
             return
         }
 
-        if (action === 'overrideContactProfile') {
+        if (action === 'editContactProfile') {
             var contact = sidePanel.getContact(data[0])
-            if (contact !== undefined) contact.overrideProfile(data[1])
+            if (contact !== undefined) contact.editProfile(data[1])
             return
         }
 
@@ -217,6 +217,12 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         if (action === 'online') {
             sidePanel.online(data)
+            return
+        }
+
+        if (action === 'overrideContactProfile') {
+            var contact = sidePanel.getContact(data[0])
+            if (contact !== undefined) contact.overrideProfile(data[1])
             return
         }
 

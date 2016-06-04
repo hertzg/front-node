@@ -17,8 +17,9 @@ function WorkPage_ChatPanel_Panel (session, username, profile, overrideProfile,
 
     return {
         element: element,
-        overrideContactProfile: title.overrideContactProfile,
+        editContactProfile: title.editContactProfile,
         focus: messages.focus,
+        overrideContactProfile: title.overrideContactProfile,
         receiveTextMessage: messages.receiveTextMessage,
         sendTextMessage: messages.sendTextMessage,
     }
