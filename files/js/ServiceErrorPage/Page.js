@@ -3,7 +3,7 @@ function ServiceErrorPage_Page (getResourceUrl, reloadListener) {
     var classPrefix = 'ServiceErrorPage_Page'
 
     var text = 'There is a problem at Bazgu. We are fixing it.' +
-        ' Reload the page to see if it has been resolved.'
+        ' Reload the page to see if it\'s resolved.'
 
     var textElement = document.createElement('div')
     textElement.className = classPrefix + '-text'
