@@ -2,7 +2,7 @@ function ContactRequestPage_EmailItem (profile) {
 
     var value = profile.email
 
-    var classPrefix = 'ContactRequestPage_Field'
+    var classPrefix = 'ContactRequestPage_Fields-item'
 
     var labelElement = document.createElement('span')
     labelElement.className = classPrefix + '-label'

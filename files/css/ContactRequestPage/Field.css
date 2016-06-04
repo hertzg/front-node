@@ -1,8 +1,0 @@
-.ContactRequestPage_Field {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 20px;
-}
-.ContactRequestPage_Field.hidden {
-    display: none;
-}

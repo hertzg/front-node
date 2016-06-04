@@ -1,0 +1,16 @@
+.ContactRequestPage_Fields-empty {
+    color: hsl(0, 0%, 70%);
+    text-align: center;
+}
+.ContactRequestPage_Fields-empty.hidden {
+    display: none;
+}
+
+.ContactRequestPage_Fields-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 20px;
+}
+.ContactRequestPage_Fields-item.hidden {
+    display: none;
+}

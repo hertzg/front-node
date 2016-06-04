@@ -16,12 +16,6 @@ function ContactRequestPage_Page (session, username,
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = ContactRequestPage_FullNameItem(profile)
-
-    var emailItem = ContactRequestPage_EmailItem(profile)
-
-    var phoneItem = ContactRequestPage_PhoneItem(profile)
-
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
@@ -118,13 +112,13 @@ function ContactRequestPage_Page (session, username,
 
     })
 
+    var fields = ContactRequestPage_Fields(profile)
+
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
-    frameElement.appendChild(fullNameItem.element)
-    frameElement.appendChild(emailItem.element)
-    frameElement.appendChild(phoneItem.element)
+    frameElement.appendChild(fields.element)
     frameElement.appendChild(textElement)
     frameElement.appendChild(addContactButton)
     frameElement.appendChild(ignoreButton)
@@ -145,9 +139,7 @@ function ContactRequestPage_Page (session, username,
         element: element,
         edit: function (_profile) {
             profile = _profile
-            fullNameItem.edit(profile)
-            emailItem.edit(profile)
-            phoneItem.edit(profile)
+            fields.edit(profile)
         },
     }
 
