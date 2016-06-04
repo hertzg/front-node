@@ -1,6 +1,7 @@
 function WorkPage_SidePanel_Contact (getResourceUrl,
     session, username, contactData, selectListener,
-    deselectListener, profileListener, removeListener) {
+    deselectListener, profileListener, removeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function deselect () {
         classList.remove('selected')
@@ -25,7 +26,8 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
 
     var chatPanel = WorkPage_ChatPanel_Panel(session,
         username, profile, overrideProfile, getResourceUrl,
-        profileListener, removeListener, deselectAndCallListener)
+        profileListener, removeListener, deselectAndCallListener,
+        signOutListener, crashListener, serviceErrorListener)
 
     var node = document.createTextNode(overrideProfile.fullName || profile.fullName || username)
 

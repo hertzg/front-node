@@ -158,7 +158,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
-    })
+    }, signOutListener, crashListener, serviceErrorListener)
 
     var element = document.createElement('div')
     element.className = classPrefix

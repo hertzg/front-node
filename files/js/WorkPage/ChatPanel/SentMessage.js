@@ -8,7 +8,8 @@ function WorkPage_ChatPanel_SentMessage (text) {
 
     return {
         element: element,
-        send: function (session, username) {
+        send: function (session, username, signOutListener,
+            crashListener, serviceErrorListener) {
 
             classList.add('sending')
 
@@ -25,7 +26,26 @@ function WorkPage_ChatPanel_SentMessage (text) {
                 classList.add('failed')
             }
             request.onload = function () {
+
+                if (request.status !== 200) {
+                    serviceErrorListener()
+                    return
+                }
+
+                try {
+                    var response = JSON.parse(request.responseText)
+                } catch (e) {
+                    crashListener()
+                    return
+                }
+
+                if (response === 'INVALID_TOKEN') {
+                    signOutListener()
+                    return
+                }
+
                 classList.remove('sending')
+
             }
 
         },

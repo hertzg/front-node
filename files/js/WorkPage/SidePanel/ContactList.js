@@ -1,5 +1,6 @@
 function WorkPage_SidePanel_ContactList (session, getResourceUrl,
-    selectListener, deselectListener, profileListener, removeListener) {
+    selectListener, deselectListener, profileListener, removeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function addContact (username, contactData) {
         var contact = WorkPage_SidePanel_Contact(getResourceUrl, session, username, contactData, function () {
@@ -16,7 +17,7 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             profileListener(contact)
         }, function () {
             removeListener(contact)
-        })
+        }, signOutListener, crashListener, serviceErrorListener)
         contentElement.appendChild(contact.element)
         contacts[username] = contact
         numContacts++

@@ -1,6 +1,7 @@
 function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
-    accountListener, signOutListener, addContactListener, contactSelectListener,
-    contactDeselectListener, contactProfileListener, contactRemoveListener) {
+    accountListener, confirmSignOutListener, addContactListener, contactSelectListener,
+    contactDeselectListener, contactProfileListener, contactRemoveListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     var classPrefix = 'WorkPage_SidePanel_Panel'
 
@@ -9,7 +10,8 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     addContactButton.appendChild(document.createTextNode('Add Contact'))
     addContactButton.addEventListener('click', addContactListener)
 
-    var title = WorkPage_SidePanel_Title(username, session, accountListener, signOutListener)
+    var title = WorkPage_SidePanel_Title(username,
+        session, accountListener, confirmSignOutListener)
 
     var contactList = WorkPage_SidePanel_ContactList(session, getResourceUrl, function (contact) {
         contactSelectListener(contact)
@@ -17,7 +19,8 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     }, function (contact) {
         contactDeselectListener(contact)
         classList.remove('chatOpen')
-    }, contactProfileListener, contactRemoveListener)
+    }, contactProfileListener, contactRemoveListener,
+        signOutListener, crashListener, serviceErrorListener)
 
     var element = document.createElement('div')
     element.className = classPrefix

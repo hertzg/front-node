@@ -1,10 +1,12 @@
 function WorkPage_ChatPanel_Panel (session, username, profile, overrideProfile,
-    getResourceUrl, profileListener, removeListener, closeListener) {
+    getResourceUrl, profileListener, removeListener, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     var title = WorkPage_ChatPanel_Title(username,
         profile, overrideProfile, profileListener, removeListener)
 
-    var messages = WorkPage_ChatPanel_Messages(session, username)
+    var messages = WorkPage_ChatPanel_Messages(session, username,
+        signOutListener, crashListener, serviceErrorListener)
 
     var closeButton = CloseButton(closeListener)
 

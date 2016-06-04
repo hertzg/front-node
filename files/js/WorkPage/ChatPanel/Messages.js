@@ -1,4 +1,5 @@
-function WorkPage_ChatPanel_Messages (session, username) {
+function WorkPage_ChatPanel_Messages (session, username,
+    signOutListener, crashListener, serviceErrorListener) {
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -8,7 +9,7 @@ function WorkPage_ChatPanel_Messages (session, username) {
     var typePanel = WorkPage_ChatPanel_TypePanel(function (text) {
 
         var message = WorkPage_ChatPanel_SentMessage(text)
-        message.send(session, username)
+        message.send(session, username, signOutListener, crashListener, serviceErrorListener)
 
         contentElement.appendChild(message.element)
         contentElement.scrollTop = contentElement.scrollHeight
