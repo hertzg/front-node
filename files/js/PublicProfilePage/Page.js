@@ -52,6 +52,11 @@ function PublicProfilePage_Page (session, username,
                 return
             }
 
+            if (response === 'CONTACT_ALREADY_ADDED') {
+                closeListener()
+                return
+            }
+
             addContactListener(response)
 
         }
