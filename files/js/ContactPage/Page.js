@@ -1,5 +1,6 @@
-function ContactPage_Page (session, username, profile, editContactListener,
-    closeListener, signOutListener, crashListener, serviceErrorListener) {
+function ContactPage_Page (session, username, profile,
+    overrideProfile, overrideProfileListener, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function enableItems () {
         fullNameItem.enable()
@@ -12,11 +13,11 @@ function ContactPage_Page (session, username, profile, editContactListener,
 
     var closeButton = CloseButton(closeListener)
 
-    var fullNameItem = ContactPage_FullNameItem(profile)
+    var fullNameItem = ContactPage_FullNameItem(profile, overrideProfile)
 
-    var emailItem = ContactPage_EmailItem(profile)
+    var emailItem = ContactPage_EmailItem(profile, overrideProfile)
 
-    var phoneItem = ContactPage_PhoneItem(profile)
+    var phoneItem = ContactPage_PhoneItem(profile, overrideProfile)
 
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
@@ -45,7 +46,7 @@ function ContactPage_Page (session, username, profile, editContactListener,
         phoneItem.disable()
         saveProfileButton.disabled = true
 
-        var url = 'data/editContact' +
+        var url = 'data/overrideContactProfile' +
             '?token=' + encodeURIComponent(session.token) +
             '&username=' + encodeURIComponent(username) +
             '&fullName=' + encodeURIComponent(fullName) +
@@ -81,7 +82,7 @@ function ContactPage_Page (session, username, profile, editContactListener,
                 return
             }
 
-            editContactListener({
+            overrideProfileListener({
                 fullName: fullName,
                 email: email,
                 phone: phone,

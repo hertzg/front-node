@@ -14,12 +14,6 @@ function ContactRequestPage_Page (session, username,
 
     var classPrefix = 'ContactRequestPage_Page'
 
-    var fullNameItem = ContactRequestPage_FullNameItem(profile)
-
-    var emailItem = ContactRequestPage_EmailItem(profile)
-
-    var phoneItem = ContactRequestPage_PhoneItem(profile)
-
     var closeButton = CloseButton(closeListener)
 
     var titleElement = document.createElement('div')
@@ -117,9 +111,18 @@ function ContactRequestPage_Page (session, username,
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
-    frameElement.appendChild(fullNameItem.element)
-    frameElement.appendChild(emailItem.element)
-    frameElement.appendChild(phoneItem.element)
+    if (profile.fullName !== '') {
+        var fullNameItem = ContactRequestPage_FullNameItem(profile)
+        frameElement.appendChild(fullNameItem.element)
+    }
+    if (profile.email !== '') {
+        var emailItem = ContactRequestPage_EmailItem(profile)
+        frameElement.appendChild(emailItem.element)
+    }
+    if (profile.phone !== '') {
+        var phoneItem = ContactRequestPage_PhoneItem(profile)
+        frameElement.appendChild(phoneItem.element)
+    }
     frameElement.appendChild(textElement)
     frameElement.appendChild(addContactButton)
     frameElement.appendChild(ignoreButton)

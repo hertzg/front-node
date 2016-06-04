@@ -1,4 +1,4 @@
-function ContactPage_FullNameItem (profile) {
+function ContactPage_FullNameItem (profile, overrideProfile) {
 
     var classPrefix = 'ContactPage_FullNameItem'
 
@@ -14,7 +14,8 @@ function ContactPage_FullNameItem (profile) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = profile.fullName
+    input.placeholder = profile.fullName
+    input.value = overrideProfile.fullName
 
     var element = document.createElement('div')
     element.className = classPrefix

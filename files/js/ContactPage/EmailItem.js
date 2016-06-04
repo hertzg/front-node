@@ -1,4 +1,4 @@
-function ContactPage_EmailItem (profile) {
+function ContactPage_EmailItem (profile, overrideProfile) {
 
     var classPrefix = 'ContactPage_EmailItem'
 
@@ -14,7 +14,8 @@ function ContactPage_EmailItem (profile) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = profile.email
+    input.placeholder = profile.email
+    input.value = overrideProfile.email
 
     var element = document.createElement('div')
     element.className = classPrefix

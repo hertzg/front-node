@@ -28,7 +28,7 @@ function WorkPage_ChatPanel_Messages (session, username) {
             contentElement.appendChild(message.element)
             contentElement.scrollTop = contentElement.scrollHeight
         },
-        sentTextMessage: function (text) {
+        sendTextMessage: function (text) {
             var message = WorkPage_ChatPanel_SentMessage(text)
             contentElement.appendChild(message.element)
             contentElement.scrollTop = contentElement.scrollHeight

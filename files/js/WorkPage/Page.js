@@ -123,8 +123,8 @@ function WorkPage_Page (username, session, getResourceUrl,
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
-        var contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), function (profile) {
-            contact.edit(profile)
+        var contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
+            contact.overrideProfile(profile)
             element.removeChild(contactPage.element)
         }, function () {
             element.removeChild(contactPage.element)
@@ -194,9 +194,9 @@ function WorkPage_Page (username, session, getResourceUrl,
             return
         }
 
-        if (action === 'editContact') {
+        if (action === 'overrideContactProfile') {
             var contact = sidePanel.getContact(data[0])
-            if (contact !== undefined) contact.edit(data[1])
+            if (contact !== undefined) contact.overrideProfile(data[1])
             return
         }
 

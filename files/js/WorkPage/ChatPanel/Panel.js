@@ -1,8 +1,8 @@
-function WorkPage_ChatPanel_Panel (session, username, profile,
+function WorkPage_ChatPanel_Panel (session, username, profile, overrideProfile,
     getResourceUrl, profileListener, removeListener, closeListener) {
 
     var title = WorkPage_ChatPanel_Title(username,
-        profile, profileListener, removeListener)
+        profile, overrideProfile, profileListener, removeListener)
 
     var messages = WorkPage_ChatPanel_Messages(session, username)
 
@@ -17,10 +17,10 @@ function WorkPage_ChatPanel_Panel (session, username, profile,
 
     return {
         element: element,
-        editContact: title.editContact,
+        overrideContactProfile: title.overrideContactProfile,
         focus: messages.focus,
         receiveTextMessage: messages.receiveTextMessage,
-        sentTextMessage: messages.sentTextMessage,
+        sendTextMessage: messages.sendTextMessage,
     }
 
 }

@@ -88,12 +88,12 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             numContacts--
             if (numContacts === 0) contentElement.appendChild(emptyElement)
         },
-        sentTextMessage: function (username, text) {
+        sendTextMessage: function (username, text) {
 
             var contact = contacts[username]
             if (contact === undefined) return
 
-            contact.sentTextMessage(text)
+            contact.sendTextMessage(text)
 
             if (selectedContact === null) {
                 selectedContact = contact

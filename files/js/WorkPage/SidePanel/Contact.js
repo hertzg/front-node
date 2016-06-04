@@ -20,13 +20,14 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         selectListener()
     }
 
-    var profile = contactData.profile
+    var profile = contactData.profile,
+        overrideProfile = contactData.overrideProfile
 
     var chatPanel = WorkPage_ChatPanel_Panel(session,
-        username, profile, getResourceUrl, profileListener,
-        removeListener, deselectAndCallListener)
+        username, profile, overrideProfile, getResourceUrl,
+        profileListener, removeListener, deselectAndCallListener)
 
-    var node = document.createTextNode(profile.fullName || username)
+    var node = document.createTextNode(overrideProfile.fullName || profile.fullName || username)
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
@@ -43,10 +44,13 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         receiveTextMessage: chatPanel.receiveTextMessage,
         sendTextMessage: chatPanel.sendTextMessage,
         username: username,
-        edit: function (_profile) {
-            profile = _profile
-            node.nodeValue = profile.fullName || username
-            chatPanel.editContact(profile)
+        overrideProfile: function (_overrideProfile) {
+            overrideProfile = _overrideProfile
+            node.nodeValue = overrideProfile.fullName || profile.fullName || username
+            chatPanel.overrideContactProfile(overrideProfile)
+        },
+        getOverrideProfile: function () {
+            return overrideProfile
         },
         getProfile: function () {
             return profile

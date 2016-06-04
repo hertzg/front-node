@@ -12,12 +12,6 @@ function PublicProfilePage_Page (session, username,
 
     var classPrefix = 'PublicProfilePage_Page'
 
-    var fullNameItem = PublicProfilePage_FullNameItem(profile)
-
-    var emailItem = PublicProfilePage_EmailItem(profile)
-
-    var phoneItem = PublicProfilePage_PhoneItem(profile)
-
     var titleElement = document.createElement('div')
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
@@ -69,9 +63,18 @@ function PublicProfilePage_Page (session, username,
     frameElement.appendChild(backButton.element)
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
-    frameElement.appendChild(fullNameItem.element)
-    frameElement.appendChild(emailItem.element)
-    frameElement.appendChild(phoneItem.element)
+    if (profile.fullName !== '') {
+        var fullNameItem = PublicProfilePage_FullNameItem(profile)
+        frameElement.appendChild(fullNameItem.element)
+    }
+    if (profile.email !== '') {
+        var emailItem = PublicProfilePage_EmailItem(profile)
+        frameElement.appendChild(emailItem.element)
+    }
+    if (profile.phone !== '') {
+        var phoneItem = PublicProfilePage_PhoneItem(profile)
+        frameElement.appendChild(phoneItem.element)
+    }
     frameElement.appendChild(button)
 
     var alignerElement = document.createElement('div')

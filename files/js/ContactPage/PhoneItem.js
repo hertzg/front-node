@@ -1,4 +1,4 @@
-function ContactPage_PhoneItem (profile) {
+function ContactPage_PhoneItem (profile, overrideProfile) {
 
     var classPrefix = 'ContactPage_PhoneItem'
 
@@ -14,7 +14,8 @@ function ContactPage_PhoneItem (profile) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = profile.phone
+    input.placeholder = profile.phone
+    input.value = overrideProfile.phone
 
     var element = document.createElement('div')
     element.className = classPrefix
