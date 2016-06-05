@@ -15,6 +15,13 @@ function PublicProfilePage_Page (session, username,
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
     button.appendChild(document.createTextNode('Add Contact'))
+    button.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
     button.addEventListener('click', function () {
 
         var url = 'data/addContact?token=' + encodeURIComponent(session.token) +

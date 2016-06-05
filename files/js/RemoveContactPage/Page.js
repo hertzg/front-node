@@ -16,6 +16,13 @@ function RemoveContactPage_Page (username, session, removeListener,
     var yesButton = document.createElement('button')
     yesButton.className = classPrefix + '-yesButton'
     yesButton.appendChild(document.createTextNode('Remove Contact'))
+    yesButton.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
     yesButton.addEventListener('click', function () {
 
         yesButton.disabled = true

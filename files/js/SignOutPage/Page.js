@@ -12,6 +12,13 @@ function SignOutPage_Page (confirmListener, closeListener) {
     yesButton.className = classPrefix + '-yesButton'
     yesButton.appendChild(document.createTextNode('Sign Out'))
     yesButton.addEventListener('click', confirmListener)
+    yesButton.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
 
     var noButton = document.createElement('button')
     noButton.className = classPrefix + '-noButton'
