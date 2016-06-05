@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_TypePanel (typeListener) {
+function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
 
     var classPrefix = 'WorkPage_ChatPanel_TypePanel'
 
@@ -7,13 +7,17 @@ function WorkPage_ChatPanel_TypePanel (typeListener) {
     textarea.placeholder = 'Type a message here'
     textarea.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
-        if (e.keyCode === 13) {
+        var keyCode = e.keyCode
+        if (keyCode === 13) {
             e.preventDefault()
             var value = textarea.value
             if (value !== '') {
                 typeListener(value)
                 textarea.value = ''
             }
+        } else if (keyCode === 27) {
+            e.preventDefault()
+            closeListener()
         }
     })
 

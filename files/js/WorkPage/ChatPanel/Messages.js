@@ -1,5 +1,5 @@
 function WorkPage_ChatPanel_Messages (session, username,
-    signOutListener, crashListener, serviceErrorListener) {
+    closeListener, signOutListener, crashListener, serviceErrorListener) {
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -14,7 +14,7 @@ function WorkPage_ChatPanel_Messages (session, username,
         contentElement.appendChild(message.element)
         contentElement.scrollTop = contentElement.scrollHeight
 
-    })
+    }, closeListener)
 
     var element = document.createElement('div')
     element.className = classPrefix
