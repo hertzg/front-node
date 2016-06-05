@@ -10,7 +10,7 @@ function AccountPage_Page (username, session,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
-    var fullNameItem = AccountPage_FullNameItem(session)
+    var fullNameItem = AccountPage_FullNameItem(session, closeListener)
 
     var emailItem = AccountPage_EmailItem(session)
 

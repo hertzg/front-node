@@ -10,7 +10,7 @@ function ContactPage_Page (session, username, profile,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
-    var fullNameItem = ContactPage_FullNameItem(profile, overrideProfile)
+    var fullNameItem = ContactPage_FullNameItem(profile, overrideProfile, closeListener)
 
     var emailItem = ContactPage_EmailItem(profile, overrideProfile)
 

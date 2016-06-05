@@ -9,7 +9,7 @@ function AddContactPage_Page (username, userFoundListener,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode('Add Contact'))
 
-    var usernameItem = AddContactPage_UsernameItem(username)
+    var usernameItem = AddContactPage_UsernameItem(username, closeListener)
 
     var buttonNode = document.createTextNode('Find User')
 

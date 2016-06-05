@@ -1,4 +1,4 @@
-function AccountPage_FullNameItem (session) {
+function AccountPage_FullNameItem (session, closeListener) {
 
     var classPrefix = 'AccountPage_FullNameItem'
 
@@ -15,6 +15,13 @@ function AccountPage_FullNameItem (session) {
     input.type = 'text'
     input.className = classPrefix + '-input'
     input.value = session.profile.fullName
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
 
     var element = document.createElement('div')
     element.className = classPrefix

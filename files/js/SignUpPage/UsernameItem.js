@@ -1,4 +1,4 @@
-function SignUpPage_UsernameItem () {
+function SignUpPage_UsernameItem (backListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -42,6 +42,13 @@ function SignUpPage_UsernameItem () {
     input.type = 'text'
     input.maxLength = Username_maxLength
     input.className = classPrefix + '-input'
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            backListener()
+        }
+    })
 
     var inputClassList = input.classList
 

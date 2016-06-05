@@ -11,7 +11,7 @@ function ChangePasswordPage_Page (session, backListener,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode('Change Password'))
 
-    var currentPasswordItem = ChangePasswordPage_CurrentPasswordItem()
+    var currentPasswordItem = ChangePasswordPage_CurrentPasswordItem(backListener)
 
     var newPasswordItem = ChangePasswordPage_NewPasswordItem()
 

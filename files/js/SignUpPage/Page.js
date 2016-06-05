@@ -18,7 +18,7 @@ function SignUpPage_Page (getResourceUrl, backListener,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode('Create an Account'))
 
-    var usernameItem = SignUpPage_UsernameItem()
+    var usernameItem = SignUpPage_UsernameItem(backListener)
 
     var passwordItem = SignUpPage_PasswordItem()
 

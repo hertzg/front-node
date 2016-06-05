@@ -1,4 +1,4 @@
-function AddContactPage_UsernameItem (username) {
+function AddContactPage_UsernameItem (username, closeListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -41,6 +41,13 @@ function AddContactPage_UsernameItem (username) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
 
     var inputClassList = input.classList
 
