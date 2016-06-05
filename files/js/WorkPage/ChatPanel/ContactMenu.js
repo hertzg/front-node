@@ -1,5 +1,9 @@
 function WorkPage_ChatPanel_ContactMenu (profileListener, removeListener) {
 
+    function resetSelected () {
+        selectedElement.classList.remove('active')
+    }
+
     var classPrefix = 'WorkPage_ChatPanel_ContactMenu'
 
     var profileItemElement = document.createElement('div')
@@ -17,6 +21,38 @@ function WorkPage_ChatPanel_ContactMenu (profileListener, removeListener) {
     element.appendChild(profileItemElement)
     element.appendChild(removeItemElement)
 
-    return { element: element }
+    var selectedElement = null
 
+    return {
+        element: element,
+        openSelected: function () {
+            if (selectedElement === profileItemElement) profileListener()
+            else if (selectedElement === removeItemElement) removeListener()
+        },
+        reset: function () {
+            if (selectedElement === null) return
+            resetSelected()
+            selectedElement = null
+        },
+        selectDown: function () {
+            if (selectedElement === profileItemElement) {
+                resetSelected()
+                selectedElement = removeItemElement
+            } else {
+                if (selectedElement !== null) resetSelected()
+                selectedElement = profileItemElement
+            }
+            selectedElement.classList.add('active')
+        },
+        selectUp: function () {
+            if (selectedElement === removeItemElement) {
+                resetSelected()
+                selectedElement = profileItemElement
+            } else {
+                if (selectedElement !== null) resetSelected()
+                selectedElement = removeItemElement
+            }
+            selectedElement.classList.add('active')
+        },
+    }
 }

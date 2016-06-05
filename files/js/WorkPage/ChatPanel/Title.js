@@ -8,15 +8,36 @@ function WorkPage_ChatPanel_Title (username,
     function deselect () {
         buttonClassList.remove('selected')
         button.removeEventListener('click', deselect)
+        button.removeEventListener('keydown', keyDown)
         button.addEventListener('click', select)
         element.removeChild(contactMenu.element)
         removeEventListener('mousedown', windowMouseDown)
+        contactMenu.reset()
+    }
+
+    function keyDown (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        var keyCode = e.keyCode
+        if (keyCode === 13) {
+            e.preventDefault()
+            contactMenu.openSelected()
+        } else if (keyCode === 27) {
+            e.preventDefault()
+            deselect()
+        } else if (keyCode === 38) {
+            e.preventDefault()
+            contactMenu.selectUp()
+        } else if (keyCode === 40) {
+            e.preventDefault()
+            contactMenu.selectDown()
+        }
     }
 
     function select () {
         buttonClassList.add('selected')
         button.removeEventListener('click', select)
         button.addEventListener('click', deselect)
+        button.addEventListener('keydown', keyDown)
         element.appendChild(contactMenu.element)
         addEventListener('mousedown', windowMouseDown)
     }

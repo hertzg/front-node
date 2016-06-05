@@ -1,5 +1,9 @@
 function WorkPage_SidePanel_AccountMenu (accountListener, signOutListener) {
 
+    function resetSelected () {
+        selectedElement.classList.remove('active')
+    }
+
     var classPrefix = 'WorkPage_SidePanel_AccountMenu'
 
     var accountItemElement = document.createElement('div')
@@ -17,6 +21,39 @@ function WorkPage_SidePanel_AccountMenu (accountListener, signOutListener) {
     element.appendChild(accountItemElement)
     element.appendChild(exitItemElement)
 
-    return { element: element }
+    var selectedElement = null
+
+    return {
+        element: element,
+        openSelected: function () {
+            if (selectedElement === accountItemElement) accountListener()
+            else if (selectedElement === exitItemElement) signOutListener()
+        },
+        reset: function () {
+            if (selectedElement === null) return
+            resetSelected()
+            selectedElement = null
+        },
+        selectDown: function () {
+            if (selectedElement === accountItemElement) {
+                resetSelected()
+                selectedElement = exitItemElement
+            } else {
+                if (selectedElement !== null) resetSelected()
+                selectedElement = accountItemElement
+            }
+            selectedElement.classList.add('active')
+        },
+        selectUp: function () {
+            if (selectedElement === exitItemElement) {
+                resetSelected()
+                selectedElement = accountItemElement
+            } else {
+                if (selectedElement !== null) resetSelected()
+                selectedElement = exitItemElement
+            }
+            selectedElement.classList.add('active')
+        },
+    }
 
 }

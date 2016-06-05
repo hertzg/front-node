@@ -3,15 +3,36 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
     function deselect () {
         buttonClassList.remove('selected')
         button.removeEventListener('click', deselect)
+        button.removeEventListener('keydown', keyDown)
         button.addEventListener('click', select)
         element.removeChild(accountMenu.element)
         removeEventListener('mousedown', windowMouseDown)
+        accountMenu.reset()
+    }
+
+    function keyDown (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        var keyCode = e.keyCode
+        if (keyCode === 13) {
+            e.preventDefault()
+            accountMenu.openSelected()
+        } else if (keyCode === 27) {
+            e.preventDefault()
+            deselect()
+        } else if (keyCode === 38) {
+            e.preventDefault()
+            accountMenu.selectUp()
+        } else if (keyCode === 40) {
+            e.preventDefault()
+            accountMenu.selectDown()
+        }
     }
 
     function select () {
         buttonClassList.add('selected')
         button.removeEventListener('click', select)
         button.addEventListener('click', deselect)
+        button.addEventListener('keydown', keyDown)
         element.appendChild(accountMenu.element)
         addEventListener('mousedown', windowMouseDown)
     }
