@@ -18,28 +18,38 @@
 
     function showWelcomePage () {
 
+        function hideWelcomePage () {
+            body.removeChild(welcomePage.element)
+        }
+
         var welcomePage = WelcomePage_Page(getResourceUrl, function () {
-            var signUpPage = SignUpPage_Page(getResourceUrl, showWelcomePage, function (username, session) {
+
+            function hideSignUpPage () {
                 body.removeChild(signUpPage.element)
+            }
+
+            var signUpPage = SignUpPage_Page(getResourceUrl, showWelcomePage, function (username, session) {
+                hideSignUpPage()
                 showWorkPage(username, session)
             }, function () {
-                body.removeChild(signUpPage.element)
+                hideSignUpPage()
                 showCrashPage()
             }, function () {
-                body.removeChild(signUpPage.element)
+                hideSignUpPage()
                 showServiceErrorPage()
             })
-            body.removeChild(welcomePage.element)
+            hideWelcomePage()
             body.appendChild(signUpPage.element)
             signUpPage.focus()
+
         }, function (username, session) {
-            body.removeChild(welcomePage.element)
+            hideWelcomePage()
             showWorkPage(username, session)
         }, function () {
-            body.removeChild(welcomePage.element)
+            hideWelcomePage()
             showCrashPage()
         }, function () {
-            body.removeChild(welcomePage.element)
+            hideWelcomePage()
             showServiceErrorPage()
         })
 
@@ -50,6 +60,11 @@
 
     function showWorkPage (username, session) {
 
+        function hideWorkPage () {
+            document.title = initialTitle
+            body.removeChild(workPage.element)
+        }
+
         try {
             localStorage.username = username
             localStorage.token = session.token
@@ -57,16 +72,13 @@
         }
 
         var workPage = WorkPage_Page(username, session, getResourceUrl, function () {
-            document.title = initialTitle
-            body.removeChild(workPage.element)
+            hideWorkPage()
             showWelcomePage()
         }, function () {
-            document.title = initialTitle
-            body.removeChild(workPage.element)
+            hideWorkPage()
             showCrashPage()
         }, function () {
-            document.title = initialTitle
-            body.removeChild(workPage.element)
+            hideWorkPage()
             showServiceErrorPage()
         })
         body.appendChild(workPage.element)
