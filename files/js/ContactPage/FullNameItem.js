@@ -1,4 +1,5 @@
-function ContactPage_FullNameItem (profile, overrideProfile, closeListener) {
+function ContactPage_FullNameItem (profile,
+    overrideProfile, changeListener, closeListener) {
 
     var classPrefix = 'ContactPage_FullNameItem'
 
@@ -16,6 +17,7 @@ function ContactPage_FullNameItem (profile, overrideProfile, closeListener) {
     input.className = classPrefix + '-input'
     input.placeholder = profile.fullName
     input.value = overrideProfile.fullName
+    input.addEventListener('input', changeListener)
     input.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.keyCode === 27) {

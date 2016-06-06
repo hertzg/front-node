@@ -2,6 +2,13 @@ function ContactPage_Page (session, username, profile,
     overrideProfile, overrideProfileListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
+    function checkChanges () {
+        saveChangesButton.disabled =
+            fullNameItem.getValue() === overrideProfile.fullName &&
+            emailItem.getValue() === overrideProfile.email &&
+            phoneItem.getValue() === overrideProfile.phone
+    }
+
     var classPrefix = 'ContactPage_Page'
 
     var closeButton = CloseButton(closeListener)
@@ -10,15 +17,17 @@ function ContactPage_Page (session, username, profile,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
-    var fullNameItem = ContactPage_FullNameItem(profile, overrideProfile, closeListener)
+    var fullNameItem = ContactPage_FullNameItem(profile,
+        overrideProfile, checkChanges, closeListener)
 
-    var emailItem = ContactPage_EmailItem(profile, overrideProfile)
+    var emailItem = ContactPage_EmailItem(profile, overrideProfile, checkChanges)
 
-    var phoneItem = ContactPage_PhoneItem(profile, overrideProfile)
+    var phoneItem = ContactPage_PhoneItem(profile, overrideProfile, checkChanges)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 
     var saveChangesButton = document.createElement('button')
+    saveChangesButton.disabled = true
     saveChangesButton.className = classPrefix + '-saveChangesButton'
     saveChangesButton.appendChild(saveChangesNode)
 
