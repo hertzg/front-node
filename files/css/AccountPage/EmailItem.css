@@ -1,13 +1,19 @@
+.AccountPage_EmailItem {
+    position: relative;
+}
+
 .AccountPage_EmailItem-input {
+    position: relative;
     background-color: white;
     padding: 5px 10px;
     cursor: text;
-    width: 100%;
+    width: calc(100% - 42px);
     border: 2px solid hsl(0, 0%, 70%);
 }
 .AccountPage_EmailItem-input:focus {
     border-color: hsl(95, 60%, 55%);
     background-color: hsl(95, 70%, 95%);
+    z-index: 1;
 }
 .AccountPage_EmailItem-input[disabled] {
     background-color: hsl(0, 0%, 95%);

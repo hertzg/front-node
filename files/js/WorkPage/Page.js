@@ -7,7 +7,7 @@ function WorkPage_Page (username, session, getResourceUrl,
     }
 
     function showAccountPage () {
-        var accountPage = AccountPage_Page(username, session, function (profile) {
+        var accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
             editProfile(profile)
             element.removeChild(accountPage.element)
         }, function () {

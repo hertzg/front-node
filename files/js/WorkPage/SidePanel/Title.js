@@ -1,13 +1,24 @@
 function WorkPage_SidePanel_Title (username, session, accountListener, signOutListener) {
 
-    function deselect () {
+    function collapse () {
         buttonClassList.remove('selected')
-        button.removeEventListener('click', deselect)
+        button.removeEventListener('click', collapse)
         button.removeEventListener('keydown', keyDown)
-        button.addEventListener('click', select)
+        button.addEventListener('click', expand)
         element.removeChild(accountMenu.element)
+        removeEventListener('focus', windowFocus, true)
         removeEventListener('mousedown', windowMouseDown)
         accountMenu.reset()
+    }
+
+    function expand () {
+        buttonClassList.add('selected')
+        button.removeEventListener('click', expand)
+        button.addEventListener('click', collapse)
+        button.addEventListener('keydown', keyDown)
+        element.appendChild(accountMenu.element)
+        addEventListener('focus', windowFocus, true)
+        addEventListener('mousedown', windowMouseDown)
     }
 
     function keyDown (e) {
@@ -18,7 +29,7 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
             accountMenu.openSelected()
         } else if (keyCode === 27) {
             e.preventDefault()
-            deselect()
+            collapse()
         } else if (keyCode === 38) {
             e.preventDefault()
             accountMenu.selectUp()
@@ -28,28 +39,24 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
         }
     }
 
-    function select () {
-        buttonClassList.add('selected')
-        button.removeEventListener('click', select)
-        button.addEventListener('click', deselect)
-        button.addEventListener('keydown', keyDown)
-        element.appendChild(accountMenu.element)
-        addEventListener('mousedown', windowMouseDown)
+    function windowFocus (e) {
+        if (IsChildElement(element, e.target)) return
+        collapse()
     }
 
     function windowMouseDown (e) {
         if (e.button !== 0) return
         if (IsChildElement(element, e.target)) return
-        deselect()
+        collapse()
     }
 
     var classPrefix = 'WorkPage_SidePanel_Title'
 
     var accountMenu = WorkPage_SidePanel_AccountMenu(function () {
-        deselect()
+        collapse()
         accountListener()
     }, function () {
-        deselect()
+        collapse()
         signOutListener()
     })
 
@@ -63,7 +70,7 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
     button.className = classPrefix + '-button'
     button.appendChild(buttonTextElement)
     button.appendChild(document.createTextNode(' \u25be'))
-    button.addEventListener('click', select)
+    button.addEventListener('click', expand)
 
     var buttonClassList = button.classList
 

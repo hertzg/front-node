@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="40"
+   height="40"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.5 r10040"
+   sodipodi:docname="privacy-contacts-active.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="16"
+     inkscape:cx="26.186649"
+     inkscape:cy="21.715299"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="702"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     showguides="false">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3004"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       spacingx="0.5px"
+       spacingy="0.5px" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1012.3622)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       d="M 25.90625 9.40625 C 24.746695 9.40625 23.780265 10.144949 23.4375 11.1875 C 24.429234 12.161462 25.04965 13.4896 25.09375 14.96875 C 27.487111 16.638403 29.146911 19.289559 29.3125 22.375 C 30.735347 21.327524 31.65625 19.64933 31.65625 17.75 C 31.65625 15.4885 30.337374 13.53035 28.4375 12.59375 C 28.48273 12.40115 28.5 12.2062 28.5 12 C 28.5 10.5582 27.347998 9.40625 25.90625 9.40625 z M 19.59375 11.59375 C 17.650526 11.59375 16.0625 13.1818 16.0625 15.125 C 16.0625 15.403 16.12654 15.6781 16.1875 15.9375 C 14.671606 16.6862 13.418818 17.9273 12.65625 19.4375 C 12.397184 19.3765 12.121353 19.34375 11.84375 19.34375 C 9.9005259 19.34375 8.34375 20.9318 8.34375 22.875 C 8.34375 24.8182 9.9005259 26.375 11.84375 26.375 C 12.121353 26.375 12.397184 26.34225 12.65625 26.28125 C 13.921374 28.83545 16.545733 30.59375 19.59375 30.59375 C 23.868843 30.59375 27.34375 27.1501 27.34375 22.875 C 27.34375 19.829 25.557953 17.2009 23 15.9375 C 23.06096 15.6781 23.125 15.403 23.125 15.125 C 23.125 13.1818 21.536974 11.59375 19.59375 11.59375 z M 19.3125 18.65625 C 19.40412 18.63725 19.496589 18.65625 19.59375 18.65625 C 20.37104 18.65625 21 19.2852 21 20.0625 C 21 20.8398 20.37104 21.46875 19.59375 21.46875 C 18.81646 21.46875 18.1875 20.8398 18.1875 20.0625 C 18.1875 19.3824 18.671168 18.78745 19.3125 18.65625 z M 16.78125 21.46875 C 17.55854 21.46875 18.1875 22.0977 18.1875 22.875 C 18.1875 23.6523 17.55854 24.28125 16.78125 24.28125 C 16.00396 24.28125 15.375 23.6523 15.375 22.875 C 15.375 22.0977 16.00396 21.46875 16.78125 21.46875 z "
+       transform="translate(0,1012.3622)"
+       id="path2989" />
+  </g>
+</svg>

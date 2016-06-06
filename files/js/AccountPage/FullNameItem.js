@@ -1,4 +1,4 @@
-function AccountPage_FullNameItem (session, closeListener) {
+function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
 
     var classPrefix = 'AccountPage_FullNameItem'
 
@@ -23,10 +23,13 @@ function AccountPage_FullNameItem (session, closeListener) {
         }
     })
 
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl)
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(labelElement)
     element.appendChild(input)
+    element.appendChild(privacySelect.element)
 
     return {
         element: element,

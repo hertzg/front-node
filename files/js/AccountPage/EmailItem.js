@@ -1,4 +1,4 @@
-function AccountPage_EmailItem (session) {
+function AccountPage_EmailItem (getResourceUrl, session) {
 
     var classPrefix = 'AccountPage_EmailItem'
 
@@ -16,10 +16,13 @@ function AccountPage_EmailItem (session) {
     input.className = classPrefix + '-input'
     input.value = session.profile.email
 
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl)
+
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(labelElement)
     element.appendChild(input)
+    element.appendChild(privacySelect.element)
 
     return {
         element: element,

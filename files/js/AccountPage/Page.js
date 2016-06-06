@@ -1,4 +1,4 @@
-function AccountPage_Page (username, session,
+function AccountPage_Page (getResourceUrl, username, session,
     editProfileListener, changePasswordListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
@@ -10,11 +10,11 @@ function AccountPage_Page (username, session,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
-    var fullNameItem = AccountPage_FullNameItem(session, closeListener)
+    var fullNameItem = AccountPage_FullNameItem(getResourceUrl, session, closeListener)
 
-    var emailItem = AccountPage_EmailItem(session)
+    var emailItem = AccountPage_EmailItem(getResourceUrl, session)
 
-    var phoneItem = AccountPage_PhoneItem(session)
+    var phoneItem = AccountPage_PhoneItem(getResourceUrl, session)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 
