@@ -3,11 +3,13 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     function add (itemValue, text) {
 
         function click () {
-            collapse()
             if (value !== itemValue) {
                 value = itemValue
+                normalBackgroundImage = backgroundImage(value),
+                activeBackgroundImage = backgroundImage(value + '-active')
                 changeListener()
             }
+            collapse()
         }
 
         var element = document.createElement('div')
@@ -39,7 +41,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     function collapse () {
 
         buttonClassList.remove('selected')
-        button.style.backgroundImage = backgroundImage(value)
+        button.style.backgroundImage = normalBackgroundImage
         button.removeEventListener('click', collapse)
         button.removeEventListener('keydown', keyDown)
         button.addEventListener('click', expand)
@@ -59,7 +61,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     function expand () {
 
         buttonClassList.add('selected')
-        button.style.backgroundImage = backgroundImage(value + '-active')
+        button.style.backgroundImage = activeBackgroundImage
         button.removeEventListener('click', expand)
         button.addEventListener('click', collapse)
         button.addEventListener('keydown', keyDown)
@@ -124,6 +126,9 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
         collapse()
     }
 
+    var normalBackgroundImage = backgroundImage(value),
+        activeBackgroundImage = backgroundImage(value + '-active')
+
     var selectedIndex = null
 
     var items = []
@@ -133,7 +138,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     var button = document.createElement('button')
     button.type = 'button'
     button.className = classPrefix + '-button'
-    button.style.backgroundImage = backgroundImage(value)
+    button.style.backgroundImage = normalBackgroundImage
     button.addEventListener('click', expand)
 
     var buttonClassList = button.classList
