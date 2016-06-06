@@ -135,6 +135,11 @@ function AccountPage_Page (getResourceUrl, username, session,
     return {
         element: element,
         focus: fullNameItem.focus,
+        editProfile: function (_profile) {
+            profile = _profile
+            checkChanges()
+        }
+        ,
     }
 
 }

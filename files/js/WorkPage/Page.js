@@ -10,9 +10,10 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         function hideAccountPage () {
             element.removeChild(accountPage.element)
+            accountPage = null
         }
 
-        var accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
+        accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
             editProfile(profile)
             hideAccountPage()
         }, function () {
@@ -244,6 +245,7 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         if (action === 'editProfile') {
             editProfile(data)
+            if (accountPage !== null) accountPage.editProfile(data)
             return
         }
 
@@ -294,7 +296,8 @@ function WorkPage_Page (username, session, getResourceUrl,
 
     }, crashListener, signOutListener, serviceErrorListener)
 
-    var contactPage = null
+    var accountPage = null,
+        contactPage = null
 
     return { element: element }
 
