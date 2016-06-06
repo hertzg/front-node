@@ -7,87 +7,108 @@ function WorkPage_Page (username, session, getResourceUrl,
     }
 
     function showAccountPage () {
+
+        function hideAccountPage () {
+            element.removeChild(accountPage.element)
+        }
+
         var accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
             editProfile(profile)
-            element.removeChild(accountPage.element)
+            hideAccountPage()
         }, function () {
+
+            function hideChangePasswordPage () {
+                element.removeChild(changePasswordPage.element)
+            }
+
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
-                element.removeChild(changePasswordPage.element)
+                hideChangePasswordPage()
                 showAccountPage()
-            }, function () {
-                element.removeChild(changePasswordPage.element)
-            }, function () {
-                element.removeChild(changePasswordPage.element)
+            }, hideChangePasswordPage, function () {
+                hideChangePasswordPage()
                 signOutListener()
             }, function () {
-                element.removeChild(changePasswordPage.element)
+                hideChangePasswordPage()
                 crashListener()
             }, function () {
-                element.removeChild(changePasswordPage.element)
+                hideChangePasswordPage()
                 serviceErrorListener()
             })
-            element.removeChild(accountPage.element)
+            hideAccountPage()
             element.appendChild(changePasswordPage.element)
             changePasswordPage.focus()
-        }, function () {
-            element.removeChild(accountPage.element)
-        }, function () {
-            element.removeChild(accountPage.element)
+
+        }, hideAccountPage, function () {
+            hideAccountPage()
             signOutListener()
         }, function () {
-            element.removeChild(accountPage.element)
+            hideAccountPage()
             crashListener()
         }, function () {
-            element.removeChild(accountPage.element)
+            hideAccountPage()
             serviceErrorListener()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
+
     }
 
     function showAddContactPage () {
+
+        function hideAddContactPage () {
+            element.removeChild(addContactPage.element)
+        }
+
         var addContactPage = AddContactPage_Page(username, function (username, profile) {
-            var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (contactData) {
+
+            function hidePublicProfilePage () {
                 element.removeChild(publicProfilePage.element)
+            }
+
+            var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (contactData) {
+                hidePublicProfilePage()
                 sidePanel.addContact(username, contactData)
             }, function () {
-                element.removeChild(publicProfilePage.element)
+                hidePublicProfilePage()
                 showAddContactPage()
-            }, function () {
-                element.removeChild(publicProfilePage.element)
-            }, function () {
-                element.removeChild(publicProfilePage.element)
+            }, hidePublicProfilePage, function () {
+                hidePublicProfilePage()
                 signOutListener()
             }, function () {
-                element.removeChild(publicProfilePage.element)
+                hidePublicProfilePage()
                 crashListener()
             }, function () {
-                element.removeChild(publicProfilePage.element)
+                hidePublicProfilePage()
                 serviceErrorListener()
             })
-            element.removeChild(addContactPage.element)
+            hideAddContactPage()
             element.appendChild(publicProfilePage.element)
             publicProfilePage.focus()
-        }, function () {
-            element.removeChild(addContactPage.element)
-        }, function () {
-            element.removeChild(addContactPage.element)
+
+        }, hideAddContactPage, function () {
+            hideAddContactPage()
             crashListener()
         }, function () {
-            element.removeChild(addContactPage.element)
+            hideAddContactPage()
             serviceErrorListener()
         })
         element.appendChild(addContactPage.element)
         addContactPage.focus()
+
     }
 
     var classPrefix = 'WorkPage_Page'
 
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, showAccountPage, function () {
+
+        function hideSignOutPage () {
+            element.removeChild(signOutPage.element)
+        }
+
         var signOutPage = SignOutPage_Page(function () {
 
             pullMessages.abort()
-            element.removeChild(signOutPage.element)
+            hideSignOutPage()
             signOutListener()
 
             var request = new XMLHttpRequest
@@ -111,11 +132,10 @@ function WorkPage_Page (username, session, getResourceUrl,
 
             }
 
-        }, function () {
-            element.removeChild(signOutPage.element)
-        })
+        }, hideSignOutPage)
         element.appendChild(signOutPage.element)
         signOutPage.focus()
+
     }, showAddContactPage, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
@@ -123,41 +143,49 @@ function WorkPage_Page (username, session, getResourceUrl,
     }, function (contact) {
         element.removeChild(contact.chatPanel.element)
     }, function (contact) {
+
+        function hideContactPage () {
+            element.removeChild(contactPage.element)
+        }
+
         var contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
             contact.overrideProfile(profile)
-            element.removeChild(contactPage.element)
-        }, function () {
-            element.removeChild(contactPage.element)
-        }, function () {
-            element.removeChild(contactPage.element)
+            hideContactPage()
+        }, hideContactPage, function () {
+            hideContactPage()
             signOutListener()
         }, function () {
-            element.removeChild(contactPage.element)
+            hideContactPage()
             crashListener()
         }, function () {
-            element.removeChild(contactPage.element)
+            hideContactPage()
             serviceErrorListener()
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
+
     }, function (contact) {
+
+        function hideRemoveContactPage () {
+            element.removeChild(removeContactPage.element)
+        }
+
         var removeContactPage = RemoveContactPage_Page(contact.username, session, function () {
-            element.removeChild(removeContactPage.element)
+            hideRemoveContactPage()
             sidePanel.removeContact(contact)
-        }, function () {
-            element.removeChild(removeContactPage.element)
-        }, function () {
-            element.removeChild(removeContactPage.element)
+        }, hideRemoveContactPage, function () {
+            hideRemoveContactPage()
             signOutListener()
         }, function () {
-            element.removeChild(removeContactPage.element)
+            hideRemoveContactPage()
             crashListener()
         }, function () {
-            element.removeChild(removeContactPage.element)
+            hideRemoveContactPage()
             serviceErrorListener()
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
+
     }, signOutListener, crashListener, serviceErrorListener)
 
     var element = document.createElement('div')
