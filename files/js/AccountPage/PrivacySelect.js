@@ -1,16 +1,16 @@
-function AccountPage_PrivacySelect (getResourceUrl) {
+function AccountPage_PrivacySelect (getResourceUrl, value) {
 
-    function add (value, text) {
+    function add (itemValue, text) {
 
         function click () {
-            selectedValue = value
+            value = itemValue
             collapse()
         }
 
         var element = document.createElement('div')
         element.className = classPrefix + '-item'
         element.appendChild(document.createTextNode(text))
-        element.style.backgroundImage = 'url(' + getResourceUrl('img/privacy-' + value + '.svg') + ')'
+        element.style.backgroundImage = backgroundImage(itemValue)
         element.addEventListener('click', click)
 
         var classList = element.classList
@@ -29,10 +29,14 @@ function AccountPage_PrivacySelect (getResourceUrl) {
 
     }
 
+    function backgroundImage (name) {
+        return 'url(' + getResourceUrl('img/privacy-' + name + '.svg') + ')'
+    }
+
     function collapse () {
 
         buttonClassList.remove('selected')
-        button.style.backgroundImage = 'url(' + getResourceUrl('img/privacy-' + selectedValue + '.svg') + ')'
+        button.style.backgroundImage = backgroundImage(value)
         button.removeEventListener('click', collapse)
         button.removeEventListener('keydown', keyDown)
         button.addEventListener('click', expand)
@@ -52,7 +56,7 @@ function AccountPage_PrivacySelect (getResourceUrl) {
     function expand () {
 
         buttonClassList.add('selected')
-        button.style.backgroundImage = 'url(' + getResourceUrl('img/privacy-' + selectedValue + '-active.svg') + ')'
+        button.style.backgroundImage = backgroundImage(value + '-active')
         button.removeEventListener('click', expand)
         button.addEventListener('click', collapse)
         button.addEventListener('keydown', keyDown)
@@ -117,8 +121,6 @@ function AccountPage_PrivacySelect (getResourceUrl) {
         collapse()
     }
 
-    var selectedValue = 'me'
-
     var selectedIndex = null
 
     var items = []
@@ -128,7 +130,7 @@ function AccountPage_PrivacySelect (getResourceUrl) {
     var button = document.createElement('button')
     button.type = 'button'
     button.className = classPrefix + '-button'
-    button.style.backgroundImage = 'url(' + getResourceUrl('img/privacy-' + selectedValue + '.svg') + ')'
+    button.style.backgroundImage = backgroundImage(value)
     button.addEventListener('click', expand)
 
     var buttonClassList = button.classList
@@ -143,6 +145,11 @@ function AccountPage_PrivacySelect (getResourceUrl) {
     element.className = classPrefix
     element.appendChild(button)
 
-    return { element: element }
+    return {
+        element: element,
+        getValue: function () {
+            return value
+        },
+    }
 
 }

@@ -1,5 +1,7 @@
 function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
 
+    var profile = session.profile
+
     var classPrefix = 'AccountPage_FullNameItem'
 
     var label = document.createElement('label')
@@ -14,7 +16,7 @@ function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = session.profile.fullName
+    input.value = profile.fullName
     input.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.keyCode === 27) {
@@ -23,7 +25,7 @@ function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
         }
     })
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.fullNamePrivacy)
 
     var element = document.createElement('div')
     element.className = classPrefix
@@ -33,6 +35,7 @@ function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
 
     return {
         element: element,
+        getPrivacyValue: privacySelect.getValue,
         disable: function () {
             input.disabled = true
             input.blur()

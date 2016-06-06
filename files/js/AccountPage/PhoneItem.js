@@ -1,5 +1,7 @@
 function AccountPage_PhoneItem (getResourceUrl, session) {
 
+    var profile = session.profile
+
     var classPrefix = 'AccountPage_PhoneItem'
 
     var label = document.createElement('label')
@@ -14,9 +16,9 @@ function AccountPage_PhoneItem (getResourceUrl, session) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = session.profile.phone
+    input.value = profile.phone
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.phonePrivacy)
 
     var element = document.createElement('div')
     element.className = classPrefix
@@ -26,6 +28,7 @@ function AccountPage_PhoneItem (getResourceUrl, session) {
 
     return {
         element: element,
+        getPrivacyValue: privacySelect.getValue,
         disable: function () {
             input.disabled = true
             input.blur()

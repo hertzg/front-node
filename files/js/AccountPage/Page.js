@@ -33,8 +33,11 @@ function AccountPage_Page (getResourceUrl, username, session,
         e.preventDefault()
 
         var fullName = fullNameItem.getValue(),
+            fullNamePrivacy = fullNameItem.getPrivacyValue(),
             email = emailItem.getValue(),
-            phone = phoneItem.getValue()
+            emailPrivacy = emailItem.getPrivacyValue(),
+            phone = phoneItem.getValue(),
+            phonePrivacy = phoneItem.getPrivacyValue()
 
         fullNameItem.disable()
         emailItem.disable()
@@ -45,8 +48,11 @@ function AccountPage_Page (getResourceUrl, username, session,
         var url = 'data/editProfile' +
             '?token=' + encodeURIComponent(session.token) +
             '&fullName=' + encodeURIComponent(fullName) +
+            '&fullNamePrivacy=' + encodeURIComponent(fullNamePrivacy) +
             '&email=' + encodeURIComponent(email) +
-            '&phone=' + encodeURIComponent(phone)
+            '&emailPrivacy=' + encodeURIComponent(emailPrivacy) +
+            '&phone=' + encodeURIComponent(phone) +
+            '&phonePrivacy=' + encodeURIComponent(phonePrivacy)
 
         var request = new XMLHttpRequest
         request.open('get', url)
@@ -77,8 +83,11 @@ function AccountPage_Page (getResourceUrl, username, session,
 
             editProfileListener({
                 fullName: fullName,
+                fullNamePrivacy: fullNamePrivacy,
                 email: email,
+                emailPrivacy: emailPrivacy,
                 phone: phone,
+                phonePrivacy: phonePrivacy,
             })
 
         }

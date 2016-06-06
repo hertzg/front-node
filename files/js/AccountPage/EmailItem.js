@@ -1,5 +1,7 @@
 function AccountPage_EmailItem (getResourceUrl, session) {
 
+    var profile = session.profile
+
     var classPrefix = 'AccountPage_EmailItem'
 
     var label = document.createElement('label')
@@ -14,9 +16,9 @@ function AccountPage_EmailItem (getResourceUrl, session) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
-    input.value = session.profile.email
+    input.value = profile.email
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.emailPrivacy)
 
     var element = document.createElement('div')
     element.className = classPrefix
@@ -26,6 +28,7 @@ function AccountPage_EmailItem (getResourceUrl, session) {
 
     return {
         element: element,
+        getPrivacyValue: privacySelect.getValue,
         disable: function () {
             input.disabled = true
             input.blur()
