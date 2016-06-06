@@ -1,4 +1,4 @@
-function AccountPage_EmailItem (getResourceUrl, profile) {
+function AccountPage_EmailItem (getResourceUrl, profile, changeListener) {
 
     var classPrefix = 'AccountPage_EmailItem'
 
@@ -15,8 +15,10 @@ function AccountPage_EmailItem (getResourceUrl, profile) {
     input.type = 'text'
     input.className = classPrefix + '-input'
     input.value = profile.email
+    input.addEventListener('input', changeListener)
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.emailPrivacy)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl,
+        profile.emailPrivacy, changeListener)
 
     var element = document.createElement('div')
     element.className = classPrefix

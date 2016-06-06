@@ -1,4 +1,5 @@
-function AccountPage_FullNameItem (getResourceUrl, profile, closeListener) {
+function AccountPage_FullNameItem (getResourceUrl,
+    profile, changeListener, closeListener) {
 
     var classPrefix = 'AccountPage_FullNameItem'
 
@@ -15,6 +16,7 @@ function AccountPage_FullNameItem (getResourceUrl, profile, closeListener) {
     input.type = 'text'
     input.className = classPrefix + '-input'
     input.value = profile.fullName
+    input.addEventListener('input', changeListener)
     input.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.keyCode === 27) {
@@ -23,7 +25,8 @@ function AccountPage_FullNameItem (getResourceUrl, profile, closeListener) {
         }
     })
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.fullNamePrivacy)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl,
+        profile.fullNamePrivacy, changeListener)
 
     var element = document.createElement('div')
     element.className = classPrefix

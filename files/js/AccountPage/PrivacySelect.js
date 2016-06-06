@@ -1,10 +1,13 @@
-function AccountPage_PrivacySelect (getResourceUrl, value) {
+function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
 
     function add (itemValue, text) {
 
         function click () {
-            value = itemValue
             collapse()
+            if (value !== itemValue) {
+                value = itemValue
+                changeListener()
+            }
         }
 
         var element = document.createElement('div')

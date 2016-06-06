@@ -2,6 +2,16 @@ function AccountPage_Page (getResourceUrl, username, session,
     editProfileListener, changePasswordListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
+    function checkChanges () {
+        saveChangesButton.disabled =
+            fullNameItem.getValue() === profile.fullName &&
+            fullNameItem.getPrivacyValue() === profile.fullNamePrivacy &&
+            emailItem.getValue() === profile.email &&
+            emailItem.getPrivacyValue() === profile.emailPrivacy &&
+            phoneItem.getValue() === profile.phone &&
+            phoneItem.getPrivacyValue() === profile.phonePrivacy
+    }
+
     var classPrefix = 'AccountPage_Page'
 
     var closeButton = CloseButton(closeListener)
@@ -12,15 +22,17 @@ function AccountPage_Page (getResourceUrl, username, session,
 
     var profile = session.profile
 
-    var fullNameItem = AccountPage_FullNameItem(getResourceUrl, profile, closeListener)
+    var fullNameItem = AccountPage_FullNameItem(getResourceUrl,
+        profile, checkChanges, closeListener)
 
-    var emailItem = AccountPage_EmailItem(getResourceUrl, profile)
+    var emailItem = AccountPage_EmailItem(getResourceUrl, profile, checkChanges)
 
-    var phoneItem = AccountPage_PhoneItem(getResourceUrl, profile)
+    var phoneItem = AccountPage_PhoneItem(getResourceUrl, profile, checkChanges)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 
     var saveChangesButton = document.createElement('button')
+    saveChangesButton.disabled = true
     saveChangesButton.className = classPrefix + '-saveChangesButton'
     saveChangesButton.appendChild(saveChangesNode)
 

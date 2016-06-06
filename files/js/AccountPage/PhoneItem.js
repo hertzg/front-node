@@ -1,4 +1,4 @@
-function AccountPage_PhoneItem (getResourceUrl, profile) {
+function AccountPage_PhoneItem (getResourceUrl, profile, changeListener) {
 
     var classPrefix = 'AccountPage_PhoneItem'
 
@@ -15,8 +15,10 @@ function AccountPage_PhoneItem (getResourceUrl, profile) {
     input.type = 'text'
     input.className = classPrefix + '-input'
     input.value = profile.phone
+    input.addEventListener('input', changeListener)
 
-    var privacySelect = AccountPage_PrivacySelect(getResourceUrl, profile.phonePrivacy)
+    var privacySelect = AccountPage_PrivacySelect(getResourceUrl,
+        profile.phonePrivacy, changeListener)
 
     var element = document.createElement('div')
     element.className = classPrefix
