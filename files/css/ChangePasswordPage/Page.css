@@ -47,5 +47,7 @@
     background-color: hsl(95, 60%, 35%);
 }
 .ChangePasswordPage_Page-button[disabled] {
+    color: white;
     background-color: hsl(0, 0%, 70%);
+    cursor: default;
 }

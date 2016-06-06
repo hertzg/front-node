@@ -56,7 +56,9 @@
     background-color: hsl(95, 60%, 35%);
 }
 .AccountPage_Page-saveChangesButton[disabled] {
+    color: white;
     background-color: hsl(0, 0%, 70%);
+    cursor: default;
 }
 
 .AccountPage_Page-changePasswordButton {

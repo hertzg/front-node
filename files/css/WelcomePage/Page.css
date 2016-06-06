@@ -58,7 +58,9 @@
     background-color: hsl(95, 60%, 35%);
 }
 .WelcomePage_Page-signInButton[disabled] {
+    color: white;
     background-color: hsl(0, 0%, 70%);
+    cursor: default;
 }
 
 .WelcomePage_Page-signUpButton {

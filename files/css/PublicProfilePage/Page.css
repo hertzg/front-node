@@ -50,5 +50,7 @@
     background-color: hsl(95, 60%, 35%);
 }
 .PublicProfilePage_Page-button[disabled] {
+    color: white;
     background-color: hsl(0, 0%, 70%);
+    cursor: default;
 }
