@@ -137,9 +137,9 @@ function AccountPage_PrivacySelect (getResourceUrl, value) {
 
     var menuElement = document.createElement('div')
     menuElement.className = classPrefix + '-menu'
-    add('me', 'Me')
+    add('private', 'Me')
     add('contacts', 'Contacts')
-    add('public', 'Public')
+    add('public', 'Anyone')
 
     var element = document.createElement('div')
     element.className = classPrefix
