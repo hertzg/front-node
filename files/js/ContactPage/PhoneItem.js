@@ -29,6 +29,9 @@ function ContactPage_PhoneItem (profile, overrideProfile, changeListener) {
             input.disabled = true
             input.blur()
         },
+        editProfile: function (profile) {
+            input.placeholder = profile.phone
+        },
         enable: function () {
             input.disabled = false
         },

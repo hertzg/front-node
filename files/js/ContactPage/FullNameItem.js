@@ -37,6 +37,9 @@ function ContactPage_FullNameItem (profile,
             input.disabled = true
             input.blur()
         },
+        editProfile: function (profile) {
+            input.placeholder = profile.fullName
+        },
         enable: function () {
             input.disabled = false
         },

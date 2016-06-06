@@ -29,6 +29,9 @@ function ContactPage_EmailItem (profile, overrideProfile, changeListener) {
             input.disabled = true
             input.blur()
         },
+        editProfile: function (profile) {
+            input.placeholder = profile.email
+        },
         enable: function () {
             input.disabled = false
         },

@@ -146,9 +146,10 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         function hideContactPage () {
             element.removeChild(contactPage.element)
+            contactPage = null
         }
 
-        var contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
+        contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
             contact.overrideProfile(profile)
             hideContactPage()
         }, hideContactPage, function () {
@@ -223,9 +224,17 @@ function WorkPage_Page (username, session, getResourceUrl,
         }
 
         if (action === 'editContactProfile') {
-            var contact = sidePanel.getContact(data[0])
-            if (contact !== undefined) contact.editProfile(data[1])
+
+            var username = data[0],
+                profile = data[1]
+
+            var contact = sidePanel.getContact(username)
+            if (contact !== undefined) contact.editProfile(profile)
+            if (contactPage !== null && contactPage.username === username) {
+                contactPage.editProfile(profile)
+            }
             return
+
         }
 
         if (action === 'editRequest') {
@@ -254,9 +263,17 @@ function WorkPage_Page (username, session, getResourceUrl,
         }
 
         if (action === 'overrideContactProfile') {
-            var contact = sidePanel.getContact(data[0])
-            if (contact !== undefined) contact.overrideProfile(data[1])
+
+            var username = data[0],
+                overrideProfile = data[1]
+
+            var contact = sidePanel.getContact(username)
+            if (contact !== undefined) contact.overrideProfile(overrideProfile)
+            if (contactPage !== null && contactPage.username === username) {
+                contactPage.overrideProfile(overrideProfile)
+            }
             return
+
         }
 
         if (action === 'receiveTextMessage') {
@@ -276,6 +293,8 @@ function WorkPage_Page (username, session, getResourceUrl,
         }
 
     }, crashListener, signOutListener, serviceErrorListener)
+
+    var contactPage = null
 
     return { element: element }
 

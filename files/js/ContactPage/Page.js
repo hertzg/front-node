@@ -112,6 +112,16 @@ function ContactPage_Page (session, username, profile,
     return {
         element: element,
         focus: fullNameItem.focus,
+        username: username,
+        editProfile: function (profile) {
+            fullNameItem.editProfile(profile)
+            emailItem.editProfile(profile)
+            phoneItem.editProfile(profile)
+        },
+        overrideProfile: function (_overrideProfile) {
+            overrideProfile = _overrideProfile
+            checkChanges()
+        },
     }
 
 }
