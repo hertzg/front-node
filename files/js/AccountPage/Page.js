@@ -10,11 +10,13 @@ function AccountPage_Page (getResourceUrl, username, session,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
-    var fullNameItem = AccountPage_FullNameItem(getResourceUrl, session, closeListener)
+    var profile = session.profile
 
-    var emailItem = AccountPage_EmailItem(getResourceUrl, session)
+    var fullNameItem = AccountPage_FullNameItem(getResourceUrl, profile, closeListener)
 
-    var phoneItem = AccountPage_PhoneItem(getResourceUrl, session)
+    var emailItem = AccountPage_EmailItem(getResourceUrl, profile)
+
+    var phoneItem = AccountPage_PhoneItem(getResourceUrl, profile)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 

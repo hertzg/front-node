@@ -1,6 +1,4 @@
-function AccountPage_EmailItem (getResourceUrl, session) {
-
-    var profile = session.profile
+function AccountPage_EmailItem (getResourceUrl, profile) {
 
     var classPrefix = 'AccountPage_EmailItem'
 

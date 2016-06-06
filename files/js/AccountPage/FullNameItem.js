@@ -1,6 +1,4 @@
-function AccountPage_FullNameItem (getResourceUrl, session, closeListener) {
-
-    var profile = session.profile
+function AccountPage_FullNameItem (getResourceUrl, profile, closeListener) {
 
     var classPrefix = 'AccountPage_FullNameItem'
 

@@ -1,6 +1,4 @@
-function AccountPage_PhoneItem (getResourceUrl, session) {
-
-    var profile = session.profile
+function AccountPage_PhoneItem (getResourceUrl, profile) {
 
     var classPrefix = 'AccountPage_PhoneItem'
 
