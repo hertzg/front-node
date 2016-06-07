@@ -88,6 +88,11 @@
     var body = document.body
     var initialTitle = document.title
 
+    for (var i in revisions) {
+        var image = new Image
+        image.src = getResourceUrl(i)
+    }
+
     CheckSession(showWelcomePage, showWorkPage,
         showCrashPage, showServiceErrorPage)
 
