@@ -1,5 +1,5 @@
 function WorkPage_SidePanel_Contact (getResourceUrl,
-    session, username, contactData, selectListener,
+    username, session, contactUsername, contactData, selectListener,
     deselectListener, profileListener, removeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
@@ -24,12 +24,12 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
     var profile = contactData.profile,
         overrideProfile = contactData.overrideProfile
 
-    var chatPanel = WorkPage_ChatPanel_Panel(session,
-        username, profile, overrideProfile, getResourceUrl,
+    var chatPanel = WorkPage_ChatPanel_Panel(username, session,
+        contactUsername, profile, overrideProfile, getResourceUrl,
         profileListener, removeListener, deselectAndCallListener,
         signOutListener, crashListener, serviceErrorListener)
 
-    var node = document.createTextNode(overrideProfile.fullName || profile.fullName || username)
+    var node = document.createTextNode(overrideProfile.fullName || profile.fullName || contactUsername)
 
     var element = document.createElement('div')
     element.className = 'WorkPage_SidePanel_Contact offline'
@@ -45,10 +45,10 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         element: element,
         receiveTextMessage: chatPanel.receiveTextMessage,
         sendTextMessage: chatPanel.sendTextMessage,
-        username: username,
+        username: contactUsername,
         editProfile: function (_profile) {
             profile = _profile
-            node.nodeValue = overrideProfile.fullName || profile.fullName || username
+            node.nodeValue = overrideProfile.fullName || profile.fullName || contactUsername
             chatPanel.editContactProfile(profile)
         },
         getOverrideProfile: function () {
@@ -65,7 +65,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
         },
         overrideProfile: function (_overrideProfile) {
             overrideProfile = _overrideProfile
-            node.nodeValue = overrideProfile.fullName || profile.fullName || username
+            node.nodeValue = overrideProfile.fullName || profile.fullName || contactUsername
             chatPanel.overrideContactProfile(overrideProfile)
         },
     }

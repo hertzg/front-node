@@ -1,8 +1,8 @@
 function WorkPage_ChatPanel_RestoreMessages (username,
-    addSentTextMessage, addReceivedTextMessage) {
+    contactUsername, addSentTextMessage, addReceivedTextMessage) {
 
     try {
-        var messages = localStorage['messages_' + username]
+        var messages = localStorage['messages_' + username + '$' + contactUsername]
     } catch (e) {
     }
 

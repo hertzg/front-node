@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_Messages (session, username,
+function WorkPage_ChatPanel_Messages (username, session, contactUsername,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
     function Day (time) {
@@ -66,7 +66,7 @@ function WorkPage_ChatPanel_Messages (session, username,
         messages.push(message)
         if (messages.length > 1024) messages.shift()
         try {
-            localStorage['messages_' + username] = JSON.stringify(messages)
+            localStorage['messages_' + username + '$' + contactUsername] = JSON.stringify(messages)
         } catch (e) {
         }
     }
@@ -95,7 +95,7 @@ function WorkPage_ChatPanel_Messages (session, username,
 
     var typePanel = WorkPage_ChatPanel_TypePanel(function (text) {
 
-        var sendingTextMessage = WorkPage_ChatPanel_SendingTextMessage(session, username, text, function (time) {
+        var sendingTextMessage = WorkPage_ChatPanel_SendingTextMessage(session, contactUsername, text, function (time) {
             sendingMessagesElement.removeChild(sendingTextMessage.element)
             if (sendingMessagesElement.childNodes.length === 0) {
                 sendingMessagesClassList.add('hidden')
@@ -116,7 +116,8 @@ function WorkPage_ChatPanel_Messages (session, username,
     element.appendChild(contentElement)
     element.appendChild(typePanel.element)
 
-    WorkPage_ChatPanel_RestoreMessages(username, addSentTextMessage, addReceivedTextMessage)
+    WorkPage_ChatPanel_RestoreMessages(username,
+        contactUsername, addSentTextMessage, addReceivedTextMessage)
 
     return {
         element: element,

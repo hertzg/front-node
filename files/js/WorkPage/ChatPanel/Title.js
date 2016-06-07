@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_Title (username,
+function WorkPage_ChatPanel_Title (contactUsername,
     profile, overrideProfile, profileListener, removeListener) {
 
     function collapse () {
@@ -13,7 +13,7 @@ function WorkPage_ChatPanel_Title (username,
     }
 
     function createButtonText () {
-        return overrideProfile.fullName || profile.fullName || username
+        return overrideProfile.fullName || profile.fullName || contactUsername
     }
 
     function expand () {

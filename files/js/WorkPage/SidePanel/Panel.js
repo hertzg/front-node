@@ -13,7 +13,7 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
     var title = WorkPage_SidePanel_Title(username,
         session, accountListener, confirmSignOutListener)
 
-    var contactList = WorkPage_SidePanel_ContactList(session, getResourceUrl, function (contact) {
+    var contactList = WorkPage_SidePanel_ContactList(username, session, getResourceUrl, function (contact) {
         contactSelectListener(contact)
         classList.add('chatOpen')
     }, function (contact) {

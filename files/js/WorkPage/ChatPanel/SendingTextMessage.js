@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_SendingTextMessage (session, username, text,
+function WorkPage_ChatPanel_SendingTextMessage (session, contactUsername, text,
     sentListener, signOutListener, crashListener, serviceErrorListener) {
 
     var element = document.createElement('div')
@@ -7,7 +7,7 @@ function WorkPage_ChatPanel_SendingTextMessage (session, username, text,
 
     var url = 'data/sendTextMessage' +
         '?token=' + encodeURIComponent(session.token) +
-        '&username=' + encodeURIComponent(username) +
+        '&username=' + encodeURIComponent(contactUsername) +
         '&text=' + encodeURIComponent(text)
 
     var request = new XMLHttpRequest
