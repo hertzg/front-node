@@ -13,9 +13,9 @@ function ChangePasswordPage_Page (session, backListener,
 
     var currentPasswordItem = ChangePasswordPage_CurrentPasswordItem(backListener)
 
-    var newPasswordItem = ChangePasswordPage_NewPasswordItem()
+    var newPasswordItem = ChangePasswordPage_NewPasswordItem(backListener)
 
-    var repeatNewPasswordItem = ChangePasswordPage_RepeatNewPasswordItem()
+    var repeatNewPasswordItem = ChangePasswordPage_RepeatNewPasswordItem(backListener)
 
     var buttonNode = document.createTextNode('Save')
 

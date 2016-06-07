@@ -25,9 +25,11 @@ function AccountPage_Page (getResourceUrl, username, session,
     var fullNameItem = AccountPage_FullNameItem(getResourceUrl,
         profile, checkChanges, closeListener)
 
-    var emailItem = AccountPage_EmailItem(getResourceUrl, profile, checkChanges)
+    var emailItem = AccountPage_EmailItem(getResourceUrl,
+        profile, checkChanges, closeListener)
 
-    var phoneItem = AccountPage_PhoneItem(getResourceUrl, profile, checkChanges)
+    var phoneItem = AccountPage_PhoneItem(getResourceUrl,
+        profile, checkChanges, closeListener)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 

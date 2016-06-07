@@ -1,4 +1,4 @@
-function SignUpPage_RepeatPasswordItem () {
+function SignUpPage_RepeatPasswordItem (backListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -41,6 +41,13 @@ function SignUpPage_RepeatPasswordItem () {
     input.id = label.htmlFor
     input.type = 'password'
     input.className = classPrefix + '-input'
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            backListener()
+        }
+    })
 
     var inputClassList = input.classList
 

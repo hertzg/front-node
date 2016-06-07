@@ -20,11 +20,12 @@ function SignUpPage_Page (getResourceUrl, backListener,
 
     var usernameItem = SignUpPage_UsernameItem(backListener)
 
-    var passwordItem = SignUpPage_PasswordItem()
+    var passwordItem = SignUpPage_PasswordItem(backListener)
 
-    var repeatPasswordItem = SignUpPage_RepeatPasswordItem()
+    var repeatPasswordItem = SignUpPage_RepeatPasswordItem(backListener)
 
-    var captchaItem = SignUpPage_CaptchaItem(crashListener)
+    var captchaItem = SignUpPage_CaptchaItem(
+        backListener, crashListener, serviceErrorListener)
 
     var buttonNode = document.createTextNode('Sign Up')
 

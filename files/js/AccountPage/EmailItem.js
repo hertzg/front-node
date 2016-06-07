@@ -1,4 +1,5 @@
-function AccountPage_EmailItem (getResourceUrl, profile, changeListener) {
+function AccountPage_EmailItem (getResourceUrl,
+    profile, changeListener, closeListener) {
 
     var classPrefix = 'AccountPage_EmailItem'
 
@@ -16,6 +17,13 @@ function AccountPage_EmailItem (getResourceUrl, profile, changeListener) {
     input.className = classPrefix + '-input'
     input.value = profile.email
     input.addEventListener('input', changeListener)
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
 
     var privacySelect = AccountPage_PrivacySelect(getResourceUrl,
         profile.emailPrivacy, changeListener)

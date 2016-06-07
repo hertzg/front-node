@@ -20,9 +20,11 @@ function ContactPage_Page (session, username, profile,
     var fullNameItem = ContactPage_FullNameItem(profile,
         overrideProfile, checkChanges, closeListener)
 
-    var emailItem = ContactPage_EmailItem(profile, overrideProfile, checkChanges)
+    var emailItem = ContactPage_EmailItem(profile,
+        overrideProfile, checkChanges, closeListener)
 
-    var phoneItem = ContactPage_PhoneItem(profile, overrideProfile, checkChanges)
+    var phoneItem = ContactPage_PhoneItem(profile,
+        overrideProfile, checkChanges, closeListener)
 
     var saveChangesNode = document.createTextNode('Save Changes')
 

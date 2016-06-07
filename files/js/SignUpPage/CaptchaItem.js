@@ -1,4 +1,5 @@
-function SignUpPage_CaptchaItem (crashListener, serviceErrorListener) {
+function SignUpPage_CaptchaItem (backListener,
+    crashListener, serviceErrorListener) {
 
     function hideError () {
         inputClassList.remove('error')
@@ -51,6 +52,13 @@ function SignUpPage_CaptchaItem (crashListener, serviceErrorListener) {
     input.id = label.htmlFor
     input.type = 'text'
     input.className = classPrefix + '-input'
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            backListener()
+        }
+    })
 
     var inputClassList = input.classList
 

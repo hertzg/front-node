@@ -1,4 +1,5 @@
-function ContactPage_PhoneItem (profile, overrideProfile, changeListener) {
+function ContactPage_PhoneItem (profile,
+    overrideProfile, changeListener, closeListener) {
 
     var classPrefix = 'ContactPage_PhoneItem'
 
@@ -17,6 +18,13 @@ function ContactPage_PhoneItem (profile, overrideProfile, changeListener) {
     input.placeholder = profile.phone
     input.value = overrideProfile.phone
     input.addEventListener('input', changeListener)
+    input.addEventListener('keydown', function (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        if (e.keyCode === 27) {
+            e.preventDefault()
+            closeListener()
+        }
+    })
 
     var element = document.createElement('div')
     element.className = classPrefix
