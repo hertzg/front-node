@@ -1,0 +1,11 @@
+.AccountPage_PrivacySelectItem {
+    padding-left: 44px;
+    padding-right: 12px;
+    cursor: pointer;
+    background-position: 2px center;
+    background-repeat: no-repeat;
+}
+.AccountPage_PrivacySelectItem.active,
+.AccountPage_PrivacySelectItem:active {
+    background-color: hsl(95, 70%, 85%);
+}

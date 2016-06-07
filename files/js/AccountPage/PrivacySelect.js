@@ -7,27 +7,16 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
             collapse()
         }
 
-        var element = document.createElement('div')
-        element.className = classPrefix + '-item'
-        element.appendChild(document.createTextNode(text))
-        element.style.backgroundImage = backgroundImage(itemValue)
-        element.addEventListener('click', click)
+        var item = AccountPag_PrivacySelectItem(text,
+            itemValue, backgroundImage, click)
 
-        var classList = element.classList
-
-        menuElement.appendChild(element)
-
+        menuElement.appendChild(item.element)
         if (value === itemValue) valueIndex = items.length
-
         items.push({
             click: click,
             value: itemValue,
-            deselect: function () {
-                classList.remove('active')
-            },
-            select: function () {
-                classList.add('active')
-            },
+            deselect: item.deselect,
+            select: item.select,
         })
 
     }
