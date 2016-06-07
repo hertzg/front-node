@@ -120,6 +120,8 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
         contactUsername, addSentTextMessage, addReceivedTextMessage)
 
     return {
+        disable: typePanel.disable,
+        enable: typePanel.enable,
         element: element,
         focus: typePanel.focus,
         receiveTextMessage: addReceivedTextMessage,

@@ -26,6 +26,16 @@ function WorkPage_ChatPanel_Panel (username,
         overrideContactProfile: title.overrideContactProfile,
         receiveTextMessage: messages.receiveTextMessage,
         sendTextMessage: messages.sendTextMessage,
+        disable: function () {
+            title.disable()
+            closeButton.disable()
+            messages.disable()
+        },
+        enable: function () {
+            title.enable()
+            closeButton.enable()
+            messages.enable()
+        },
     }
 
 }

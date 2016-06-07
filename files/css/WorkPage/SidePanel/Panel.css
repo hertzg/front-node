@@ -25,6 +25,11 @@
     color: hsl(95, 70%, 70%);
     background-color: hsl(95, 60%, 35%);
 }
+.WorkPage_SidePanel_Panel-addContactButton[disabled] {
+    color: white;
+    background-color: hsl(0, 0%, 70%);
+    cursor: default;
+}
 
 @media (max-width: 600px) {
     .WorkPage_SidePanel_Panel {

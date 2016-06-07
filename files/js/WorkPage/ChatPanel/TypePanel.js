@@ -4,7 +4,7 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
         var value = textarea.value
         if (value.match(/\S/)) {
             typeListener(value)
-            sendButton.disabled = true
+            sendButton.disabled = sendButtonDisabled = true
         }
         textarea.value = ''
     }
@@ -15,7 +15,8 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
     textarea.className = classPrefix + '-textarea'
     textarea.placeholder = 'Type a message here'
     textarea.addEventListener('input', function () {
-        sendButton.disabled = !textarea.value.match(/\S/)
+        sendButtonDisabled = !textarea.value.match(/\S/)
+        if (!disabled) sendButton.disabled = sendButtonDisabled
     })
     textarea.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
@@ -28,6 +29,9 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
             closeListener()
         }
     })
+
+    var disabled = false
+    var sendButtonDisabled = true
 
     var sendButton = document.createElement('button')
     sendButton.disabled = true
@@ -45,6 +49,14 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
 
     return {
         element: element,
+        disable: function () {
+            disabled = textarea.disabled = true
+            sendButton.disabled = true
+        },
+        enable: function () {
+            disabled = textarea.disabled = false
+            sendButton.disabled = sendButtonDisabled
+        },
         focus: function () {
             textarea.focus()
         },

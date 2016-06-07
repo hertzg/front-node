@@ -85,6 +85,12 @@ function WorkPage_ChatPanel_Title (contactUsername,
 
     return {
         element: element,
+        disable: function () {
+            button.disabled = true
+        },
+        enable: function () {
+            button.disabled = false
+        },
         editContactProfile: function (_profile) {
             profile = _profile
             buttonTextNode.nodeValue = createButtonText()

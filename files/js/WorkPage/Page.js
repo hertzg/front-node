@@ -1,9 +1,19 @@
 function WorkPage_Page (username, session, getResourceUrl,
     signOutListener, crashListener, serviceErrorListener) {
 
+    function disableBackground () {
+        sidePanel.disable()
+        if (chatPanel !== null) chatPanel.disable()
+    }
+
     function editProfile (profile) {
         session.profile = profile
         sidePanel.editProfile(profile)
+    }
+
+    function enableBackground () {
+        sidePanel.enable()
+        if (chatPanel !== null) chatPanel.enable()
     }
 
     function showAccountPage () {
@@ -16,7 +26,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
             editProfile(profile)
             hideAccountPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
 
             function hideChangePasswordPage () {
@@ -28,7 +38,7 @@ function WorkPage_Page (username, session, getResourceUrl,
                 showAccountPage()
             }, function () {
                 hideChangePasswordPage()
-                sidePanel.enable()
+                enableBackground()
             }, function () {
                 hideChangePasswordPage()
                 signOutListener()
@@ -45,7 +55,7 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         }, function () {
             hideAccountPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideAccountPage()
             signOutListener()
@@ -76,13 +86,13 @@ function WorkPage_Page (username, session, getResourceUrl,
             var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (contactData) {
                 hidePublicProfilePage()
                 sidePanel.addContact(username, contactData)
-                sidePanel.enable()
+                enableBackground()
             }, function () {
                 hidePublicProfilePage()
                 showAddContactPage()
             }, function () {
                 hidePublicProfilePage()
-                sidePanel.enable()
+                enableBackground()
             }, function () {
                 hidePublicProfilePage()
                 signOutListener()
@@ -99,7 +109,7 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         }, function () {
             hideAddContactPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideAddContactPage()
             crashListener()
@@ -115,7 +125,7 @@ function WorkPage_Page (username, session, getResourceUrl,
     var classPrefix = 'WorkPage_Page'
 
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
-        sidePanel.disable()
+        disableBackground()
         showAccountPage()
     }, function () {
 
@@ -154,21 +164,22 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         }, function () {
             hideSignOutPage()
-            sidePanel.enable()
+            enableBackground()
         })
         element.appendChild(signOutPage.element)
         signOutPage.focus()
-        sidePanel.disable()
+        disableBackground()
 
     }, function () {
-        sidePanel.disable()
+        disableBackground()
         showAddContactPage()
     }, function (contact) {
-        var chatPanel = contact.chatPanel
+        chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
         chatPanel.focus()
-    }, function (contact) {
-        element.removeChild(contact.chatPanel.element)
+    }, function () {
+        element.removeChild(chatPanel.element)
+        chatPanel = null
     }, function (contact) {
 
         function hideContactPage () {
@@ -179,10 +190,10 @@ function WorkPage_Page (username, session, getResourceUrl,
         contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
             contact.overrideProfile(profile)
             hideContactPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideContactPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideContactPage()
             signOutListener()
@@ -195,7 +206,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
-        sidePanel.disable()
+        disableBackground()
 
     }, function (contact) {
 
@@ -206,10 +217,10 @@ function WorkPage_Page (username, session, getResourceUrl,
         var removeContactPage = RemoveContactPage_Page(contact.username, session, function () {
             hideRemoveContactPage()
             sidePanel.removeContact(contact)
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideRemoveContactPage()
-            sidePanel.enable()
+            enableBackground()
         }, function () {
             hideRemoveContactPage()
             signOutListener()
@@ -222,7 +233,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
-        sidePanel.disable()
+        disableBackground()
 
     }, signOutListener, crashListener, serviceErrorListener)
 
@@ -234,7 +245,7 @@ function WorkPage_Page (username, session, getResourceUrl,
     element.appendChild(sidePanel.element)
 
     var contactRequests = WorkPage_ContactRequests(element, session,
-        sidePanel.disable, sidePanel.enable, sidePanel.addContact,
+        disableBackground, enableBackground, sidePanel.addContact,
         crashListener, signOutListener, crashListener, serviceErrorListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
@@ -333,6 +344,7 @@ function WorkPage_Page (username, session, getResourceUrl,
     }, crashListener, signOutListener, serviceErrorListener)
 
     var accountPage = null,
+        chatPanel = null,
         contactPage = null
 
     return { element: element }
