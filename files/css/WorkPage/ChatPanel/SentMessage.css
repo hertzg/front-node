@@ -9,3 +9,10 @@
 .WorkPage_ChatPanel_SentMessage:first-child {
     margin-top: 0;
 }
+
+.WorkPage_ChatPanel_SentMessage-time {
+    float: right;
+    text-align: right;
+    line-height: 20px;
+    color: hsl(0, 0%, 70%);
+}

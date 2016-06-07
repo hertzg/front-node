@@ -35,7 +35,7 @@ function WorkPage_ChatPanel_SendingMessage (session, username, text,
             return
         }
 
-        sentListener()
+        sentListener(response)
 
     }
 
