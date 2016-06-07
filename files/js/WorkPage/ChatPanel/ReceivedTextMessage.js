@@ -15,6 +15,12 @@ function WorkPage_ChatPanel_ReceivedTextMessage (text, time) {
     element.appendChild(timeElement)
     element.appendChild(document.createTextNode(text))
 
-    return { element: element }
+    return {
+        element: element,
+        addText: function (text) {
+            element.appendChild(document.createElement('br'))
+            element.appendChild(document.createTextNode(text))
+        },
+    }
 
 }

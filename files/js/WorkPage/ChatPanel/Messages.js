@@ -1,9 +1,40 @@
 function WorkPage_ChatPanel_Messages (session, username,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
-    function addMessage (message) {
+    function RoundTime (time) {
+        return Math.floor(time / (1000 * 60)) * 1000 * 60
+    }
+
+    function addMessage (direction, message) {
         doneMessagesElement.appendChild(message.element)
     }
+
+    function addSentTextMessage (text, time) {
+        var roundTime = RoundTime(time)
+        if (canMerge('sent', roundTime)) {
+            lastMessage.addText(text)
+        } else {
+            var message = WorkPage_ChatPanel_SentTextMessage(text, time)
+            addMessage('sent', message)
+            lastMessage = message
+            lastDirection = 'sent'
+            lastRoundTime = roundTime
+        }
+        scrollDown()
+    }
+
+    function canMerge (direction, roundTime) {
+        return lastMessage !== null &&
+            lastDirection === direction && lastRoundTime === roundTime
+    }
+
+    function scrollDown () {
+        contentElement.scrollTop = contentElement.scrollHeight
+    }
+
+    var lastMessage = null,
+        lastDirection = null,
+        lastRoundTime = null
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -22,11 +53,11 @@ function WorkPage_ChatPanel_Messages (session, username,
 
         var sendingTextMessage = WorkPage_ChatPanel_SendingTextMessage(session, username, text, function (time) {
             sendingMessagesElement.removeChild(sendingTextMessage.element)
-            addMessage(WorkPage_ChatPanel_SentTextMessage(text, time))
+            addSentTextMessage(text, time)
         }, signOutListener, crashListener, serviceErrorListener)
 
         sendingMessagesElement.appendChild(sendingTextMessage.element)
-        contentElement.scrollTop = contentElement.scrollHeight
+        scrollDown()
 
     }, closeListener)
 
@@ -38,14 +69,19 @@ function WorkPage_ChatPanel_Messages (session, username,
     return {
         element: element,
         focus: typePanel.focus,
+        sendTextMessage: addSentTextMessage,
         receiveTextMessage: function (text, time) {
-            var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
-            doneMessagesElement.appendChild(message.element)
-            contentElement.scrollTop = contentElement.scrollHeight
-        },
-        sendTextMessage: function (text, time) {
-            addMessage(WorkPage_ChatPanel_SentTextMessage(text, time))
-            contentElement.scrollTop = contentElement.scrollHeight
+            var roundTime = RoundTime(time)
+            if (canMerge('received', roundTime)) {
+                lastMessage.addText(text)
+            } else {
+                var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
+                addMessage('received', message)
+                lastMessage = message
+                lastDirection = 'received'
+                lastRoundTime = roundTime
+            }
+            scrollDown()
         },
     }
 
