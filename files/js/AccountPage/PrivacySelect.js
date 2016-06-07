@@ -3,12 +3,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     function add (itemValue, text) {
 
         function click () {
-            if (value !== itemValue) {
-                value = itemValue
-                normalBackgroundImage = backgroundImage(value),
-                activeBackgroundImage = backgroundImage(value + '-active')
-                changeListener()
-            }
+            if (value !== itemValue) setValue(itemValue)
             collapse()
         }
 
@@ -22,8 +17,11 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
 
         menuElement.appendChild(element)
 
+        if (value === itemValue) valueIndex = items.length
+
         items.push({
             click: click,
+            value: itemValue,
             deselect: function () {
                 classList.remove('active')
             },
@@ -43,8 +41,9 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
         buttonClassList.remove('selected')
         button.style.backgroundImage = normalBackgroundImage
         button.removeEventListener('click', collapse)
-        button.removeEventListener('keydown', keyDown)
+        button.removeEventListener('keydown', expandedKeyDown)
         button.addEventListener('click', expand)
+        button.addEventListener('keydown', collapsedKeyDown)
 
         element.removeChild(menuElement)
 
@@ -58,13 +57,32 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
 
     }
 
+    function collapsedKeyDown (e) {
+        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
+        var keyCode = e.keyCode
+        if (keyCode === 38) {
+            e.preventDefault()
+            if (valueIndex === 0) return
+            valueIndex--
+            setValue(items[valueIndex].value)
+            button.style.backgroundImage = normalBackgroundImage
+        } else if (keyCode === 40) {
+            e.preventDefault()
+            if (valueIndex === items.length - 1) return
+            valueIndex++
+            setValue(items[valueIndex].value)
+            button.style.backgroundImage = normalBackgroundImage
+        }
+    }
+
     function expand () {
 
         buttonClassList.add('selected')
         button.style.backgroundImage = activeBackgroundImage
         button.removeEventListener('click', expand)
+        button.removeEventListener('keydown', collapsedKeyDown)
         button.addEventListener('click', collapse)
-        button.addEventListener('keydown', keyDown)
+        button.addEventListener('keydown', expandedKeyDown)
 
         element.appendChild(menuElement)
 
@@ -73,7 +91,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
 
     }
 
-    function keyDown (e) {
+    function expandedKeyDown (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         var keyCode = e.keyCode
         if (keyCode === 13) {
@@ -115,6 +133,13 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
         }
     }
 
+    function setValue (newValue) {
+        value = newValue
+        normalBackgroundImage = backgroundImage(value),
+        activeBackgroundImage = backgroundImage(value + '-active')
+        changeListener()
+    }
+
     function windowFocus (e) {
         if (IsChildElement(element, e.target)) return
         collapse()
@@ -129,9 +154,9 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     var normalBackgroundImage = backgroundImage(value),
         activeBackgroundImage = backgroundImage(value + '-active')
 
-    var selectedIndex = null
-
     var items = []
+    var valueIndex
+    var selectedIndex = null
 
     var classPrefix = 'AccountPage_PrivacySelect'
 
@@ -140,6 +165,7 @@ function AccountPage_PrivacySelect (getResourceUrl, value, changeListener) {
     button.className = classPrefix + '-button'
     button.style.backgroundImage = normalBackgroundImage
     button.addEventListener('click', expand)
+    button.addEventListener('keydown', collapsedKeyDown)
 
     var buttonClassList = button.classList
 
