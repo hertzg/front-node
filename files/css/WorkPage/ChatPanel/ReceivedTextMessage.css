@@ -1,4 +1,4 @@
-.WorkPage_ChatPanel_ReceivedMessage {
+.WorkPage_ChatPanel_ReceivedTextMessage {
     background-color: hsl(95, 70%, 85%);
     padding: 12px;
     margin-top: 8px;
@@ -6,11 +6,11 @@
     word-wrap: break-word;
     line-height: 20px;
 }
-.WorkPage_ChatPanel_ReceivedMessage:first-child {
+.WorkPage_ChatPanel_ReceivedTextMessage:first-child {
     margin-top: 0;
 }
 
-.WorkPage_ChatPanel_ReceivedMessage-time {
+.WorkPage_ChatPanel_ReceivedTextMessage-time {
     float: right;
     text-align: right;
     line-height: 20px;

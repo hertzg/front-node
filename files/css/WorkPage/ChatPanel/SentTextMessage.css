@@ -1,4 +1,4 @@
-.WorkPage_ChatPanel_SentMessage {
+.WorkPage_ChatPanel_SentTextMessage {
     border: 2px solid hsl(95, 70%, 85%);
     padding: 10px;
     margin-top: 8px;
@@ -6,11 +6,11 @@
     word-wrap: break-word;
     line-height: 20px;
 }
-.WorkPage_ChatPanel_SentMessage:first-child {
+.WorkPage_ChatPanel_SentTextMessage:first-child {
     margin-top: 0;
 }
 
-.WorkPage_ChatPanel_SentMessage-time {
+.WorkPage_ChatPanel_SentTextMessage-time {
     float: right;
     text-align: right;
     line-height: 20px;

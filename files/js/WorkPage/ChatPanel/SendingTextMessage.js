@@ -1,8 +1,8 @@
-function WorkPage_ChatPanel_SendingMessage (session, username, text,
+function WorkPage_ChatPanel_SendingTextMessage (session, username, text,
     sentListener, signOutListener, crashListener, serviceErrorListener) {
 
     var element = document.createElement('div')
-    element.className = 'WorkPage_ChatPanel_SendingMessage'
+    element.className = 'WorkPage_ChatPanel_SendingTextMessage'
     element.appendChild(document.createTextNode(text))
 
     var url = 'data/sendTextMessage' +

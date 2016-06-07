@@ -1,4 +1,4 @@
-.WorkPage_ChatPanel_SendingMessage {
+.WorkPage_ChatPanel_SendingTextMessage {
     border: 2px solid hsl(95, 70%, 85%);
     padding: 10px;
     margin-top: 8px;
@@ -7,10 +7,10 @@
     line-height: 20px;
     opacity: 0.5;
 }
-.WorkPage_ChatPanel_SendingMessage:first-child {
+.WorkPage_ChatPanel_SendingTextMessage:first-child {
     margin-top: 0;
 }
-.WorkPage_ChatPanel_SendingMessage.failed {
+.WorkPage_ChatPanel_SendingTextMessage.failed {
     opacity: 1;
     color: hsl(350, 60%, 55%);
 }

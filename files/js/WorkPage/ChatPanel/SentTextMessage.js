@@ -1,6 +1,6 @@
-function WorkPage_ChatPanel_ReceivedMessage (text, time) {
+function WorkPage_ChatPanel_SentTextMessage (text, time) {
 
-    var classPrefix = 'WorkPage_ChatPanel_ReceivedMessage'
+    var classPrefix = 'WorkPage_ChatPanel_SentTextMessage'
 
     var date = new Date(time)
 
