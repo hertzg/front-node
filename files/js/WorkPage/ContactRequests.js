@@ -1,5 +1,6 @@
 function WorkPage_ContactRequests (element, session,
-    addContactListener, signOutListener, crashListener, serviceErrorListener) {
+    showListener, hideListener, addContactListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function show (username, profile) {
         visibleUsername = username
@@ -53,6 +54,7 @@ function WorkPage_ContactRequests (element, session,
         if (numRequets === 0) {
             contactRequestPage = null
             visibleUsername = null
+            hideListener()
             return
         }
 
@@ -72,8 +74,10 @@ function WorkPage_ContactRequests (element, session,
 
     return {
         add: function (username, profile) {
-            if (contactRequestPage === null) show(username, profile)
-            else {
+            if (contactRequestPage === null) {
+                show(username, profile)
+                showListener()
+            } else {
                 requests[username] = profile
                 numRequets++
             }

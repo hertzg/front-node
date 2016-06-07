@@ -5,7 +5,7 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
 
     var classPrefix = 'WorkPage_SidePanel_Panel'
 
-    var addContactButton = document.createElement('div')
+    var addContactButton = document.createElement('button')
     addContactButton.className = classPrefix + '-addContactButton'
     addContactButton.appendChild(document.createTextNode('Add Contact'))
     addContactButton.addEventListener('click', addContactListener)
@@ -41,6 +41,14 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
         receiveTextMessage: contactList.receiveTextMessage,
         removeContact: contactList.removeContact,
         sendTextMessage: contactList.sendTextMessage,
+        disable: function () {
+            addContactButton.disabled = true
+            title.disable()
+        },
+        enable: function () {
+            addContactButton.disabled = false
+            title.enable()
+        },
     }
 
 }

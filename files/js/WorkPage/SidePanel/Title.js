@@ -80,8 +80,14 @@ function WorkPage_SidePanel_Title (username, session, accountListener, signOutLi
 
     return {
         element: element,
+        disable: function () {
+            button.disabled = true
+        },
         editProfile: function (profile) {
             buttonTextNode.nodeValue = profile.fullName || username
+        },
+        enable: function () {
+            button.disabled = false
         },
     }
 

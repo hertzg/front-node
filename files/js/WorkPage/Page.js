@@ -16,6 +16,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         accountPage = AccountPage_Page(getResourceUrl, username, session, function (profile) {
             editProfile(profile)
             hideAccountPage()
+            sidePanel.enable()
         }, function () {
 
             function hideChangePasswordPage () {
@@ -25,7 +26,10 @@ function WorkPage_Page (username, session, getResourceUrl,
             var changePasswordPage = ChangePasswordPage_Page(session, function () {
                 hideChangePasswordPage()
                 showAccountPage()
-            }, hideChangePasswordPage, function () {
+            }, function () {
+                hideChangePasswordPage()
+                sidePanel.enable()
+            }, function () {
                 hideChangePasswordPage()
                 signOutListener()
             }, function () {
@@ -39,7 +43,10 @@ function WorkPage_Page (username, session, getResourceUrl,
             element.appendChild(changePasswordPage.element)
             changePasswordPage.focus()
 
-        }, hideAccountPage, function () {
+        }, function () {
+            hideAccountPage()
+            sidePanel.enable()
+        }, function () {
             hideAccountPage()
             signOutListener()
         }, function () {
@@ -69,10 +76,14 @@ function WorkPage_Page (username, session, getResourceUrl,
             var publicProfilePage = PublicProfilePage_Page(session, username, profile, function (contactData) {
                 hidePublicProfilePage()
                 sidePanel.addContact(username, contactData)
+                sidePanel.enable()
             }, function () {
                 hidePublicProfilePage()
                 showAddContactPage()
-            }, hidePublicProfilePage, function () {
+            }, function () {
+                hidePublicProfilePage()
+                sidePanel.enable()
+            }, function () {
                 hidePublicProfilePage()
                 signOutListener()
             }, function () {
@@ -86,7 +97,10 @@ function WorkPage_Page (username, session, getResourceUrl,
             element.appendChild(publicProfilePage.element)
             publicProfilePage.focus()
 
-        }, hideAddContactPage, function () {
+        }, function () {
+            hideAddContactPage()
+            sidePanel.enable()
+        }, function () {
             hideAddContactPage()
             crashListener()
         }, function () {
@@ -100,7 +114,10 @@ function WorkPage_Page (username, session, getResourceUrl,
 
     var classPrefix = 'WorkPage_Page'
 
-    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, showAccountPage, function () {
+    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
+        sidePanel.disable()
+        showAccountPage()
+    }, function () {
 
         function hideSignOutPage () {
             element.removeChild(signOutPage.element)
@@ -135,11 +152,18 @@ function WorkPage_Page (username, session, getResourceUrl,
 
             }
 
-        }, hideSignOutPage)
+        }, function () {
+            hideSignOutPage()
+            sidePanel.enable()
+        })
         element.appendChild(signOutPage.element)
         signOutPage.focus()
+        sidePanel.disable()
 
-    }, showAddContactPage, function (contact) {
+    }, function () {
+        sidePanel.disable()
+        showAddContactPage()
+    }, function (contact) {
         var chatPanel = contact.chatPanel
         element.appendChild(chatPanel.element)
         chatPanel.focus()
@@ -155,7 +179,11 @@ function WorkPage_Page (username, session, getResourceUrl,
         contactPage = ContactPage_Page(session, contact.username, contact.getProfile(), contact.getOverrideProfile(), function (profile) {
             contact.overrideProfile(profile)
             hideContactPage()
-        }, hideContactPage, function () {
+            sidePanel.enable()
+        }, function () {
+            hideContactPage()
+            sidePanel.enable()
+        }, function () {
             hideContactPage()
             signOutListener()
         }, function () {
@@ -167,6 +195,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         })
         element.appendChild(contactPage.element)
         contactPage.focus()
+        sidePanel.disable()
 
     }, function (contact) {
 
@@ -177,7 +206,11 @@ function WorkPage_Page (username, session, getResourceUrl,
         var removeContactPage = RemoveContactPage_Page(contact.username, session, function () {
             hideRemoveContactPage()
             sidePanel.removeContact(contact)
-        }, hideRemoveContactPage, function () {
+            sidePanel.enable()
+        }, function () {
+            hideRemoveContactPage()
+            sidePanel.enable()
+        }, function () {
             hideRemoveContactPage()
             signOutListener()
         }, function () {
@@ -189,6 +222,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
+        sidePanel.disable()
 
     }, signOutListener, crashListener, serviceErrorListener)
 
@@ -199,9 +233,9 @@ function WorkPage_Page (username, session, getResourceUrl,
         ' url(' + getResourceUrl('img/clouds.svg') + ')'
     element.appendChild(sidePanel.element)
 
-    var contactRequests = WorkPage_ContactRequests(element,
-        session, sidePanel.addContact, crashListener,
-        signOutListener, crashListener, serviceErrorListener)
+    var contactRequests = WorkPage_ContactRequests(element, session,
+        sidePanel.disable, sidePanel.enable, sidePanel.addContact,
+        crashListener, signOutListener, crashListener, serviceErrorListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
     }
