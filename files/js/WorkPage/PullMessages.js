@@ -20,11 +20,6 @@ function WorkPage_PullMessages (session, messageListener,
                 return
             }
 
-            if (response === 'INTERNAL_SERVER_ERROR') {
-                schedulePull()
-                return
-            }
-
             if (response === 'INVALID_TOKEN') {
                 signOutListener()
                 return
@@ -42,13 +37,6 @@ function WorkPage_PullMessages (session, messageListener,
             request.abort()
         }
 
-    }
-
-    function schedulePull () {
-        var timeout = setTimeout(pull, 2000)
-        abortFunction = function () {
-            clearTimeout(timeout)
-        }
     }
 
     var abortFunction
