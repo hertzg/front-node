@@ -1,32 +1,45 @@
 function WorkPage_ChatPanel_Messages (session, username,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
-    function RoundTime (time) {
-        return Math.floor(time / (1000 * 60)) * 1000 * 60
+    function Day (time) {
+        return Math.floor(time / (1000 * 60 * 60 * 24))
     }
 
-    function addMessage (direction, message) {
+    function Minute (time) {
+        return Math.floor(time / (1000 * 60))
+    }
+
+    function addMessage (direction, message, time) {
+
+        var day = Day(time)
+        if (lastDay !== day) {
+            var separator = WorkPage_ChatPanel_DaySeparator(time)
+            doneMessagesElement.appendChild(separator.element)
+            lastDay = day
+        }
+
         doneMessagesElement.appendChild(message.element)
         sendingMessagesClassList.add('notFirst')
+
     }
 
     function addSentTextMessage (text, time) {
-        var roundTime = RoundTime(time)
-        if (canMerge('sent', roundTime)) {
+        var minute = Minute(time)
+        if (canMerge('sent', minute)) {
             lastMessage.addText(text)
         } else {
             var message = WorkPage_ChatPanel_SentTextMessage(text, time)
-            addMessage('sent', message)
+            addMessage('sent', message, time)
             lastMessage = message
             lastDirection = 'sent'
-            lastRoundTime = roundTime
+            lastMinute = minute
         }
         scrollDown()
     }
 
-    function canMerge (direction, roundTime) {
+    function canMerge (direction, minute) {
         return lastMessage !== null &&
-            lastDirection === direction && lastRoundTime === roundTime
+            lastDirection === direction && lastMinute === minute
     }
 
     function scrollDown () {
@@ -35,7 +48,8 @@ function WorkPage_ChatPanel_Messages (session, username,
 
     var lastMessage = null,
         lastDirection = null,
-        lastRoundTime = null
+        lastMinute = null,
+        lastDay = null
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -80,15 +94,15 @@ function WorkPage_ChatPanel_Messages (session, username,
         focus: typePanel.focus,
         sendTextMessage: addSentTextMessage,
         receiveTextMessage: function (text, time) {
-            var roundTime = RoundTime(time)
-            if (canMerge('received', roundTime)) {
+            var minute = Minute(time)
+            if (canMerge('received', minute)) {
                 lastMessage.addText(text)
             } else {
                 var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
-                addMessage('received', message)
+                addMessage('received', message, time)
                 lastMessage = message
                 lastDirection = 'received'
-                lastRoundTime = roundTime
+                lastMinute = minute
             }
             scrollDown()
         },

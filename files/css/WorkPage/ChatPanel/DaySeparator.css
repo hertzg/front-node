@@ -1,0 +1,5 @@
+.WorkPage_ChatPanel_DaySeparator {
+    color: hsl(95, 60%, 55%);
+    text-align: center;
+    border-bottom: 2px solid hsl(95, 60%, 55%);
+}
