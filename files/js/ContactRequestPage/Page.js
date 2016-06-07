@@ -15,9 +15,12 @@ function ContactRequestPage_Page (session, username,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
+    var text = 'The user has added you to his/her contacts.' +
+        ' Would you like to add him/her to your contacts?'
+
     var textElement = document.createElement('div')
     textElement.className = classPrefix + '-text'
-    textElement.appendChild(document.createTextNode('The user has added you to his/her contacts. Would you like to add him/her to your contacts?'))
+    textElement.appendChild(document.createTextNode(text))
 
     var addContactButton = document.createElement('button')
     addContactButton.className = classPrefix + '-addContactButton'
@@ -26,7 +29,8 @@ function ContactRequestPage_Page (session, username,
 
         disableItems()
 
-        var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
+        var url = 'data/addContact' +
+            '?token=' + encodeURIComponent(session.token) +
             '&username=' + encodeURIComponent(username) +
             '&fullName=' + encodeURIComponent(profile.fullName) +
             '&email=' + encodeURIComponent(profile.email) +
