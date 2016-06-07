@@ -17,3 +17,10 @@
     left: 20px;
     overflow: auto;
 }
+
+.WorkPage_ChatPanel_Messages-sendingMessages.hidden {
+    display: none;
+}
+.WorkPage_ChatPanel_Messages-sendingMessages.notFirst {
+    margin-top: 10px;
+}

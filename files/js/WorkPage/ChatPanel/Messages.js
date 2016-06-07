@@ -7,6 +7,7 @@ function WorkPage_ChatPanel_Messages (session, username,
 
     function addMessage (direction, message) {
         doneMessagesElement.appendChild(message.element)
+        sendingMessagesClassList.add('notFirst')
     }
 
     function addSentTextMessage (text, time) {
@@ -42,7 +43,9 @@ function WorkPage_ChatPanel_Messages (session, username,
     doneMessagesElement.className = classPrefix + '-doneMessages'
 
     var sendingMessagesElement = document.createElement('div')
-    sendingMessagesElement.className = classPrefix + '-sendingMessages'
+    sendingMessagesElement.className = classPrefix + '-sendingMessages hidden'
+
+    var sendingMessagesClassList = sendingMessagesElement.classList
 
     var contentElement = document.createElement('div')
     contentElement.className = classPrefix + '-content'
@@ -53,10 +56,16 @@ function WorkPage_ChatPanel_Messages (session, username,
 
         var sendingTextMessage = WorkPage_ChatPanel_SendingTextMessage(session, username, text, function (time) {
             sendingMessagesElement.removeChild(sendingTextMessage.element)
+            if (sendingMessagesElement.childNodes.length === 0) {
+                sendingMessagesClassList.add('hidden')
+            }
             addSentTextMessage(text, time)
         }, signOutListener, crashListener, serviceErrorListener)
 
         sendingMessagesElement.appendChild(sendingTextMessage.element)
+        if (sendingMessagesElement.childNodes.length === 1) {
+            sendingMessagesClassList.remove('hidden')
+        }
         scrollDown()
 
     }, closeListener)

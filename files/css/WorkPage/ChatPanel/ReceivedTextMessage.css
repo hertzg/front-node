@@ -1,7 +1,7 @@
 .WorkPage_ChatPanel_ReceivedTextMessage {
     background-color: hsl(95, 70%, 85%);
     padding: 12px;
-    margin-top: 8px;
+    margin-top: 10px;
     white-space: normal;
     word-wrap: break-word;
     line-height: 20px;
