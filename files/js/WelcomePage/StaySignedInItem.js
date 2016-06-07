@@ -2,7 +2,7 @@ function WelcomePage_StaySignedInItem () {
 
     function check () {
         checked = true
-        buttonNode.nodeValue = '\u2713'
+        buttonNode.nodeValue = '\u2714'
         buttonElement.removeEventListener('click', check)
         buttonElement.addEventListener('click', uncheck)
     }
