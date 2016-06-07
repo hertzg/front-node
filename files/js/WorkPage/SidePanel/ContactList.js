@@ -65,12 +65,12 @@ function WorkPage_SidePanel_ContactList (session, getResourceUrl,
             if (contact === undefined) return
             contact.online()
         },
-        receiveTextMessage: function (username, text) {
+        receiveTextMessage: function (username, text, time) {
 
             var contact = contacts[username]
             if (contact === undefined) return
 
-            contact.receiveTextMessage(text)
+            contact.receiveTextMessage(text, time)
 
             if (selectedContact === null) {
                 selectedContact = contact

@@ -279,7 +279,7 @@ function WorkPage_Page (username, session, getResourceUrl,
         }
 
         if (action === 'receiveTextMessage') {
-            sidePanel.receiveTextMessage(data[0], data[1])
+            sidePanel.receiveTextMessage(data[0], data[1], data[2])
             return
         }
 

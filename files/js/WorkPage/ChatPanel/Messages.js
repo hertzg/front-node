@@ -38,8 +38,8 @@ function WorkPage_ChatPanel_Messages (session, username,
     return {
         element: element,
         focus: typePanel.focus,
-        receiveTextMessage: function (text) {
-            var message = WorkPage_ChatPanel_ReceivedMessage(text)
+        receiveTextMessage: function (text, time) {
+            var message = WorkPage_ChatPanel_ReceivedMessage(text, time)
             doneMessagesElement.appendChild(message.element)
             contentElement.scrollTop = contentElement.scrollHeight
         },
