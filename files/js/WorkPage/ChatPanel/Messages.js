@@ -23,6 +23,25 @@ function WorkPage_ChatPanel_Messages (session, username,
 
     }
 
+    function addReceivedTextMessage (text, time) {
+        var minute = Minute(time)
+        if (canMerge('received', minute)) {
+            lastMessage.addText(text)
+        } else {
+            var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
+            addMessage('received', message, time)
+            lastMessage = message
+            lastDirection = 'received'
+            lastMinute = minute
+        }
+        scrollDown()
+        storeMessage({
+            direction: 'received',
+            text: text,
+            time: time,
+        })
+    }
+
     function addSentTextMessage (text, time) {
         var minute = Minute(time)
         if (canMerge('sent', minute)) {
@@ -35,6 +54,11 @@ function WorkPage_ChatPanel_Messages (session, username,
             lastMinute = minute
         }
         scrollDown()
+        storeMessage({
+            direction: 'sent',
+            text: text,
+            time: time,
+        })
     }
 
     function canMerge (direction, minute) {
@@ -46,10 +70,21 @@ function WorkPage_ChatPanel_Messages (session, username,
         contentElement.scrollTop = contentElement.scrollHeight
     }
 
+    function storeMessage (message) {
+        messages.push(message)
+        if (messages.length > 1024) messages.shift()
+        try {
+            localStorage['messages_' + username] = JSON.stringify(messages)
+        } catch (e) {
+        }
+    }
+
     var lastMessage = null,
         lastDirection = null,
         lastMinute = null,
         lastDay = null
+
+    var messages = []
 
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
@@ -89,23 +124,13 @@ function WorkPage_ChatPanel_Messages (session, username,
     element.appendChild(contentElement)
     element.appendChild(typePanel.element)
 
+    WorkPage_ChatPanel_RestoreMessages(username, addSentTextMessage, addReceivedTextMessage)
+
     return {
         element: element,
         focus: typePanel.focus,
+        receiveTextMessage: addReceivedTextMessage,
         sendTextMessage: addSentTextMessage,
-        receiveTextMessage: function (text, time) {
-            var minute = Minute(time)
-            if (canMerge('received', minute)) {
-                lastMessage.addText(text)
-            } else {
-                var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
-                addMessage('received', message, time)
-                lastMessage = message
-                lastDirection = 'received'
-                lastMinute = minute
-            }
-            scrollDown()
-        },
     }
 
 }
