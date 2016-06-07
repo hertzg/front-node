@@ -35,11 +35,7 @@ function WorkPage_ChatPanel_Messages (session, username,
             lastMinute = minute
         }
         scrollDown()
-        storeMessage({
-            direction: 'received',
-            text: text,
-            time: time,
-        })
+        storeMessage(['received', text, time])
     }
 
     function addSentTextMessage (text, time) {
@@ -54,11 +50,7 @@ function WorkPage_ChatPanel_Messages (session, username,
             lastMinute = minute
         }
         scrollDown()
-        storeMessage({
-            direction: 'sent',
-            text: text,
-            time: time,
-        })
+        storeMessage(['sent', text, time])
     }
 
     function canMerge (direction, minute) {

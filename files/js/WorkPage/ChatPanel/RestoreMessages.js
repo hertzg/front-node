@@ -15,10 +15,10 @@ function WorkPage_ChatPanel_RestoreMessages (username,
     }
 
     messages.forEach(function (message) {
-        if (message.direction === 'sent') {
-            addSentTextMessage(message.text, message.time)
+        if (message[0] === 'sent') {
+            addSentTextMessage(message[1], message[2])
         } else {
-            addReceivedTextMessage(message.text, message.time)
+            addReceivedTextMessage(message[1], message[2])
         }
     })
 
