@@ -112,8 +112,10 @@ function WorkPage_Page (username, session, getResourceUrl,
             hideSignOutPage()
             signOutListener()
 
+            var url = 'data/signOut?token=' + encodeURIComponent(session.token)
+
             var request = new XMLHttpRequest
-            request.open('get', 'data/signOut?token=' + encodeURIComponent(session.token))
+            request.open('get', url)
             request.send()
             request.onload = function () {
 

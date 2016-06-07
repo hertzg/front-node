@@ -4,7 +4,7 @@ function WorkPage_PullMessages (session, messageListener,
     function pull () {
 
         var request = new XMLHttpRequest
-        request.open('get', 'data/pullMessages?token=' + encodeURIComponent(session.token))
+        request.open('get', url)
         request.send()
         request.onload = function () {
 
@@ -40,7 +40,7 @@ function WorkPage_PullMessages (session, messageListener,
     }
 
     var abortFunction
-
+    var url = 'data/pullMessages?token=' + encodeURIComponent(session.token)
     pull()
 
     return {

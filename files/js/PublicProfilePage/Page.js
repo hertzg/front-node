@@ -24,7 +24,8 @@ function PublicProfilePage_Page (session, username,
     })
     button.addEventListener('click', function () {
 
-        var url = 'data/addContact?token=' + encodeURIComponent(session.token) +
+        var url = 'data/addContact' +
+            '?token=' + encodeURIComponent(session.token) +
             '&username=' + encodeURIComponent(username) +
             '&fullName=' + encodeURIComponent(profile.fullName) +
             '&email=' + encodeURIComponent(profile.email) +
