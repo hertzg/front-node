@@ -33,7 +33,10 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
     sendButton.disabled = true
     sendButton.className = classPrefix + '-sendButton'
     sendButton.appendChild(document.createTextNode('Send'))
-    sendButton.addEventListener('click', submit)
+    sendButton.addEventListener('click', function () {
+        submit()
+        textarea.focus()
+    })
 
     var element = document.createElement('div')
     element.className = classPrefix
