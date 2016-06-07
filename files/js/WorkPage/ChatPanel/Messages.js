@@ -1,6 +1,10 @@
 function WorkPage_ChatPanel_Messages (session, username,
     closeListener, signOutListener, crashListener, serviceErrorListener) {
 
+    function addMessage (message) {
+        doneMessagesElement.appendChild(message.element)
+    }
+
     var classPrefix = 'WorkPage_ChatPanel_Messages'
 
     var doneMessagesElement = document.createElement('div')
@@ -17,9 +21,8 @@ function WorkPage_ChatPanel_Messages (session, username,
     var typePanel = WorkPage_ChatPanel_TypePanel(function (text) {
 
         var sendingMessage = WorkPage_ChatPanel_SendingMessage(session, username, text, function (time) {
-            var sentMessage = WorkPage_ChatPanel_SentMessage(text, time)
             sendingMessagesElement.removeChild(sendingMessage.element)
-            doneMessagesElement.appendChild(sentMessage.element)
+            addMessage(WorkPage_ChatPanel_SentMessage(text, time))
         }, signOutListener, crashListener, serviceErrorListener)
 
         sendingMessagesElement.appendChild(sendingMessage.element)
@@ -41,8 +44,7 @@ function WorkPage_ChatPanel_Messages (session, username,
             contentElement.scrollTop = contentElement.scrollHeight
         },
         sendTextMessage: function (text, time) {
-            var message = WorkPage_ChatPanel_SentMessage(text, time)
-            doneMessagesElement.appendChild(message.element)
+            addMessage(WorkPage_ChatPanel_SentMessage(text, time))
             contentElement.scrollTop = contentElement.scrollHeight
         },
     }
