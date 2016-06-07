@@ -4,7 +4,8 @@ function WorkPage_ChatPanel_SentTextMessage (text, time) {
 
     var date = new Date(time)
 
-    var timeString = TwoDigitPad(date.getUTCHours() + ':' + date.getUTCMinutes())
+    var timeString = TwoDigitPad(date.getUTCHours()) +
+        ':' + TwoDigitPad(date.getUTCMinutes())
 
     var timeElement = document.createElement('div')
     timeElement.className = classPrefix + '-time'
