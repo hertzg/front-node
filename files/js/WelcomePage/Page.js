@@ -103,8 +103,6 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
     signUpButton.appendChild(document.createTextNode('Create an Account'))
     signUpButton.addEventListener('click', signUpListener)
 
-    var form = document.createElement('form')
-
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(logoWrapperElement)
