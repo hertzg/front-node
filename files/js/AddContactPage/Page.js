@@ -23,6 +23,7 @@ function AddContactPage_Page (username, userFoundListener,
     form.addEventListener('submit', function (e) {
 
         e.preventDefault()
+        usernameItem.clearError()
 
         var username = usernameItem.getValue()
         if (username === null) return

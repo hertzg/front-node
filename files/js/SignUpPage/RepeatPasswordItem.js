@@ -58,6 +58,11 @@ function SignUpPage_RepeatPasswordItem (backListener) {
 
     return {
         element: element,
+        clearError: function () {
+            if (errorElement === null) return
+            hideError()
+            errorElement = null
+        },
         disable: function () {
             input.disabled = true
             input.blur()

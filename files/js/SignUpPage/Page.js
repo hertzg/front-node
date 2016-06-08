@@ -43,6 +43,10 @@ function SignUpPage_Page (getResourceUrl, backListener,
     form.addEventListener('submit', function (e) {
 
         e.preventDefault()
+        usernameItem.clearError()
+        passwordItem.clearError()
+        repeatPasswordItem.clearError()
+        captchaItem.clearError()
 
         var username = usernameItem.getValue()
         if (username === null) return

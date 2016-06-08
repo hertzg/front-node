@@ -32,6 +32,8 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
     signInForm.addEventListener('submit', function (e) {
 
         e.preventDefault()
+        usernameItem.clearError()
+        passwordItem.clearError()
 
         var username = usernameItem.getValue()
         if (username === null) return

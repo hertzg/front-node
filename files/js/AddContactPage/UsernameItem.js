@@ -59,6 +59,11 @@ function AddContactPage_UsernameItem (username, closeListener) {
     return {
         element: element,
         showError: showError,
+        clearError: function () {
+            if (errorElement === null) return
+            hideError()
+            errorElement = null
+        },
         disable: function () {
             input.disabled = true
             input.blur()

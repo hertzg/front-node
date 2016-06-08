@@ -32,6 +32,9 @@ function ChangePasswordPage_Page (session, backListener,
     form.addEventListener('submit', function (e) {
 
         e.preventDefault()
+        currentPasswordItem.clearError()
+        newPasswordItem.clearError()
+        repeatNewPasswordItem.clearError()
 
         var currentPassword = currentPasswordItem.getValue()
         if (currentPassword === null) return
