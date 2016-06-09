@@ -1,6 +1,6 @@
-function AccountPage_Page (getResourceUrl, username, session,
-    editProfileListener, changePasswordListener, closeListener,
-    signOutListener, crashListener, serviceErrorListener) {
+function AccountPage_Page (getResourceUrl,
+    username, session, editProfileListener,
+    changePasswordListener, closeListener, signOutListener) {
 
     function checkChanges () {
         saveChangesButton.disabled =
@@ -11,6 +11,22 @@ function AccountPage_Page (getResourceUrl, username, session,
             phoneItem.getValue() === profile.phone &&
             phoneItem.getPrivacyValue() === profile.phonePrivacy
     }
+
+    function showError (_error) {
+
+        fullNameItem.enable()
+        emailItem.enable()
+        phoneItem.enable()
+        saveChangesButton.disabled = false
+        saveChangesNode.nodeValue = 'Save Changes'
+
+        error = _error
+        form.insertBefore(error.element, fullNameItem.element)
+        saveChangesButton.focus()
+
+    }
+
+    var error = null
 
     var classPrefix = 'AccountPage_Page'
 
@@ -48,6 +64,11 @@ function AccountPage_Page (getResourceUrl, username, session,
 
         e.preventDefault()
 
+        if (error !== null) {
+            form.removeChild(error.element)
+            error = null
+        }
+
         var fullName = fullNameItem.getValue(),
             fullNamePrivacy = fullNameItem.getPrivacyValue(),
             email = emailItem.getValue(),
@@ -73,17 +94,20 @@ function AccountPage_Page (getResourceUrl, username, session,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
@@ -93,7 +117,7 @@ function AccountPage_Page (getResourceUrl, username, session,
             }
 
             if (response !== true) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 

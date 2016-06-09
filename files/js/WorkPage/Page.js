@@ -59,12 +59,6 @@ function WorkPage_Page (username, session, getResourceUrl,
         }, function () {
             hideAccountPage()
             signOutListener()
-        }, function () {
-            hideAccountPage()
-            crashListener()
-        }, function () {
-            hideAccountPage()
-            serviceErrorListener()
         })
         element.appendChild(accountPage.element)
         accountPage.focus()
