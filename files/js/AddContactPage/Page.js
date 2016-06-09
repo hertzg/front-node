@@ -1,5 +1,18 @@
-function AddContactPage_Page (username, userFoundListener,
-    closeListener, crashListener, serviceErrorListener) {
+function AddContactPage_Page (username, userFoundListener, closeListener) {
+
+    function showError (_error) {
+
+        usernameItem.enable()
+        button.disabled = false
+        buttonNode.nodeValue = 'Find User'
+
+        error = _error
+        form.insertBefore(error.element, usernameItem.element)
+        button.focus()
+
+    }
+
+    var error = null
 
     var classPrefix = 'AddContactPage_Page'
 
@@ -25,6 +38,11 @@ function AddContactPage_Page (username, userFoundListener,
         e.preventDefault()
         usernameItem.clearError()
 
+        if (error !== null) {
+            form.removeChild(error.element)
+            error = null
+        }
+
         var username = usernameItem.getValue()
         if (username === null) return
 
@@ -37,17 +55,20 @@ function AddContactPage_Page (username, userFoundListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 

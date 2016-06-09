@@ -98,12 +98,6 @@ function WorkPage_Page (username, session, getResourceUrl,
         }, function () {
             hideAddContactPage()
             enableBackground()
-        }, function () {
-            hideAddContactPage()
-            crashListener()
-        }, function () {
-            hideAddContactPage()
-            serviceErrorListener()
         })
         element.appendChild(addContactPage.element)
         addContactPage.focus()
