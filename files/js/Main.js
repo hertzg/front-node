@@ -28,7 +28,10 @@
                 body.removeChild(signUpPage.element)
             }
 
-            var signUpPage = SignUpPage_Page(getResourceUrl, showWelcomePage, function (username, session) {
+            var signUpPage = SignUpPage_Page(getResourceUrl, function () {
+                hideSignUpPage()
+                showWelcomePage()
+            }, function (username, session) {
                 hideSignUpPage()
                 showWorkPage(username, session)
             }, function () {
