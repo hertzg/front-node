@@ -1,6 +1,5 @@
 function ContactPage_Page (session, username, profile,
-    overrideProfile, overrideProfileListener, closeListener,
-    signOutListener, crashListener, serviceErrorListener) {
+    overrideProfile, overrideProfileListener, closeListener, signOutListener) {
 
     function checkChanges () {
         saveChangesButton.disabled =
@@ -8,6 +7,22 @@ function ContactPage_Page (session, username, profile,
             emailItem.getValue() === overrideProfile.email &&
             phoneItem.getValue() === overrideProfile.phone
     }
+
+    function showError (_error) {
+
+        fullNameItem.enable()
+        emailItem.enable()
+        phoneItem.enable()
+        saveChangesButton.disabled = false
+        saveChangesNode.nodeValue = 'Save Changes'
+
+        error = _error
+        form.insertBefore(error.element, fullNameItem.element)
+        button.focus()
+
+    }
+
+    var error = null
 
     var classPrefix = 'ContactPage_Page'
 
@@ -43,6 +58,11 @@ function ContactPage_Page (session, username, profile,
 
         e.preventDefault()
 
+        if (error !== null) {
+            form.removeChild(error.element)
+            error = null
+        }
+
         var fullName = fullNameItem.getValue()
         var email = emailItem.getValue()
         var phone = phoneItem.getValue()
@@ -63,17 +83,20 @@ function ContactPage_Page (session, username, profile,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
@@ -83,7 +106,7 @@ function ContactPage_Page (session, username, profile,
             }
 
             if (response !== true) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
