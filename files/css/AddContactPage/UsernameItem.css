@@ -10,15 +10,15 @@
     background-color: hsl(95, 70%, 95%);
 }
 .AddContactPage_UsernameItem-input.error {
-    border-color: hsl(350, 60%, 55%);
-    background-color: hsl(350, 70%, 95%);
+    border-color: hsl(350, 70%, 55%);
+    background-color: hsl(350, 80%, 95%);
 }
 .AddContactPage_UsernameItem-input[disabled] {
     background-color: hsl(0, 0%, 95%);
 }
 
 .AddContactPage_UsernameItem-error {
-    color: hsl(350, 60%, 55%);
+    color: hsl(350, 70%, 55%);
     white-space: normal;
     line-height: 20px;
     padding-top: 5px;
