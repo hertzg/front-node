@@ -45,12 +45,6 @@
         }, function (username, session) {
             hideWelcomePage()
             showWorkPage(username, session)
-        }, function () {
-            hideWelcomePage()
-            showCrashPage()
-        }, function () {
-            hideWelcomePage()
-            showServiceErrorPage()
         })
 
         body.appendChild(welcomePage.element)

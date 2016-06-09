@@ -1,5 +1,4 @@
-function WelcomePage_Page (getResourceUrl, signUpListener,
-    signInListener, crashListener, serviceErrorListener) {
+function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -8,6 +7,15 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         signInButton.disabled = false
         signInNode.nodeValue = 'Sign In'
     }
+
+    function showError (_error) {
+        enableItems()
+        error = _error
+        signInForm.insertBefore(error.element, usernameItem.element)
+        signInButton.focus()
+    }
+
+    var error = null
 
     var classPrefix = 'WelcomePage_Page'
 
@@ -35,6 +43,11 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         usernameItem.clearError()
         passwordItem.clearError()
 
+        if (error !== null) {
+            signInForm.removeChild(error.element)
+            error = null
+        }
+
         var username = usernameItem.getValue()
         if (username === null) return
 
@@ -54,17 +67,20 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
