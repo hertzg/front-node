@@ -103,8 +103,12 @@ function ContactPage_Page (session, username, profile,
     frameElement.appendChild(titleElement)
     frameElement.appendChild(form)
 
+    var alignerElement = document.createElement('div')
+    alignerElement.className = classPrefix + '-aligner'
+
     var element = document.createElement('div')
     element.className = classPrefix
+    element.appendChild(alignerElement)
     element.appendChild(frameElement)
     element.addEventListener('click', function (e) {
         if (e.button !== 0) return
