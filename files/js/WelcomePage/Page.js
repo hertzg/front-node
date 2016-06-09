@@ -4,7 +4,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener,
     function enableItems () {
         usernameItem.enable()
         passwordItem.enable()
-        staySignedInItem.disable()
+        staySignedInItem.enable()
         signInButton.disabled = false
         signInNode.nodeValue = 'Sign In'
     }
