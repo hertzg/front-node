@@ -42,12 +42,6 @@ function WorkPage_Page (username, session, getResourceUrl,
             }, function () {
                 hideChangePasswordPage()
                 signOutListener()
-            }, function () {
-                hideChangePasswordPage()
-                crashListener()
-            }, function () {
-                hideChangePasswordPage()
-                serviceErrorListener()
             })
             hideAccountPage()
             element.appendChild(changePasswordPage.element)

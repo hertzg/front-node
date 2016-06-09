@@ -1,5 +1,21 @@
-function ChangePasswordPage_Page (session, backListener,
-    closeListener, signOutListener, crashListener, serviceErrorListener) {
+function ChangePasswordPage_Page (session,
+    backListener, closeListener, signOutListener) {
+
+    function showError (_error) {
+
+        currentPasswordItem.enable()
+        newPasswordItem.enable()
+        repeatNewPasswordItem.enable()
+        button.disabled = false
+        buttonNode.nodeValue = 'Save'
+
+        error = _error
+        form.insertBefore(error.element, currentPasswordItem.element)
+        button.focus()
+
+    }
+
+    var error = null
 
     var classPrefix = 'ChangePasswordPage_Page'
 
@@ -36,6 +52,11 @@ function ChangePasswordPage_Page (session, backListener,
         newPasswordItem.clearError()
         repeatNewPasswordItem.clearError()
 
+        if (error !== null) {
+            form.removeChild(error.element)
+            error = null
+        }
+
         var currentPassword = currentPasswordItem.getValue()
         if (currentPassword === null) return
 
@@ -59,17 +80,20 @@ function ChangePasswordPage_Page (session, backListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
@@ -91,7 +115,7 @@ function ChangePasswordPage_Page (session, backListener,
             }
 
             if (response !== true) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
