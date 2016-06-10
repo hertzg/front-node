@@ -4,6 +4,7 @@ function PublicProfilePage_Page (session, username, profile,
     function showError (_error) {
 
         button.disabled = false
+        buttonNode.nodeValue = 'Add Contact'
 
         error = _error
         frameElement.insertBefore(error.element, button)
@@ -23,9 +24,11 @@ function PublicProfilePage_Page (session, username, profile,
     titleElement.className = classPrefix + '-title'
     titleElement.appendChild(document.createTextNode(username))
 
+    var buttonNode = document.createTextNode('Add Contact')
+
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
-    button.appendChild(document.createTextNode('Add Contact'))
+    button.appendChild(buttonNode)
     button.addEventListener('keydown', function (e) {
         if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return
         if (e.keyCode === 27) {
@@ -48,6 +51,7 @@ function PublicProfilePage_Page (session, username, profile,
             '&phone=' + encodeURIComponent(profile.phone)
 
         button.disabled = true
+        buttonNode.nodeValue = 'Adding...'
 
         var request = new XMLHttpRequest
         request.open('get', url)
