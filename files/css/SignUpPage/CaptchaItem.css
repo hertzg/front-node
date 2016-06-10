@@ -1,10 +1,33 @@
 .SignUpPage_CaptchaItem-image {
+    display: inline-block;
+    vertical-align: top;
     background-color: hsl(0, 0%, 95%);
     width: 140px;
-    height: 50px;
-    line-height: 50px;
+    height: 44px;
+    line-height: 44px;
     background-repeat: no-repeat;
     text-align: center;
+}
+.SignUpPage_CaptchaItem-image.error {
+    background-color: hsl(350, 70%, 55%);
+    color: white;
+}
+
+.SignUpPage_CaptchaItem-reloadButton {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    cursor: pointer;
+    color: white;
+    background-color: hsl(95, 60%, 55%);
+    text-align: center;
+    width: 110px;
+}
+.SignUpPage_CaptchaItem-reloadButton:active {
+    color: hsl(95, 70%, 70%);
+    background-color: hsl(95, 60%, 35%);
 }
 
 .SignUpPage_CaptchaItem-input {

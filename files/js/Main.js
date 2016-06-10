@@ -34,12 +34,6 @@
             }, function (username, session) {
                 hideSignUpPage()
                 showWorkPage(username, session)
-            }, function () {
-                hideSignUpPage()
-                showCrashPage()
-            }, function () {
-                hideSignUpPage()
-                showServiceErrorPage()
             })
             hideWelcomePage()
             body.appendChild(signUpPage.element)

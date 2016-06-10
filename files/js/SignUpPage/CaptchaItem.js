@@ -1,5 +1,13 @@
-function SignUpPage_CaptchaItem (backListener,
-    crashListener, serviceErrorListener) {
+function SignUpPage_CaptchaItem (backListener) {
+
+    function disable () {
+        input.disabled = true
+        input.blur()
+    }
+
+    function enable () {
+        input.disabled = false
+    }
 
     function hideError () {
         inputClassList.remove('error')
@@ -12,9 +20,65 @@ function SignUpPage_CaptchaItem (backListener,
         errorElement = null
     }
 
+    function load () {
+
+        disable()
+
+        var request = new XMLHttpRequest
+        request.open('get', 'data/captcha')
+        request.send()
+        request.onerror = function () {
+            imageElement.removeChild(loadingNode)
+            showCaptchaError()
+        }
+        request.onload = function () {
+
+            imageElement.removeChild(loadingNode)
+
+            if (request.status !== 200) {
+                showCaptchaError()
+                return
+            }
+
+            try {
+                var response = JSON.parse(request.responseText)
+            } catch (e) {
+                showCaptchaError()
+                return
+            }
+
+            enable()
+            setCaptcha(response)
+
+        }
+
+    }
+
     function setCaptcha (captcha) {
         imageElement.style.backgroundImage = 'url(' + captcha.image + ')'
         token = captcha.token
+    }
+
+    function showCaptchaError () {
+
+        var reloadButton = document.createElement('button')
+        reloadButton.type = 'button'
+        reloadButton.className = classPrefix + '-reloadButton'
+        reloadButton.appendChild(document.createTextNode('Reload'))
+        reloadButton.addEventListener('click', function () {
+            imageBarElement.removeChild(reloadButton)
+            imageElement.removeChild(errorNode)
+            imageElement.appendChild(loadingNode)
+            imageClassList.remove('error')
+            load()
+        })
+
+        var errorNode = document.createTextNode('Failed')
+
+        imageBarElement.appendChild(reloadButton)
+        imageElement.appendChild(errorNode)
+        imageClassList.add('error')
+
     }
 
     function showError (callback) {
@@ -51,6 +115,11 @@ function SignUpPage_CaptchaItem (backListener,
     imageElement.className = classPrefix + '-image'
     imageElement.appendChild(loadingNode)
 
+    var imageClassList = imageElement.classList
+
+    var imageBarElement = document.createElement('div')
+    imageBarElement.appendChild(imageElement)
+
     var input = document.createElement('input')
     input.id = label.htmlFor
     input.type = 'text'
@@ -68,49 +137,20 @@ function SignUpPage_CaptchaItem (backListener,
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(labelElement)
-    element.appendChild(imageElement)
+    element.appendChild(imageBarElement)
     element.appendChild(input)
 
-    var request = new XMLHttpRequest
-    request.open('get', 'data/captcha')
-    request.send()
-    request.onerror = function () {
-        imageElement.removeChild(loadingNode)
-    }
-    request.onload = function () {
-
-        imageElement.removeChild(loadingNode)
-
-        if (request.status !== 200) {
-            serviceErrorListener()
-            return
-        }
-
-        try {
-            var response = JSON.parse(request.responseText)
-        } catch (e) {
-            crashListener()
-            return
-        }
-
-        setCaptcha(response)
-
-    }
+    load()
 
     return {
+        disable: disable,
         element: element,
+        enable: enable,
         showError: showError,
         clearError: function () {
             if (errorElement === null) return
             hideError()
             errorElement = null
-        },
-        disable: function () {
-            input.disabled = true
-            input.blur()
-        },
-        enable: function () {
-            input.disabled = false
         },
         getValue: function () {
 

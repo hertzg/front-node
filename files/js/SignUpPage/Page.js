@@ -1,5 +1,4 @@
-function SignUpPage_Page (getResourceUrl, backListener,
-    signUpListener, crashListener, serviceErrorListener) {
+function SignUpPage_Page (getResourceUrl, backListener, signUpListener) {
 
     function enableItems () {
         usernameItem.enable()
@@ -33,8 +32,7 @@ function SignUpPage_Page (getResourceUrl, backListener,
 
     var repeatPasswordItem = SignUpPage_RepeatPasswordItem(backListener)
 
-    var captchaItem = SignUpPage_CaptchaItem(
-        backListener, crashListener, serviceErrorListener)
+    var captchaItem = SignUpPage_CaptchaItem(backListener)
 
     var buttonNode = document.createTextNode('Sign Up')
 
