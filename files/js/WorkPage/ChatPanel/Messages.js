@@ -25,32 +25,32 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
 
     function addReceivedTextMessage (text, time) {
         var minute = Minute(time)
-        if (canMerge('received', minute)) {
+        if (canMerge('receivedText', minute)) {
             lastMessage.add(text)
         } else {
             var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
-            addMessage('received', message, time)
+            addMessage('receivedText', message, time)
             lastMessage = message
-            lastDirection = 'received'
+            lastDirection = 'receivedText'
             lastMinute = minute
         }
         scrollDown()
-        storeMessage(['received', text, time])
+        storeMessage(['receivedText', text, time])
     }
 
     function addSentTextMessage (text, time) {
         var minute = Minute(time)
-        if (canMerge('sent', minute)) {
+        if (canMerge('sentText', minute)) {
             lastMessage.add(text)
         } else {
             var message = WorkPage_ChatPanel_SentTextMessage(text, time)
-            addMessage('sent', message, time)
+            addMessage('sentText', message, time)
             lastMessage = message
-            lastDirection = 'sent'
+            lastDirection = 'sentText'
             lastMinute = minute
         }
         scrollDown()
-        storeMessage(['sent', text, time])
+        storeMessage(['sentText', text, time])
     }
 
     function canMerge (direction, minute) {
