@@ -22,12 +22,15 @@ function ContactRequestPage_Page (session, username,
     textElement.className = classPrefix + '-text'
     textElement.appendChild(document.createTextNode(text))
 
+    var addContactNode = document.createTextNode('Add Contact')
+
     var addContactButton = document.createElement('button')
     addContactButton.className = classPrefix + '-addContactButton'
-    addContactButton.appendChild(document.createTextNode('Add Contact'))
+    addContactButton.appendChild(addContactNode)
     addContactButton.addEventListener('click', function () {
 
         disableItems()
+        addContactNode.nodeValue = 'Adding...'
 
         var url = 'data/addContact' +
             '?token=' + encodeURIComponent(session.token) +
@@ -69,12 +72,15 @@ function ContactRequestPage_Page (session, username,
 
     })
 
+    var ignoreNode = document.createTextNode('Ignore')
+
     var ignoreButton = document.createElement('button')
     ignoreButton.className = classPrefix + '-ignoreButton'
-    ignoreButton.appendChild(document.createTextNode('Ignore'))
+    ignoreButton.appendChild(ignoreNode)
     ignoreButton.addEventListener('click', function () {
 
         disableItems()
+        ignoreNode.nodeValue = 'Ignoring...'
 
         var url = 'data/ignoreRequest' +
             '?token=' + encodeURIComponent(session.token) +
