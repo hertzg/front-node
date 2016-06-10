@@ -7,7 +7,7 @@ function AddContactPage_Page (username, userFoundListener, closeListener) {
         buttonNode.nodeValue = 'Find User'
 
         error = _error
-        form.insertBefore(error.element, usernameItem.element)
+        form.insertBefore(error.element, button)
         button.focus()
 
     }

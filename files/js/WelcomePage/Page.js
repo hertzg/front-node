@@ -11,7 +11,7 @@ function WelcomePage_Page (getResourceUrl, signUpListener, signInListener) {
     function showError (_error) {
         enableItems()
         error = _error
-        signInForm.insertBefore(error.element, usernameItem.element)
+        signInForm.insertBefore(error.element, signInButton)
         signInButton.focus()
     }
 

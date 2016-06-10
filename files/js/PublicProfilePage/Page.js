@@ -1,6 +1,17 @@
-function PublicProfilePage_Page (session, username,
-    profile, addContactListener, backListener, closeListener,
-    signOutListener, crashListener, serviceErrorListener) {
+function PublicProfilePage_Page (session, username, profile,
+    addContactListener, backListener, closeListener, signOutListener) {
+
+    function showError (_error) {
+
+        button.disabled = false
+
+        error = _error
+        frameElement.insertBefore(error.element, button)
+        button.focus()
+
+    }
+
+    var error = null
 
     var backButton = BackButton(backListener)
 
@@ -24,6 +35,11 @@ function PublicProfilePage_Page (session, username,
     })
     button.addEventListener('click', function () {
 
+        if (error !== null) {
+            frameElement.removeChild(error.element)
+            error = null
+        }
+
         var url = 'data/addContact' +
             '?token=' + encodeURIComponent(session.token) +
             '&username=' + encodeURIComponent(username) +
@@ -36,17 +52,20 @@ function PublicProfilePage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 

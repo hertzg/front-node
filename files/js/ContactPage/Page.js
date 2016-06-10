@@ -17,8 +17,8 @@ function ContactPage_Page (session, username, profile,
         saveChangesNode.nodeValue = 'Save Changes'
 
         error = _error
-        form.insertBefore(error.element, fullNameItem.element)
-        button.focus()
+        form.insertBefore(error.element, saveChangesButton)
+        saveChangesButton.focus()
 
     }
 

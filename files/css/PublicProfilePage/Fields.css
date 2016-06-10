@@ -1,3 +1,7 @@
+.PublicProfilePage_Fields {
+    padding-bottom: 10px;
+}
+
 .PublicProfilePage_Fields-empty {
     color: hsl(0, 0%, 70%);
     text-align: center;

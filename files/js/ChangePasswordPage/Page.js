@@ -10,7 +10,7 @@ function ChangePasswordPage_Page (session,
         buttonNode.nodeValue = 'Save'
 
         error = _error
-        form.insertBefore(error.element, currentPasswordItem.element)
+        form.insertBefore(error.element, button)
         button.focus()
 
     }

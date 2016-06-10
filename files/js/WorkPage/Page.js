@@ -84,12 +84,6 @@ function WorkPage_Page (username, session, getResourceUrl,
             }, function () {
                 hidePublicProfilePage()
                 signOutListener()
-            }, function () {
-                hidePublicProfilePage()
-                crashListener()
-            }, function () {
-                hidePublicProfilePage()
-                serviceErrorListener()
             })
             hideAddContactPage()
             element.appendChild(publicProfilePage.element)

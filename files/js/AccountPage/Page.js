@@ -21,7 +21,7 @@ function AccountPage_Page (getResourceUrl,
         saveChangesNode.nodeValue = 'Save Changes'
 
         error = _error
-        form.insertBefore(error.element, fullNameItem.element)
+        form.insertBefore(error.element, saveChangesButton)
         saveChangesButton.focus()
 
     }
