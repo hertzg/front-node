@@ -194,12 +194,6 @@ function WorkPage_Page (username, session, getResourceUrl,
         }, function () {
             hideRemoveContactPage()
             signOutListener()
-        }, function () {
-            hideRemoveContactPage()
-            crashListener()
-        }, function () {
-            hideRemoveContactPage()
-            serviceErrorListener()
         })
         element.appendChild(removeContactPage.element)
         removeContactPage.focus()
