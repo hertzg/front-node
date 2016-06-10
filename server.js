@@ -24,6 +24,7 @@ pages['/data/restoreSession'] = require('./lib/DataPage/RestoreSession.js')
 pages['/data/signIn'] = require('./lib/DataPage/SignIn.js')
 pages['/data/signOut'] = require('./lib/DataPage/SignOut.js')
 pages['/data/signUp'] = require('./lib/DataPage/SignUp.js')
+pages['/data/sendFileMessage'] = require('./lib/DataPage/SendFileMessage.js')
 pages['/data/sendTextMessage'] = require('./lib/DataPage/SendTextMessage.js')
 scanFiles('files', pages)
 

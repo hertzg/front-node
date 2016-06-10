@@ -65,6 +65,19 @@ function WorkPage_SidePanel_ContactList (username, session, getResourceUrl,
             if (contact === undefined) return
             contact.online()
         },
+        receiveFileMessage: function (username, name, size, time) {
+
+            var contact = contacts[username]
+            if (contact === undefined) return
+
+            contact.receiveFileMessage(name, size, time)
+
+            if (selectedContact === null) {
+                selectedContact = contact
+                selectListener(contact)
+            }
+
+        },
         receiveTextMessage: function (username, text, time) {
 
             var contact = contacts[username]
@@ -88,6 +101,19 @@ function WorkPage_SidePanel_ContactList (username, session, getResourceUrl,
             delete contacts[contact.username]
             numContacts--
             if (numContacts === 0) contentElement.appendChild(emptyElement)
+        },
+        sendFileMessage: function (username, name, size, time) {
+
+            var contact = contacts[username]
+            if (contact === undefined) return
+
+            contact.sendFileMessage(name, size, time)
+
+            if (selectedContact === null) {
+                selectedContact = contact
+                selectListener(contact)
+            }
+
         },
         sendTextMessage: function (username, text, time) {
 

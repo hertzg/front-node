@@ -24,7 +24,9 @@ function WorkPage_ChatPanel_Panel (username,
         editContactProfile: title.editContactProfile,
         focus: messages.focus,
         overrideContactProfile: title.overrideContactProfile,
+        receiveFileMessage: messages.receiveFileMessage,
         receiveTextMessage: messages.receiveTextMessage,
+        sendFileMessage: messages.sendFileMessage,
         sendTextMessage: messages.sendTextMessage,
         disable: function () {
             title.disable()

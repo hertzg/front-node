@@ -38,8 +38,10 @@ function WorkPage_SidePanel_Panel (username, session, getResourceUrl,
         getContact: contactList.getContact,
         offline: contactList.offline,
         online: contactList.online,
+        receiveFileMessage: contactList.receiveFileMessage,
         receiveTextMessage: contactList.receiveTextMessage,
         removeContact: contactList.removeContact,
+        sendFileMessage: contactList.sendFileMessage,
         sendTextMessage: contactList.sendTextMessage,
         disable: function () {
             addContactButton.disabled = true

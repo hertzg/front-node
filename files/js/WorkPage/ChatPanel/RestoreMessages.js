@@ -1,5 +1,6 @@
-function WorkPage_ChatPanel_RestoreMessages (username,
-    contactUsername, addSentTextMessage, addReceivedTextMessage) {
+function WorkPage_ChatPanel_RestoreMessages (
+    username, contactUsername, addReceivedFileMessage,
+    addReceivedTextMessage, addSentFileMessage, addSentTextMessage) {
 
     try {
         var messages = localStorage['messages_' + username + '$' + contactUsername]
@@ -15,10 +16,15 @@ function WorkPage_ChatPanel_RestoreMessages (username,
     }
 
     messages.forEach(function (message) {
-        if (message[0] === 'sentText') {
-            addSentTextMessage(message[1], message[2])
-        } else {
+        var type = message[0]
+        if (type === 'receivedFile') {
+            addReceivedFileMessage(message[1], message[2], message[3])
+        } else if (type === 'receivedText') {
             addReceivedTextMessage(message[1], message[2])
+        } else if (type === 'sentFile') {
+            addSentFileMessage(message[1], message[2], message[3])
+        } else {
+            addSentTextMessage(message[1], message[2])
         }
     })
 

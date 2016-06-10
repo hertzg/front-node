@@ -293,6 +293,11 @@ function WorkPage_Page (username, session, getResourceUrl,
 
         }
 
+        if (action === 'receiveFileMessage') {
+            sidePanel.receiveFileMessage(data[0], data[1], data[2], data[3])
+            return
+        }
+
         if (action === 'receiveTextMessage') {
             sidePanel.receiveTextMessage(data[0], data[1], data[2])
             return
@@ -301,6 +306,11 @@ function WorkPage_Page (username, session, getResourceUrl,
         if (action === 'removeContact') {
             var contact = sidePanel.getContact(data)
             if (contact !== undefined) sidePanel.removeContact(contact)
+            return
+        }
+
+        if (action === 'sendFileMessage') {
+            sidePanel.sendFileMessage(data[0], data[1], data[2], data[3])
             return
         }
 
