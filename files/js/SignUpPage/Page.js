@@ -10,6 +10,15 @@ function SignUpPage_Page (getResourceUrl, backListener,
         buttonNode.nodeValue = 'Sign Up'
     }
 
+    function showError (_error) {
+        enableItems()
+        error = _error
+        form.insertBefore(error.element, button)
+        button.focus()
+    }
+
+    var error = null
+
     var classPrefix = 'SignUpPage_Page'
 
     var backButton = BackButton(backListener)
@@ -48,6 +57,11 @@ function SignUpPage_Page (getResourceUrl, backListener,
         repeatPasswordItem.clearError()
         captchaItem.clearError()
 
+        if (error !== null) {
+            form.removeChild(error.element)
+            error = null
+        }
+
         var username = usernameItem.getValue()
         if (username === null) return
 
@@ -75,17 +89,20 @@ function SignUpPage_Page (getResourceUrl, backListener,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showError(CrashError())
                 return
             }
 
