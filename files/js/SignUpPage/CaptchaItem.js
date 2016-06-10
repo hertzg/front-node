@@ -45,8 +45,11 @@ function SignUpPage_CaptchaItem (backListener,
     labelElement.className = classPrefix + '-label'
     labelElement.appendChild(label)
 
+    var loadingNode = document.createTextNode('Loading...')
+
     var imageElement = document.createElement('div')
     imageElement.className = classPrefix + '-image'
+    imageElement.appendChild(loadingNode)
 
     var input = document.createElement('input')
     input.id = label.htmlFor
@@ -71,7 +74,12 @@ function SignUpPage_CaptchaItem (backListener,
     var request = new XMLHttpRequest
     request.open('get', 'data/captcha')
     request.send()
+    request.onerror = function () {
+        imageElement.removeChild(loadingNode)
+    }
     request.onload = function () {
+
+        imageElement.removeChild(loadingNode)
 
         if (request.status !== 200) {
             serviceErrorListener()
