@@ -109,6 +109,8 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
         }
         scrollDown()
 
+    }, function (files) {
+        console.log(files)
     }, closeListener)
 
     var element = document.createElement('div')

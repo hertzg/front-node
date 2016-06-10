@@ -1,4 +1,17 @@
-function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
+function WorkPage_ChatPanel_TypePanel (typeListener, fileListener, closeListener) {
+
+    function addFileInput () {
+        var fileInput = document.createElement('input')
+        fileInput.type = 'file'
+        fileInput.multiple = false
+        fileInput.className = classPrefix + '-fileInput'
+        fileInput.addEventListener('change', function () {
+            fileButton.removeChild(fileInput)
+            addFileInput()
+            fileListener(fileInput.files)
+        })
+        fileButton.appendChild(fileInput)
+    }
 
     function submit () {
         var value = textarea.value
@@ -33,6 +46,11 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
     var disabled = false
     var sendButtonDisabled = true
 
+    var fileButton = document.createElement('div')
+    fileButton.className = classPrefix + '-fileButton'
+    fileButton.appendChild(document.createTextNode('File'))
+    addFileInput()
+
     var sendButton = document.createElement('button')
     sendButton.disabled = true
     sendButton.className = classPrefix + '-sendButton'
@@ -45,16 +63,17 @@ function WorkPage_ChatPanel_TypePanel (typeListener, closeListener) {
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(textarea)
+    element.appendChild(fileButton)
     element.appendChild(sendButton)
 
     return {
         element: element,
         disable: function () {
-            disabled = textarea.disabled = true
+            disabled = textarea.disabled = fileButton.disabled = true
             sendButton.disabled = true
         },
         enable: function () {
-            disabled = textarea.disabled = false
+            disabled = textarea.disabled = fileButton.disabled = false
             sendButton.disabled = sendButtonDisabled
         },
         focus: function () {
