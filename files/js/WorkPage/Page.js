@@ -214,7 +214,7 @@ function WorkPage_Page (username, session, getResourceUrl,
 
     var contactRequests = WorkPage_ContactRequests(element, session,
         disableBackground, enableBackground, sidePanel.addContact,
-        crashListener, signOutListener, crashListener, serviceErrorListener)
+        crashListener, signOutListener, crashListener)
     for (var i in session.requests) {
         contactRequests.add(i, session.requests[i])
     }

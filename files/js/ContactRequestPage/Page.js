@@ -1,11 +1,37 @@
-function ContactRequestPage_Page (session, username,
-    profile, addContactListener, ignoreListener, closeListener,
-    signOutListener, crashListener, serviceErrorListener) {
+function ContactRequestPage_Page (session, username, profile,
+    addContactListener, ignoreListener, closeListener, signOutListener) {
+
+    function clearError () {
+        if (error === null) return
+        frameElement.removeChild(error.element)
+        error = null
+    }
 
     function disableItems () {
         addContactButton.disabled = true
         ignoreButton.disabled = true
     }
+
+    function showAddError (error) {
+        showError(error)
+        addContactNode.nodeValue = 'Add Contact'
+        addContactButton.focus()
+    }
+
+    function showError (_error) {
+        addContactButton.disabled = false
+        ignoreButton.disabled = false
+        error = _error
+        frameElement.insertBefore(error.element, buttonsElement)
+    }
+
+    function showIgnoreError (error) {
+        showError(error)
+        ignoreNode.nodeValue = 'Ignore'
+        ignoreButton.focus()
+    }
+
+    var error = null
 
     var classPrefix = 'ContactRequestPage_Page'
 
@@ -29,6 +55,7 @@ function ContactRequestPage_Page (session, username,
     addContactButton.appendChild(addContactNode)
     addContactButton.addEventListener('click', function () {
 
+        clearError()
         disableItems()
         addContactNode.nodeValue = 'Adding...'
 
@@ -42,17 +69,20 @@ function ContactRequestPage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showAddError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showAddError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showAddError(CrashError())
                 return
             }
 
@@ -79,6 +109,7 @@ function ContactRequestPage_Page (session, username,
     ignoreButton.appendChild(ignoreNode)
     ignoreButton.addEventListener('click', function () {
 
+        clearError()
         disableItems()
         ignoreNode.nodeValue = 'Ignoring...'
 
@@ -89,17 +120,20 @@ function ContactRequestPage_Page (session, username,
         var request = new XMLHttpRequest
         request.open('get', url)
         request.send()
+        request.onerror = function () {
+            showIgnoreError(ConnectionError())
+        }
         request.onload = function () {
 
             if (request.status !== 200) {
-                serviceErrorListener()
+                showIgnoreError(ServiceError())
                 return
             }
 
             try {
                 var response = JSON.parse(request.responseText)
             } catch (e) {
-                crashListener()
+                showIgnoreError(CrashError())
                 return
             }
 
@@ -116,14 +150,18 @@ function ContactRequestPage_Page (session, username,
 
     var fields = ContactRequestPage_Fields(profile)
 
+    var buttonsElement = document.createElement('div')
+    buttonsElement.className = classPrefix + '-buttons'
+    buttonsElement.appendChild(addContactButton)
+    buttonsElement.appendChild(ignoreButton)
+
     var frameElement = document.createElement('div')
     frameElement.className = classPrefix + '-frame'
     frameElement.appendChild(closeButton.element)
     frameElement.appendChild(titleElement)
     frameElement.appendChild(fields.element)
     frameElement.appendChild(textElement)
-    frameElement.appendChild(addContactButton)
-    frameElement.appendChild(ignoreButton)
+    frameElement.appendChild(buttonsElement)
 
     var alignerElement = document.createElement('div')
     alignerElement.className = classPrefix + '-aligner'

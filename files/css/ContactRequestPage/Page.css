@@ -39,8 +39,11 @@
     text-align: center;
     padding: 20px;
     white-space: normal;
-    margin-bottom: 10px;
     line-height: 20px;
+}
+
+.ContactRequestPage_Page-buttons {
+    margin-top: 10px;
 }
 
 .ContactRequestPage_Page-addContactButton {
