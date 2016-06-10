@@ -98,6 +98,10 @@ function WorkPage_Page (username, session, getResourceUrl,
 
     }
 
+    var accountPage = null,
+        chatPanel = null,
+        contactPage = null
+
     var classPrefix = 'WorkPage_Page'
 
     var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
@@ -306,10 +310,6 @@ function WorkPage_Page (username, session, getResourceUrl,
         }
 
     }, crashListener, signOutListener, serviceErrorListener)
-
-    var accountPage = null,
-        chatPanel = null,
-        contactPage = null
 
     return { element: element }
 
