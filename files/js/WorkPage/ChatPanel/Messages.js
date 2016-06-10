@@ -26,7 +26,7 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
     function addReceivedTextMessage (text, time) {
         var minute = Minute(time)
         if (canMerge('received', minute)) {
-            lastMessage.addText(text)
+            lastMessage.add(text)
         } else {
             var message = WorkPage_ChatPanel_ReceivedTextMessage(text, time)
             addMessage('received', message, time)
@@ -41,7 +41,7 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
     function addSentTextMessage (text, time) {
         var minute = Minute(time)
         if (canMerge('sent', minute)) {
-            lastMessage.addText(text)
+            lastMessage.add(text)
         } else {
             var message = WorkPage_ChatPanel_SentTextMessage(text, time)
             addMessage('sent', message, time)

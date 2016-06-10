@@ -18,7 +18,7 @@ function WorkPage_ChatPanel_SentTextMessage (text, time) {
 
     return {
         element: element,
-        addText: function (text) {
+        add: function (text) {
             element.appendChild(document.createElement('br'))
             element.appendChild(document.createTextNode(text))
         },
