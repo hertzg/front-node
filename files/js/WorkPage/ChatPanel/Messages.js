@@ -141,7 +141,7 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
 
     }, function (files) {
         for (var i = 0; i < files.length; i++) {
-            ;(file => {
+            ;(function (file) {
 
                 var name = file.name,
                     size = file.size

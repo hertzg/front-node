@@ -13,7 +13,7 @@ function CrashPage_Page (getResourceUrl, reloadListener) {
     var button = document.createElement('button')
     button.className = classPrefix + '-button'
     button.appendChild(buttonNode)
-    button.addEventListener('click', () => {
+    button.addEventListener('click', function () {
         button.disabled = true
         buttonNode.nodeValue = 'Reloading...'
         reloadListener()
