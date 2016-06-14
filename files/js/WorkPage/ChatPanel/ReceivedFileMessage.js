@@ -1,5 +1,9 @@
 function WorkPage_ChatPanel_ReceivedFileMessage (file, time) {
 
+    function addItem (file) {
+        element.appendChild(document.createTextNode(file.name + ' - ' + file.size + ' byte(s)'))
+    }
+
     var classPrefix = 'WorkPage_ChatPanel_ReceivedFileMessage'
 
     var date = new Date(time)
@@ -14,13 +18,13 @@ function WorkPage_ChatPanel_ReceivedFileMessage (file, time) {
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(timeElement)
-    element.appendChild(document.createTextNode(file.name + ' - ' + file.size))
+    addItem(file)
 
     return {
         element: element,
         add: function (file) {
             element.appendChild(document.createElement('br'))
-            element.appendChild(document.createTextNode(file.name + ' - ' + file.size))
+            addItem(file)
         },
     }
 
