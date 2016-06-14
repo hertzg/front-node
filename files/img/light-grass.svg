@@ -31,7 +31,7 @@
      id="layer1">
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.75322242,0,0,0.75322242,42.608695,851.61282)"
+       transform="matrix(0.48421479,0,0,0.48421479,27.391325,886.88033)"
        id="path2987"
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <path
@@ -60,7 +60,7 @@
        id="path3765"
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <use
-       transform="translate(500,-4.9974266e-6)"
+       transform="translate(500,-4.526083e-6)"
        id="use3767"
        style="fill:#d4f3bd;fill-opacity:1"
        x="0"
@@ -75,17 +75,17 @@
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.70947135,0,0,0.70947135,380.13376,869.78827)"
+       transform="matrix(0.70947135,0,0,0.70947135,381.54797,869.78827)"
        id="path3771"
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.70947135,0,0,0.70947135,151.0678,873.85423)"
+       transform="matrix(0.70947135,0,0,0.70947135,135.24458,859.79357)"
        id="path2992"
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.70947135,0,0,0.70947135,249.19972,868.85423)"
+       transform="matrix(0.70947135,0,0,0.70947135,251.32104,868.50068)"
        id="path2994"
        style="fill:#d4f3bd;fill-opacity:1;stroke:none" />
     <path

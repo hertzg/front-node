@@ -31,7 +31,7 @@
      id="layer1">
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.75322242,0,0,0.75322242,42.608695,841.61286)"
+       transform="matrix(0.48421442,0,0,0.48421442,27.391305,881.88047)"
        id="path2987"
        style="fill:#b8ec93;fill-opacity:1;stroke:none" />
     <path
@@ -60,7 +60,7 @@
        id="path3765"
        style="fill:#b8ec93;fill-opacity:1;stroke:none" />
     <use
-       transform="translate(500,-4.9572559e-6)"
+       transform="translate(500,-5.4634573e-6)"
        id="use3767"
        style="fill:#b8ec93;fill-opacity:1"
        x="0"
@@ -80,7 +80,7 @@
        style="fill:#b8ec93;fill-opacity:1;stroke:none" />
     <path
        d="m 36.365494,279.79694 a 92.934036,92.934036 0 1 1 -185.868074,0 92.934036,92.934036 0 1 1 185.868074,0 z"
-       transform="matrix(0.70947135,0,0,0.70947135,151.0678,863.85427)"
+       transform="matrix(0.70947135,0,0,0.70947135,135.13376,862.92023)"
        id="path2992"
        style="fill:#b8ec93;fill-opacity:1;stroke:none" />
     <path
