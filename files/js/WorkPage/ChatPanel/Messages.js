@@ -1,5 +1,6 @@
-function WorkPage_ChatPanel_Messages (username, session, contactUsername,
-    closeListener, signOutListener, crashListener, serviceErrorListener) {
+function WorkPage_ChatPanel_Messages (sentFiles, receivedFiles,
+    username, session, contactUsername, closeListener,
+    signOutListener, crashListener, serviceErrorListener) {
 
     function Day (time) {
         return Math.floor(time / (1000 * 60 * 60 * 24))
@@ -28,7 +29,7 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
         if (canMerge('receivedFile', minute)) {
             lastMessage.add(file)
         } else {
-            var message = WorkPage_ChatPanel_ReceivedFileMessage(file, time)
+            var message = WorkPage_ChatPanel_ReceivedFileMessage(receivedFiles, file, time)
             addMessage('receivedFile', message, time)
             lastMessage = message
             lastDirection = 'receivedFile'
@@ -148,12 +149,15 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
                     size: readableFile.size,
                 }
 
-                var sendingFileMessage = WorkPage_ChatPanel_SendingFileMessage(session, contactUsername, file, function (time) {
+                var sendingFileMessage = WorkPage_ChatPanel_SendingFileMessage(session, contactUsername, file, function (response) {
                     sendingMessagesElement.removeChild(sendingFileMessage.element)
                     if (sendingMessagesElement.childNodes.length === 0) {
                         sendingMessagesClassList.add('hidden')
                     }
-                    addSentFileMessage(file, time)
+                    addSentFileMessage(file, response.time)
+                    sentFiles.add(response.token, function () {
+                        console.log('feed sent', file.token)
+                    })
                 }, signOutListener, crashListener, serviceErrorListener)
 
                 sendingMessagesElement.appendChild(sendingFileMessage.element)
@@ -180,11 +184,14 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
         disable: typePanel.disable,
         enable: typePanel.enable,
         element: element,
-        focus: typePanel.focus,
         receiveFileMessage: addReceivedFileMessage,
         receiveTextMessage: addReceivedTextMessage,
         sendFileMessage: addSentFileMessage,
         sendTextMessage: addSentTextMessage,
+        focus: function () {
+            typePanel.focus()
+            scrollDown()
+        },
     }
 
 }

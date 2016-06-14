@@ -98,13 +98,16 @@ function WorkPage_Page (username, session, getResourceUrl,
 
     }
 
+    var sentFiles = WorkPage_SentFiles(),
+        receivedFiles = WorkPage_ReceivedFiles()
+
     var accountPage = null,
         chatPanel = null,
         contactPage = null
 
     var classPrefix = 'WorkPage_Page'
 
-    var sidePanel = WorkPage_SidePanel_Panel(username, session, getResourceUrl, function () {
+    var sidePanel = WorkPage_SidePanel_Panel(sentFiles, receivedFiles, username, session, getResourceUrl, function () {
         disableBackground()
         showAccountPage()
     }, function () {
@@ -306,6 +309,11 @@ function WorkPage_Page (username, session, getResourceUrl,
         if (action === 'removeContact') {
             var contact = sidePanel.getContact(data)
             if (contact !== undefined) sidePanel.removeContact(contact)
+            return
+        }
+
+        if (action === 'removeFile') {
+            receivedFiles.remove(data)
             return
         }
 

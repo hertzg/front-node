@@ -1,9 +1,9 @@
-function WorkPage_SidePanel_ContactList (username, session, getResourceUrl,
+function WorkPage_SidePanel_ContactList (sentFiles, receivedFiles, username, session, getResourceUrl,
     selectListener, deselectListener, profileListener, removeListener,
     signOutListener, crashListener, serviceErrorListener) {
 
     function addContact (contactUsername, contactData) {
-        var contact = WorkPage_SidePanel_Contact(getResourceUrl, username, session, contactUsername, contactData, function () {
+        var contact = WorkPage_SidePanel_Contact(sentFiles, receivedFiles, getResourceUrl, username, session, contactUsername, contactData, function () {
             if (selectedContact !== null) {
                 selectedContact.deselect()
                 deselectListener(selectedContact)

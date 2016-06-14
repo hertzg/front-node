@@ -1,7 +1,18 @@
-function WorkPage_ChatPanel_ReceivedFileMessage (file, time) {
+function WorkPage_ChatPanel_ReceivedFileMessage (receivedFiles, file, time) {
 
     function addItem (file) {
-        element.appendChild(document.createTextNode(file.name + ' - ' + file.size + ' byte(s)'))
+
+        var receiveLink = document.createElement('a')
+        receiveLink.appendChild(document.createTextNode('Receive'))
+        receiveLink.href = 'data/receiveFile?token=' + encodeURIComponent(file.token)
+
+        element.appendChild(document.createTextNode(file.name + ' - ' + file.size + ' byte(s) '))
+        element.appendChild(receiveLink)
+
+        receivedFiles.add(file.token, function () {
+            element.removeChild(receiveLink)
+        })
+
     }
 
     var classPrefix = 'WorkPage_ChatPanel_ReceivedFileMessage'

@@ -16,6 +16,11 @@ exports.sessionNode = {
     port: 7400,
 }
 
+exports.fileNode = {
+    host: '127.0.0.1',
+    port: 7500,
+}
+
 exports.log = {
     error: true,
     http: true,

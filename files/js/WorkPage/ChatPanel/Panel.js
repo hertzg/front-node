@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_Panel (username,
+function WorkPage_ChatPanel_Panel (sentFiles, receivedFiles, username,
     session, contactUsername, profile, overrideProfile,
     getResourceUrl, profileListener, removeListener, closeListener,
     signOutListener, crashListener, serviceErrorListener) {
@@ -6,7 +6,7 @@ function WorkPage_ChatPanel_Panel (username,
     var title = WorkPage_ChatPanel_Title(contactUsername,
         profile, overrideProfile, profileListener, removeListener)
 
-    var messages = WorkPage_ChatPanel_Messages(
+    var messages = WorkPage_ChatPanel_Messages(sentFiles, receivedFiles,
         username, session, contactUsername, closeListener,
         signOutListener, crashListener, serviceErrorListener)
 

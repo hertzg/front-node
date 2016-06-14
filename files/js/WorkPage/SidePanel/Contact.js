@@ -1,4 +1,4 @@
-function WorkPage_SidePanel_Contact (getResourceUrl,
+function WorkPage_SidePanel_Contact (sentFiles, receivedFiles, getResourceUrl,
     username, session, contactUsername, contactData, selectListener,
     deselectListener, profileListener, removeListener,
     signOutListener, crashListener, serviceErrorListener) {
@@ -24,7 +24,7 @@ function WorkPage_SidePanel_Contact (getResourceUrl,
     var profile = contactData.profile,
         overrideProfile = contactData.overrideProfile
 
-    var chatPanel = WorkPage_ChatPanel_Panel(username, session,
+    var chatPanel = WorkPage_ChatPanel_Panel(sentFiles, receivedFiles, username, session,
         contactUsername, profile, overrideProfile, getResourceUrl,
         profileListener, removeListener, deselectAndCallListener,
         signOutListener, crashListener, serviceErrorListener)
