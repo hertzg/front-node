@@ -23,19 +23,19 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
 
     }
 
-    function addReceivedFileMessage (name, size, time) {
+    function addReceivedFileMessage (file, time) {
         var minute = Minute(time)
         if (canMerge('receivedFile', minute)) {
-            lastMessage.add(name, size)
+            lastMessage.add(file)
         } else {
-            var message = WorkPage_ChatPanel_ReceivedFileMessage(name, size, time)
+            var message = WorkPage_ChatPanel_ReceivedFileMessage(file, time)
             addMessage('receivedFile', message, time)
             lastMessage = message
             lastDirection = 'receivedFile'
             lastMinute = minute
         }
         scrollDown()
-        storeMessage(['receivedFile', name, size, time])
+        storeMessage(['receivedFile', file, time])
     }
 
     function addReceivedTextMessage (text, time) {
@@ -53,19 +53,19 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
         storeMessage(['receivedText', text, time])
     }
 
-    function addSentFileMessage (name, size, time) {
+    function addSentFileMessage (file, time) {
         var minute = Minute(time)
         if (canMerge('sentFile', minute)) {
-            lastMessage.add(name, size)
+            lastMessage.add(file)
         } else {
-            var message = WorkPage_ChatPanel_SentFileMessage(name, size, time)
+            var message = WorkPage_ChatPanel_SentFileMessage(file, time)
             addMessage('sentFile', message, time)
             lastMessage = message
             lastDirection = 'sentFile'
             lastMinute = minute
         }
         scrollDown()
-        storeMessage(['sentFile', name, size, time])
+        storeMessage(['sentFile', file, time])
     }
 
     function addSentTextMessage (text, time) {
@@ -141,17 +141,19 @@ function WorkPage_ChatPanel_Messages (username, session, contactUsername,
 
     }, function (files) {
         for (var i = 0; i < files.length; i++) {
-            ;(function (file) {
+            ;(function (readableFile) {
 
-                var name = file.name,
-                    size = file.size
+                var file = {
+                    name: readableFile.name,
+                    size: readableFile.size,
+                }
 
-                var sendingFileMessage = WorkPage_ChatPanel_SendingFileMessage(session, contactUsername, name, size, function (time) {
+                var sendingFileMessage = WorkPage_ChatPanel_SendingFileMessage(session, contactUsername, file, function (time) {
                     sendingMessagesElement.removeChild(sendingFileMessage.element)
                     if (sendingMessagesElement.childNodes.length === 0) {
                         sendingMessagesClassList.add('hidden')
                     }
-                    addSentFileMessage(name, size, time)
+                    addSentFileMessage(file, time)
                 }, signOutListener, crashListener, serviceErrorListener)
 
                 sendingMessagesElement.appendChild(sendingFileMessage.element)

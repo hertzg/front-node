@@ -1,6 +1,9 @@
 function WorkPage_ChatPanel_SendingFileMessage (session,
-    contactUsername, name, size, sentListener, signOutListener,
+    contactUsername, file, sentListener, signOutListener,
     crashListener, serviceErrorListener) {
+
+    var name = file.name,
+        size = file.size
 
     var element = document.createElement('div')
     element.className = 'WorkPage_ChatPanel_SendingFileMessage'

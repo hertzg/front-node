@@ -1,4 +1,4 @@
-function WorkPage_ChatPanel_SentFileMessage (name, size, time) {
+function WorkPage_ChatPanel_SentFileMessage (file, time) {
 
     var classPrefix = 'WorkPage_ChatPanel_SentFileMessage'
 
@@ -14,13 +14,13 @@ function WorkPage_ChatPanel_SentFileMessage (name, size, time) {
     var element = document.createElement('div')
     element.className = classPrefix
     element.appendChild(timeElement)
-    element.appendChild(document.createTextNode(name + ' - ' + size))
+    element.appendChild(document.createTextNode(file.name + ' - ' + file.size))
 
     return {
         element: element,
-        add: function (name, size) {
+        add: function (file) {
             element.appendChild(document.createElement('br'))
-            element.appendChild(document.createTextNode(name + ' - ' + size))
+            element.appendChild(document.createTextNode(file.name + ' - ' + file.size))
         },
     }
 

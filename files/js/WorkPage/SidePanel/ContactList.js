@@ -65,12 +65,12 @@ function WorkPage_SidePanel_ContactList (username, session, getResourceUrl,
             if (contact === undefined) return
             contact.online()
         },
-        receiveFileMessage: function (username, name, size, time) {
+        receiveFileMessage: function (username, file, time) {
 
             var contact = contacts[username]
             if (contact === undefined) return
 
-            contact.receiveFileMessage(name, size, time)
+            contact.receiveFileMessage(file, time)
 
             if (selectedContact === null) {
                 selectedContact = contact
@@ -102,12 +102,12 @@ function WorkPage_SidePanel_ContactList (username, session, getResourceUrl,
             numContacts--
             if (numContacts === 0) contentElement.appendChild(emptyElement)
         },
-        sendFileMessage: function (username, name, size, time) {
+        sendFileMessage: function (username, file, time) {
 
             var contact = contacts[username]
             if (contact === undefined) return
 
-            contact.sendFileMessage(name, size, time)
+            contact.sendFileMessage(file, time)
 
             if (selectedContact === null) {
                 selectedContact = contact
