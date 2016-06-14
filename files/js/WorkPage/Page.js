@@ -317,6 +317,11 @@ function WorkPage_Page (username, session, getResourceUrl,
             return
         }
 
+        if (action === 'requestFile') {
+            sentFiles.feed(data)
+            return
+        }
+
         if (action === 'sendFileMessage') {
             sidePanel.sendFileMessage(data[0], data[1], data[2], data[3])
             return

@@ -156,7 +156,8 @@ function WorkPage_ChatPanel_Messages (sentFiles, receivedFiles,
                     }
                     addSentFileMessage(file, response.time)
                     sentFiles.add(response.token, function () {
-                        console.log('feed sent', file.token)
+                        console.log('feed', response.token)
+                        WorkPage_ChatPanel_FeedFile(response.token, readableFile)
                     })
                 }, signOutListener, crashListener, serviceErrorListener)
 

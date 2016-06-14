@@ -4,6 +4,7 @@ function WorkPage_ChatPanel_ReceivedFileMessage (receivedFiles, file, time) {
 
         var receiveLink = document.createElement('a')
         receiveLink.appendChild(document.createTextNode('Receive'))
+        receiveLink.target = '_blank'
         receiveLink.href = 'data/receiveFile?token=' + encodeURIComponent(file.token)
 
         element.appendChild(document.createTextNode(file.name + ' - ' + file.size + ' byte(s) '))
